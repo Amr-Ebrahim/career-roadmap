@@ -35,8 +35,14 @@ PATTERNS = {
     for family, words in ROLE_FAMILIES.items()
 }
 
-EXCLUDE = re.compile(r"\b(sales|recruit\w*|marketing|account executive|account manager"
-                     r"|insurance|underwriter|industrial security|curriculum)\b")
+EXCLUDE = re.compile(
+    r"\b(sales|recruit\w*|marketing|account executive|account manager"
+    r"|insurance|underwriter|industrial security|curriculum"
+    r"|product manager|product owner|project (?:lead|manager)|delivery lead"
+    r"|operations manager|associate partner|managing partner|consulting manager"
+    r"|regulatory|ai trainer|strategist|volunteer"
+    r"|stylist|model validation)\b"
+)
 
 
 def label_role(title):
