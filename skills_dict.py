@@ -1,0 +1,151 @@
+# canonical name: (category, [regex aliases, matched case-insensitively])
+SKILLS = {
+    # languages
+    "Python": ("language", [r"python"]),
+    "Java": ("language", [r"java"]),
+    "JavaScript": ("language", [r"javascript", r"ecmascript", r"es6"]),
+    "TypeScript": ("language", [r"typescript"]),
+    "C++": ("language", [r"c\+\+", r"cpp"]),
+    "C#": ("language", [r"c#", r"c sharp"]),
+    "Go": ("language", [r"golang"]),
+    "Kotlin": ("language", [r"kotlin"]),
+    "PHP": ("language", [r"php"]),
+    "Scala": ("language", [r"scala"]),
+    "SQL": ("language", [r"sql", r"t-sql", r"pl/sql"]),
+    "Bash": ("language", [r"bash", r"shell scripting"]),
+    "PowerShell": ("language", [r"powershell"]),
+
+    # frontend
+    "HTML/CSS": ("frontend", [r"html5?", r"css3?"]),
+    "React": ("frontend", [r"react\.?js"]),
+    "Angular": ("frontend", [r"angular(?:js)?"]),
+    "Vue.js": ("frontend", [r"vue(?:\.?js)?"]),
+    "Next.js": ("frontend", [r"next\.?js"]),
+
+    # backend
+    "Node.js": ("backend", [r"node\.?js"]),
+    "Django": ("backend", [r"django"]),
+    "Flask": ("backend", [r"flask"]),
+    "FastAPI": ("backend", [r"fastapi"]),
+    "Spring": ("backend", [r"spring ?boot", r"spring framework"]),
+    ".NET": ("backend", [r"\.net(?: core)?", r"asp\.net", r"dotnet"]),
+    "REST APIs": ("backend", [r"rest(?:ful)? apis?", r"restful"]),
+    "GraphQL": ("backend", [r"graphql"]),
+    "Microservices": ("backend", [r"micro-?services?"]),
+
+    # databases
+    "PostgreSQL": ("database", [r"postgres(?:ql)?"]),
+    "MySQL": ("database", [r"mysql"]),
+    "SQL Server": ("database", [r"sql server", r"mssql"]),
+    "Oracle Database": ("database", [r"oracle db", r"oracle database"]),
+    "MongoDB": ("database", [r"mongo(?:db)?"]),
+    "Redis": ("database", [r"redis"]),
+    "NoSQL": ("database", [r"nosql"]),
+    "Elasticsearch": ("database", [r"elastic ?search"]),
+
+    # cloud
+    "AWS": ("cloud", [r"aws", r"amazon web services"]),
+    "Azure": ("cloud", [r"azure"]),
+    "GCP": ("cloud", [r"gcp", r"google cloud(?: platform)?"]),
+
+    # devops
+    "Docker": ("devops", [r"docker"]),
+    "Kubernetes": ("devops", [r"kubernetes", r"k8s"]),
+    "Terraform": ("devops", [r"terraform"]),
+    "Ansible": ("devops", [r"ansible"]),
+    "CI/CD": ("devops", [r"ci ?/ ?cd", r"continuous integration", r"continuous (?:delivery|deployment)"]),
+    "Jenkins": ("devops", [r"jenkins"]),
+    "GitHub Actions": ("devops", [r"github actions"]),
+    "Git": ("devops", [r"git", r"github", r"gitlab", r"bitbucket"]),
+    "Linux": ("devops", [r"linux", r"unix", r"ubuntu", r"red ?hat", r"rhel"]),
+    "Prometheus": ("devops", [r"prometheus"]),
+    "Grafana": ("devops", [r"grafana"]),
+
+    # data
+    "Pandas": ("data", [r"pandas"]),
+    "NumPy": ("data", [r"numpy"]),
+    "Apache Spark": ("data", [r"apache spark", r"pyspark", r"spark sql"]),
+    "Kafka": ("data", [r"kafka"]),
+    "Airflow": ("data", [r"airflow"]),
+    "dbt": ("data", [r"dbt"]),
+    "Hadoop": ("data", [r"hadoop", r"hive", r"hdfs"]),
+    "ETL": ("data", [r"etl", r"elt"]),
+    "Data Warehousing": ("data", [r"data warehous\w*"]),
+    "Snowflake": ("data", [r"snowflake"]),
+    "Databricks": ("data", [r"databricks"]),
+    "BigQuery": ("data", [r"big ?query"]),
+    "Power BI": ("data", [r"power ?bi"]),
+    "Tableau": ("data", [r"tableau"]),
+    "Statistics": ("data", [r"statistic(?:s|al)"]),
+
+    # AI / ML
+    "Machine Learning": ("ml_ai", [r"machine learning", r"ml"]),
+    "Deep Learning": ("ml_ai", [r"deep learning", r"neural networks?"]),
+    "PyTorch": ("ml_ai", [r"pytorch", r"torch"]),
+    "TensorFlow": ("ml_ai", [r"tensorflow"]),
+    "Keras": ("ml_ai", [r"keras"]),
+    "scikit-learn": ("ml_ai", [r"scikit-?learn", r"sklearn"]),
+    "NLP": ("ml_ai", [r"nlp", r"natural language processing"]),
+    "Computer Vision": ("ml_ai", [r"computer vision", r"opencv"]),
+    "LLMs": ("ml_ai", [r"llms?", r"large language models?", r"generative ai", r"genai", r"gen ai"]),
+    "RAG": ("ml_ai", [r"rag", r"retrieval[- ]augmented generation"]),
+    "LangChain": ("ml_ai", [r"langchain"]),
+    "LangGraph": ("ml_ai", [r"langgraph"]),
+    "Hugging Face": ("ml_ai", [r"hugging ?face"]),
+    "Vector Databases": ("ml_ai", [r"vector (?:databases?|stores?|db)", r"pinecone", r"chromadb",
+                                   r"faiss", r"weaviate", r"qdrant", r"pgvector"]),
+    "Prompt Engineering": ("ml_ai", [r"prompt engineering"]),
+    "MLOps": ("ml_ai", [r"mlops", r"mlflow", r"kubeflow"]),
+    "AI Agents": ("ml_ai", [r"ai agents?", r"agentic", r"multi-agent"]),
+
+    # security
+    "SIEM": ("security", [r"siem", r"splunk", r"qradar"]),
+    "Penetration Testing": ("security", [r"penetration testing", r"pen ?test\w*"]),
+    "Vulnerability Management": ("security", [r"vulnerability (?:management|assessments?|scanning)"]),
+    "Identity & Access Management": ("security", [r"iam", r"identity and access management", r"okta"]),
+    "Network Security": ("security", [r"network security", r"firewalls?", r"ids/ips"]),
+    "Incident Response": ("security", [r"incident response"]),
+    "Security Frameworks": ("security", [r"nist", r"iso 27001", r"soc 2", r"pci[- ]dss"]),
+
+    # networking & IT support
+    "Networking Fundamentals": ("networking", [r"tcp/ip", r"dns", r"dhcp", r"subnetting", r"osi model"]),
+    "Routing & Switching": ("networking", [r"routing (?:and|&) switching", r"bgp", r"ospf", r"eigrp", r"vlans?"]),
+    "Cisco": ("networking", [r"cisco", r"ccna", r"ccnp"]),
+    "Active Directory": ("it_support", [r"active directory"]),
+    "Windows Server": ("it_support", [r"windows server"]),
+    "Microsoft 365": ("it_support", [r"office 365", r"microsoft 365", r"o365", r"m365"]),
+    "ITIL": ("it_support", [r"itil"]),
+    "ServiceNow": ("it_support", [r"servicenow"]),
+    "VMware": ("it_support", [r"vmware", r"vsphere", r"esxi"]),
+    "Troubleshooting": ("it_support", [r"troubleshoot\w*"]),
+
+    # mobile
+    "Android": ("mobile", [r"android"]),
+    "Flutter": ("mobile", [r"flutter"]),
+    "React Native": ("mobile", [r"react native"]),
+
+    # testing
+    "Selenium": ("testing", [r"selenium"]),
+    "Cypress": ("testing", [r"cypress"]),
+    "Unit Testing": ("testing", [r"unit tests?", r"unit testing", r"pytest", r"junit", r"jest"]),
+    "Test Automation": ("testing", [r"test automation", r"automated testing"]),
+
+    # practices & tools
+    "Agile": ("practice", [r"agile", r"scrum", r"kanban"]),
+    "Jira": ("practice", [r"jira"]),
+    "System Design": ("practice", [r"system design", r"distributed systems"]),
+    "Data Structures & Algorithms": ("practice", [r"data structures", r"algorithms"]),
+}
+
+# Ambiguous names: matched with EXACT capitalization (and context for R / Go)
+CASE_SENSITIVE = {
+    "R": ("language", [r"R(?=\s*(?:programming|language|studio|,|/|\)))"]),
+    "Go": ("language", [r"Go(?=\s*(?:programming|language|,|/|\)))"]),
+    "React": ("frontend", [r"React"]),
+    "Apache Spark": ("data", [r"Spark"]),
+    "Excel": ("data", [r"Excel"]),
+    "Swift": ("mobile", [r"Swift"]),
+    "Rust": ("language", [r"Rust"]),
+    "Ruby": ("language", [r"Ruby"]),
+    "iOS": ("mobile", [r"iOS"]),
+}
