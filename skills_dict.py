@@ -173,7 +173,7 @@ SKILLS = {
 
 # Ambiguous names: matched with EXACT capitalization (and context for R / Go)
 CASE_SENSITIVE = {
-    "R": ("language", [r"R(?=\s*(?:programming|language|studio|,|/|\)))"]),
+    "R": ("language", [r"R(?!/S\b)(?=\s*(?:programming|language|studio|,|/|\)))"]),
     "Go": ("language", [r"Go(?=\s*(?:programming|language|,|/|\)))"]),
     "React": ("frontend", [r"React(?!\s*Native)"]),
     "APIs (REST)": ("backend", [r"REST"]),
