@@ -29,12 +29,12 @@ SKILLS = {
     "FastAPI": ("backend", [r"fastapi"]),
     "Spring": ("backend", [r"spring ?boot", r"spring framework"]),
     ".NET": ("backend", [r"\.net(?: core)?", r"asp\.net", r"dotnet"]),
-    "APIs (REST)": ("backend", [r"restful", r"rest apis?", r"apis?", r"api development"]),  # CHANGED
+    "APIs (REST)": ("backend", [r"restful", r"rest apis?", r"apis?", r"api development"]),
     "GraphQL": ("backend", [r"graphql"]),
     "Microservices": ("backend", [r"micro-?services?"]),
-    "JSON/XML": ("backend", [r"json", r"xml"]),  # NEW
-    "SOAP": ("backend", [r"soap"]),  # NEW
-    "MVC": ("backend", [r"mvc"]),  # NEW
+    "JSON/XML": ("backend", [r"json", r"xml"]),
+    "SOAP": ("backend", [r"soap"]),
+    "MVC": ("backend", [r"mvc"]),
 
     # databases
     "PostgreSQL": ("database", [r"postgres(?:ql)?"]),
@@ -43,26 +43,28 @@ SKILLS = {
     "Oracle Database": ("database", [r"oracle db", r"oracle database"]),
     "MongoDB": ("database", [r"mongo(?:db)?"]),
     "Redis": ("database", [r"redis"]),
-    "NoSQL": ("database", [r"nosql", r"dynamodb", r"cassandra"]),  # CHANGED
+    "NoSQL": ("database", [r"nosql", r"dynamodb", r"cassandra"]),
     "Elasticsearch": ("database", [r"elastic ?search"]),
-    "Relational Databases": ("database", [r"rdbms", r"relational databases?"]),  # NEW
+    "Relational Databases": ("database", [r"rdbms", r"relational databases?"]),
 
     # cloud
-    "AWS": ("cloud", [r"aws", r"amazon web services"]),
+    "AWS": ("cloud", [r"aws", r"amazon web services", r"ec2", r"s3", r"rds", r"eks", r"ecs",
+                      r"emr", r"sqs", r"sns", r"cloudwatch"]),  # CHANGED
     "Azure": ("cloud", [r"azure"]),
     "GCP": ("cloud", [r"gcp", r"google cloud(?: platform)?"]),
 
     # devops
     "Docker": ("devops", [r"docker"]),
-    "Kubernetes": ("devops", [r"kubernetes", r"k8s"]),
+    "Kubernetes": ("devops", [r"kubernetes", r"k8s", r"openshift"]),  # CHANGED
     "Terraform": ("devops", [r"terraform"]),
     "Infrastructure as Code": ("devops", [r"iac", r"infrastructure as code", r"cloudformation",
-                                          r"pulumi", r"bicep"]),  # NEW
+                                          r"pulumi", r"bicep"]),
     "Ansible": ("devops", [r"ansible"]),
-    "CI/CD": ("devops", [r"ci ?/ ?cd", r"continuous integration", r"continuous (?:delivery|deployment)"]),
+    "CI/CD": ("devops", [r"ci ?/ ?cd", r"cicd", r"continuous integration",
+                         r"continuous (?:delivery|deployment)"]),  # CHANGED
     "Jenkins": ("devops", [r"jenkins"]),
     "GitHub Actions": ("devops", [r"github actions"]),
-    "Git": ("devops", [r"git", r"github", r"gitlab", r"bitbucket"]),
+    "Git": ("devops", [r"git", r"github", r"gitlab", r"bitbucket", r"svn", r"subversion"]),  # CHANGED
     "Linux": ("devops", [r"linux", r"unix", r"ubuntu", r"red ?hat", r"rhel"]),
     "Prometheus": ("devops", [r"prometheus"]),
     "Grafana": ("devops", [r"grafana"]),
@@ -76,7 +78,7 @@ SKILLS = {
     "dbt": ("data", [r"dbt"]),
     "Hadoop": ("data", [r"hadoop", r"hive", r"hdfs"]),
     "ETL": ("data", [r"etl", r"elt"]),
-    "SSIS/SSRS": ("data", [r"ssis", r"ssrs"]),  # NEW
+    "SSIS/SSRS": ("data", [r"ssis", r"ssrs"]),
     "Data Warehousing": ("data", [r"data warehous\w*"]),
     "Snowflake": ("data", [r"snowflake"]),
     "Databricks": ("data", [r"databricks"]),
@@ -109,33 +111,37 @@ SKILLS = {
     "SIEM": ("security", [r"siem", r"splunk", r"qradar"]),
     "Penetration Testing": ("security", [r"penetration testing", r"pen ?test\w*"]),
     "Vulnerability Management": ("security", [r"vulnerability (?:management|assessments?|scanning)"]),
-    "Identity & Access Management": ("security", [r"iam", r"identity and access management", r"okta"]),
+    "Identity & Access Management": ("security", [r"iam", r"identity and access management", r"okta",
+                                                  r"sso", r"saml", r"ldap", r"mfa", r"oauth\s?2?"]),  # CHANGED
     "Network Security": ("security", [r"network security", r"firewalls?", r"ids/ips"]),
     "Incident Response": ("security", [r"incident response"]),
-    "Security Frameworks": ("security", [r"nist", r"iso 27001", r"soc 2", r"pci[- ]dss"]),
-    "DevSecOps": ("security", [r"devsecops"]),  # NEW
+    "Security Frameworks": ("security", [r"nist", r"iso 27001", r"soc 2", r"pci(?:[- ]dss)?",
+                                         r"hipaa", r"gdpr"]),  # CHANGED
+    "DevSecOps": ("security", [r"devsecops"]),
 
     # networking & IT support
     "Networking Fundamentals": ("networking", [r"tcp/ip", r"tcp", r"udp", r"dns", r"dhcp", r"subnetting",
-                                               r"osi model", r"lan", r"wan", r"vpns?"]),  # CHANGED
+                                               r"osi model", r"lan", r"wan", r"vpns?"]),
     "Routing & Switching": ("networking", [r"routing (?:and|&) switching", r"bgp", r"ospf", r"eigrp", r"vlans?"]),
     "Cisco": ("networking", [r"cisco", r"ccna", r"ccnp"]),
     "Active Directory": ("it_support", [r"active directory"]),
     "Windows Server": ("it_support", [r"windows server"]),
     "Microsoft 365": ("it_support", [r"office 365", r"microsoft 365", r"o365", r"m365"]),
-    "SharePoint": ("it_support", [r"sharepoint"]),  # NEW
-    "ITIL / ITSM": ("it_support", [r"itil", r"itsm"]),  # CHANGED
+    "SharePoint": ("it_support", [r"sharepoint"]),
+    "ITIL / ITSM": ("it_support", [r"itil", r"itsm"]),
     "ServiceNow": ("it_support", [r"servicenow"]),
     "VMware": ("it_support", [r"vmware", r"vsphere", r"esxi"]),
 
-    # enterprise platforms  (NEW category)
+    # enterprise platforms
     "SAP": ("enterprise", [r"sap", r"abap"]),
     "Salesforce": ("enterprise", [r"salesforce", r"sfdc"]),
     "PeopleSoft": ("enterprise", [r"peoplesoft"]),
+    "Mainframe": ("enterprise", [r"mainframe", r"cobol", r"jcl", r"cics", r"db2",
+                                 r"as/?400", r"rpg"]),  # NEW
 
-    # embedded  (NEW category)
+    # embedded
     "Embedded Systems": ("embedded", [r"embedded (?:systems?|software|c)", r"rtos", r"firmware",
-                                      r"microcontrollers?"]),
+                                      r"microcontrollers?", r"iot"]),  # CHANGED
 
     # mobile
     "Android": ("mobile", [r"android"]),
@@ -147,18 +153,19 @@ SKILLS = {
     "Cypress": ("testing", [r"cypress"]),
     "Unit Testing": ("testing", [r"unit tests?", r"unit testing", r"pytest", r"junit", r"jest"]),
     "Test Automation": ("testing", [r"test automation", r"automated testing"]),
-    "TDD": ("testing", [r"tdd", r"test[- ]driven development"]),  # NEW
+    "TDD": ("testing", [r"tdd", r"test[- ]driven development"]),
 
-    # certifications  (NEW category)
+    # certifications
     "CompTIA Certifications": ("certification", [r"comptia", r"a\+", r"network\+", r"security\+"]),
     "Security Certifications": ("certification", [r"cissp", r"cism", r"cisa", r"ceh", r"oscp"]),
 
     # practices
     "Agile": ("practice", [r"agile", r"scrum", r"kanban"]),
     "Jira": ("practice", [r"jira"]),
-    "DevOps": ("practice", [r"devops"]),  # NEW
-    "SDLC": ("practice", [r"sdlc", r"software development life ?cycle"]),  # NEW
-    "Site Reliability Engineering": ("practice", [r"sre", r"site reliability"]),  # NEW
+    "DevOps": ("practice", [r"devops"]),
+    "SDLC": ("practice", [r"sdlc", r"software development life ?cycle"]),
+    "Site Reliability Engineering": ("practice", [r"sre", r"site reliability"]),
+    "OOP": ("practice", [r"oop", r"object[- ]oriented(?: programming| design)?"]),  # NEW
     "System Design": ("practice", [r"system design", r"distributed systems"]),
     "Data Structures & Algorithms": ("practice", [r"data structures", r"dsa", r"algorithm design"]),
     "Troubleshooting": ("practice", [r"troubleshoot\w*"]),
@@ -169,10 +176,10 @@ CASE_SENSITIVE = {
     "R": ("language", [r"R(?=\s*(?:programming|language|studio|,|/|\)))"]),
     "Go": ("language", [r"Go(?=\s*(?:programming|language|,|/|\)))"]),
     "React": ("frontend", [r"React(?!\s*Native)"]),
-    "APIs (REST)": ("backend", [r"REST"]),  # NEW: "REST" capitals = the API style, "rest" = a break
+    "APIs (REST)": ("backend", [r"REST"]),
     "Apache Spark": ("data", [r"Spark"]),
     "Excel": ("data", [r"Excel"]),
-    "SAS": ("data", [r"SAS"]),  # NEW: exact "SAS", so "SaaS" doesn't match
+    "SAS": ("data", [r"SAS"]),
     "Swift": ("mobile", [r"Swift"]),
     "Rust": ("language", [r"Rust"]),
     "Ruby": ("language", [r"Ruby"]),
