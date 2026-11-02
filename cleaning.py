@@ -71,8 +71,30 @@ KAGGLE_TO_LEVEL = {
 
 COMPATIBLE = {
     "intern": {"Internship"},
-        "entry": {"Entry level", "Associate"},
+    "entry": {"Entry level", "Associate"},
     "mid": {"Associate", "Mid-Senior level"},
     "senior": {"Mid-Senior level"},
     "leadership": {"Director", "Executive", "Mid-Senior level"},
 }
+
+
+# NEW: years of experience stated in the text
+YEARS = re.compile(
+    r"(\d{1,2})\s*\+?\s*(?:(?:-|–|to)\s*\d{1,2}\s*\+?\s*)?(?:years?|yrs?)\b[^.\n]{0,40}?experience",
+    re.IGNORECASE,
+)
+MAX_YEARS = 15
+
+
+def years_mentions(text):
+    found = []
+    for m in YEARS.finditer(text):
+        years = int(m.group(1))
+        if years <= MAX_YEARS:
+            found.append((years, m.group(0)))
+    return found
+
+
+def min_years_required(text):
+    found = years_mentions(text)
+    return min(y for y, _ in found) if found else None

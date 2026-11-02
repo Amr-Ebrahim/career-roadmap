@@ -1,0 +1,20 @@
+import pandas as pd
+import chromadb
+
+jobs = pd.read_parquet("data/processed/jobs_skills.parquet")
+new_level = dict(zip(jobs["job_id"], jobs["level"]))
+
+collection = chromadb.PersistentClient(path="data/chroma").get_collection("job_chunks")
+data = collection.get(include=["metadatas"])
+
+ids, metas = [], []
+for chunk_id, meta in zip(data["ids"], data["metadatas"]):
+    level = new_level.get(meta["job_id"])
+    if level and level != meta["level"]:
+        ids.append(chunk_id)
+        metas.append({**meta, "level": level})
+
+print("Chunks with a changed level:", len(ids))
+for b in range(0, len(ids), 500):
+    collection.update(ids=ids[b:b + 500], metadatas=metas[b:b + 500])
+print("Updated.")
