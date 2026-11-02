@@ -26,8 +26,7 @@ def freshness(posted_ts, half_life_days=180):
     age_days = max(0, (time.time() - posted_ts) / 86400)
     return 0.5 ** (age_days / half_life_days)
 
-
-def retrieve(question, role_family=None, level=None, n_posts=5, fetch=60, recency_weight=0.05):
+def retrieve(question, role_family=None, level=None, n_posts=5, fetch=60, recency_weight=0.02):
     vector = _model.encode(QUERY_PREFIX + question, normalize_embeddings=True)
     res = _collection.query(
         query_embeddings=[vector.tolist()],
