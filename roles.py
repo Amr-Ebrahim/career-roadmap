@@ -1,4 +1,5 @@
 import re
+
 ROLE_FAMILIES = {
     "ai_ml": ["machine learning", "ml", "mlops", "ai", "artificial intelligence",
               "deep learning", "nlp", "computer vision", "llm"],
@@ -40,8 +41,9 @@ EXCLUDE = re.compile(
     r"|insurance|underwriter|industrial security|curriculum"
     r"|product manager|product owner|project (?:lead|manager)|delivery lead"
     r"|operations manager|associate partner|managing partner|consulting manager"
-    r"|regulatory|ai trainer|strategist|volunteer"
-    r"|stylist|model validation)\b"
+    r"|stylist|model validation|regulatory|ai trainer|strategist|volunteer"
+    r"|retail|scheduler|procurement|business developer|cnc|cmm"
+    r"|course developer|learning developer|materials developer)\b"
 )
 
 
