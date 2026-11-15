@@ -17,7 +17,7 @@ from pydantic import BaseModel, Field
 
 from planner import CHANGE, make_plan, plan_to_text
 from rag_by_hand import check_citations, normalize_citations
-from search_tool import SOURCES, Family, Level, reset_sources, search_job_posts
+from search_tool import MAX_CHARS, SOURCES, Family, Level, reset_sources, search_job_posts
 
 load_dotenv()
 
@@ -29,6 +29,40 @@ MAX_REVISIONS = 1
 GENERALIZING = re.compile(r"\b(most|typical|typically|common|commonly|consistently|many|usually|"
                           r"generally|often|all jobs|always)\b", re.IGNORECASE)
 QUOTED = re.compile(r"[“\"][^”\"]*[”\"]")
+CITE = re.compile(r"\[(\d+)\]")
+
+
+def _plain(text):
+    # compare text loosely: lower case, one kind of dash and quote, single spaces
+    text = re.sub(r"[\u2010-\u2015]", "-", text.lower())
+    return re.sub(r"\s+", " ", text.replace("’", "'")).strip()
+
+
+def check_quotes(draft, skills):
+    # every quoted example must (1) really be in the source it cites, as the writer saw it,
+    # and (2) mention the skill it illustrates
+    problems = []
+    for line in draft.split("General advice")[0].splitlines():
+        quotes = [q.strip("“”\"") for q in QUOTED.findall(line)]
+        cites = [int(n) for n in CITE.findall(line)]
+        if not quotes or not cites:
+            continue
+        sources = " ".join(_plain(SOURCES[n - 1]["text"][:MAX_CHARS])
+                           for n in cites if 1 <= n <= len(SOURCES))
+        outside = _plain(QUOTED.sub("", line))
+        named = [s for s in skills if re.search(rf"(?<!\w){re.escape(s.lower())}(?!\w)", outside)]
+        for q in quotes:
+            parts = [p.strip(" .,-") for p in re.split(r"…|\.\.\.", _plain(q)) if len(p.strip()) >= 4]
+            if any(part not in sources for part in parts):
+                problems.append({"kind": "citation", "quote": q[:120],
+                                 "issue": f"these words are not in source {cites}"})
+            for skill in named:
+                words = [w for w in re.findall(r"[\w/#+.]+", skill.lower()) if len(w) >= 3]
+                if not any(w in _plain(q) for w in words):
+                    problems.append({"kind": "citation", "quote": q[:120],
+                                     "issue": f"the example does not mention {skill}"})
+    return problems
+
 
 INTAKE = """Read a person's request for a tech career roadmap and fill in the fields.
 role_family, pick the closest:
@@ -174,6 +208,7 @@ def build_graph(llm, judge_llm):
         # "rises"/"falls" only where the plan says so (the plan uses a 10-point rule)
         trends = {s["skill"]: s["trend"] for skills in state["plan"]["phases"].values()
                   for s in skills}
+        problems += check_quotes(draft, list(trends))
         data_part = draft.split("General advice")[0]  # the labeled advice section may generalize
         for line in data_part.splitlines():
             own_words = QUOTED.sub("", line)  # words quoted from a job post are not our claim
