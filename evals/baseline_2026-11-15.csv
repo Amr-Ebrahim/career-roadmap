@@ -1,0 +1,328 @@
+question,metric,score,status,reason,answer
+What skills do I need to get an entry-level cloud engineer job?,Faithfulness,0.6,FAIL,"The score is 0.60 because the actual output makes several unsupported claims: it asserts Linux administration for the Schrödinger role despite the context not listing it as a requirement, mentions Ansible, CI/CD tools, and a general automation enthusiasm that are absent from the retrieval context, includes Redshift among AWS services even though only S3, Athena, Glue, Lambda, Aurora Serverless, and PostgreSQL are mentioned, and states collaboration with scientists, developers, and business units which the job listings do not reference.","**Summary**  
+Entry‑level cloud‑engineer positions across the listed postings consistently look for a mix of cloud platform knowledge, programming/scripting ability, infrastructure‑as‑code experience, and basic systems/automation skills.
+
+**Key skills mentioned**
+
+- **Cloud platforms** – experience with **AWS** (most common) and familiarity with **Azure** and **Google Cloud** is valued [1][5].  
+- **Infrastructure‑as‑Code** – Terraform, CloudFormation, or similar tools for automated provisioning [1][5].  
+- **Scripting / programming** – Python and Bash/Shell scripting; some roles also list C# [1][2][5].  
+- **Linux systems administration** – managing Linux (and optionally Windows/macOS) environments [1][5].  
+- **Configuration management / automation** – Ansible, CI/CD pipeline tools, and general automation enthusiasm [1][4][5].  
+- **Containerization & orchestration** – Kubernetes experience for workload deployment [4].  
+- **Data‑related services** – working with AWS data services (S3, Athena, Glue, Lambda, Aurora Serverless, Redshift) and PostgreSQL databases [2][5].  
+- **Communication & teamwork** – ability to collaborate with scientists, developers, and other business units [1][5].  
+- **Education** – a bachelor’s degree in Computer Science, Information Technology, or a related field is commonly required [1][4][5].  
+
+These are the specific skills repeatedly cited in the provided job posts for entry‑level cloud engineer roles."
+What skills do I need to get an entry-level cloud engineer job?,AnswerRelevancy,1.0,PASS,The score is 1.00 because the response fully addressed the question about entry‑level cloud engineer skills with no irrelevant content—great job staying on point!,"**Summary**  
+Entry‑level cloud‑engineer positions across the listed postings consistently look for a mix of cloud platform knowledge, programming/scripting ability, infrastructure‑as‑code experience, and basic systems/automation skills.
+
+**Key skills mentioned**
+
+- **Cloud platforms** – experience with **AWS** (most common) and familiarity with **Azure** and **Google Cloud** is valued [1][5].  
+- **Infrastructure‑as‑Code** – Terraform, CloudFormation, or similar tools for automated provisioning [1][5].  
+- **Scripting / programming** – Python and Bash/Shell scripting; some roles also list C# [1][2][5].  
+- **Linux systems administration** – managing Linux (and optionally Windows/macOS) environments [1][5].  
+- **Configuration management / automation** – Ansible, CI/CD pipeline tools, and general automation enthusiasm [1][4][5].  
+- **Containerization & orchestration** – Kubernetes experience for workload deployment [4].  
+- **Data‑related services** – working with AWS data services (S3, Athena, Glue, Lambda, Aurora Serverless, Redshift) and PostgreSQL databases [2][5].  
+- **Communication & teamwork** – ability to collaborate with scientists, developers, and other business units [1][5].  
+- **Education** – a bachelor’s degree in Computer Science, Information Technology, or a related field is commonly required [1][4][5].  
+
+These are the specific skills repeatedly cited in the provided job posts for entry‑level cloud engineer roles."
+What skills do I need to get an entry-level cloud engineer job?,ContextualRelevancy,0.9824561403508771,PASS,"The score is 0.98 because the retrieval context is largely relevant—listing many entry‑level cloud engineer skills such as ""Python/bash skills"", ""Infrastructure-as-Code"", ""Terraform"", ""AWS/Azure/GCP experience"", ""Linux systems administration"", and ""Bachelor's degree in Computer Science""—while only a single irrelevant statement about ""25+ years of combined experience, serves Fortune 1000 clients, and operates across four continents"" is unrelated.","**Summary**  
+Entry‑level cloud‑engineer positions across the listed postings consistently look for a mix of cloud platform knowledge, programming/scripting ability, infrastructure‑as‑code experience, and basic systems/automation skills.
+
+**Key skills mentioned**
+
+- **Cloud platforms** – experience with **AWS** (most common) and familiarity with **Azure** and **Google Cloud** is valued [1][5].  
+- **Infrastructure‑as‑Code** – Terraform, CloudFormation, or similar tools for automated provisioning [1][5].  
+- **Scripting / programming** – Python and Bash/Shell scripting; some roles also list C# [1][2][5].  
+- **Linux systems administration** – managing Linux (and optionally Windows/macOS) environments [1][5].  
+- **Configuration management / automation** – Ansible, CI/CD pipeline tools, and general automation enthusiasm [1][4][5].  
+- **Containerization & orchestration** – Kubernetes experience for workload deployment [4].  
+- **Data‑related services** – working with AWS data services (S3, Athena, Glue, Lambda, Aurora Serverless, Redshift) and PostgreSQL databases [2][5].  
+- **Communication & teamwork** – ability to collaborate with scientists, developers, and other business units [1][5].  
+- **Education** – a bachelor’s degree in Computer Science, Information Technology, or a related field is commonly required [1][4][5].  
+
+These are the specific skills repeatedly cited in the provided job posts for entry‑level cloud engineer roles."
+What do entry-level help desk jobs require?,Faithfulness,1.0,PASS,"The score is 1.00 because there are no contradictions, indicating the actual output perfectly aligns with the retrieval context.","**Summary**  
+Entry‑level help‑desk positions look for a mix of basic technical abilities, customer‑service skills, and often some formal education or certifications.  
+
+**Common requirements across the listed jobs**
+
+- **Technical knowledge**  
+  - Windows OS troubleshooting (Windows 10/11, Microsoft Windows) [2][3][4]  
+  - Active Directory basics [2][3][4]  
+  - Microsoft Office/Outlook (Word, Excel, PowerPoint, Teams) [2][4]  
+  - Experience with ticketing systems (ServiceNow, other ticket tools) [2][4]  
+  - Password‑reset and account troubleshooting [2][4][5]  
+  - Basic networking or hardware support (printers, scanners, PCs, laptops) [1][3][4][5]  
+
+- **Customer‑service / communication**  
+  - Strong verbal and written communication [1][2][4]  
+  - Ability to assist non‑technical users and maintain composure under pressure [2][4]  
+  - Teamwork and “people skills” [1][2][4]  
+
+- **Experience level**  
+  - Typically 1‑2 years of help‑desk, call‑center, or related support experience [1][2][5]  
+  - Some roles accept recent graduates or candidates still in school [5]  
+
+- **Education / certifications (often optional but preferred)**  
+  - High school diploma minimum; many list an associate’s degree or college coursework in IT/IS [3][4][5]  
+  - CompTIA A+ (and sometimes Network+) certification strongly preferred [3][4][5]  
+
+- **Other preferred skills**  
+  - Remote‑work familiarity and ability to use remote‑meeting tools (Teams, Zoom, WebEx) [2]  
+  - Knowledge of SCCM/Autopilot, Microsoft 365, PowerShell, SharePoint, VPN, or networking equipment [1][3][4]  
+
+If a posting does not mention a specific requirement, that detail is not provided in the sources."
+What do entry-level help desk jobs require?,AnswerRelevancy,1.0,PASS,The score is 1.00 because the response fully addressed the question about entry‑level help desk job requirements with no irrelevant content—great job staying on point!,"**Summary**  
+Entry‑level help‑desk positions look for a mix of basic technical abilities, customer‑service skills, and often some formal education or certifications.  
+
+**Common requirements across the listed jobs**
+
+- **Technical knowledge**  
+  - Windows OS troubleshooting (Windows 10/11, Microsoft Windows) [2][3][4]  
+  - Active Directory basics [2][3][4]  
+  - Microsoft Office/Outlook (Word, Excel, PowerPoint, Teams) [2][4]  
+  - Experience with ticketing systems (ServiceNow, other ticket tools) [2][4]  
+  - Password‑reset and account troubleshooting [2][4][5]  
+  - Basic networking or hardware support (printers, scanners, PCs, laptops) [1][3][4][5]  
+
+- **Customer‑service / communication**  
+  - Strong verbal and written communication [1][2][4]  
+  - Ability to assist non‑technical users and maintain composure under pressure [2][4]  
+  - Teamwork and “people skills” [1][2][4]  
+
+- **Experience level**  
+  - Typically 1‑2 years of help‑desk, call‑center, or related support experience [1][2][5]  
+  - Some roles accept recent graduates or candidates still in school [5]  
+
+- **Education / certifications (often optional but preferred)**  
+  - High school diploma minimum; many list an associate’s degree or college coursework in IT/IS [3][4][5]  
+  - CompTIA A+ (and sometimes Network+) certification strongly preferred [3][4][5]  
+
+- **Other preferred skills**  
+  - Remote‑work familiarity and ability to use remote‑meeting tools (Teams, Zoom, WebEx) [2]  
+  - Knowledge of SCCM/Autopilot, Microsoft 365, PowerShell, SharePoint, VPN, or networking equipment [1][3][4]  
+
+If a posting does not mention a specific requirement, that detail is not provided in the sources."
+What do entry-level help desk jobs require?,ContextualRelevancy,1.0,PASS,"The score is 1.00 because the retrieval context directly lists entry‑level help desk requirements such as ""EXPERIENCE LEVEL: ENTRY LEVEL (1-2 YEARS EXPERIENCE PREFERRED)"", ""REQUIRED SKILLSETS: Hardware/Software troubleshooting skills, Customer Service, Communication/Teamwork"", and ""Entry-level help desk jobs typically require a high school degree, 3 years of IT Help Desk experience, Microsoft Suite competency, knowledge of Windows 10/11, Teams, Outlook, basic networking skills, and preferred certifications such as CompTIA A+ and Network+""—exactly matching the query.","**Summary**  
+Entry‑level help‑desk positions look for a mix of basic technical abilities, customer‑service skills, and often some formal education or certifications.  
+
+**Common requirements across the listed jobs**
+
+- **Technical knowledge**  
+  - Windows OS troubleshooting (Windows 10/11, Microsoft Windows) [2][3][4]  
+  - Active Directory basics [2][3][4]  
+  - Microsoft Office/Outlook (Word, Excel, PowerPoint, Teams) [2][4]  
+  - Experience with ticketing systems (ServiceNow, other ticket tools) [2][4]  
+  - Password‑reset and account troubleshooting [2][4][5]  
+  - Basic networking or hardware support (printers, scanners, PCs, laptops) [1][3][4][5]  
+
+- **Customer‑service / communication**  
+  - Strong verbal and written communication [1][2][4]  
+  - Ability to assist non‑technical users and maintain composure under pressure [2][4]  
+  - Teamwork and “people skills” [1][2][4]  
+
+- **Experience level**  
+  - Typically 1‑2 years of help‑desk, call‑center, or related support experience [1][2][5]  
+  - Some roles accept recent graduates or candidates still in school [5]  
+
+- **Education / certifications (often optional but preferred)**  
+  - High school diploma minimum; many list an associate’s degree or college coursework in IT/IS [3][4][5]  
+  - CompTIA A+ (and sometimes Network+) certification strongly preferred [3][4][5]  
+
+- **Other preferred skills**  
+  - Remote‑work familiarity and ability to use remote‑meeting tools (Teams, Zoom, WebEx) [2]  
+  - Knowledge of SCCM/Autopilot, Microsoft 365, PowerShell, SharePoint, VPN, or networking equipment [1][3][4]  
+
+If a posting does not mention a specific requirement, that detail is not provided in the sources."
+Which tools do entry-level security analyst jobs ask for?,Faithfulness,0.46153846153846156,FAIL,"The score is 0.46 because the actual output lists several items—SIEM platforms, email security solutions, vulnerability scanners, patch management systems, IAM tools, virtualization platforms, and CyberChef—as required or relevant knowledge, yet the retrieval context either omits these items or mentions them only ambiguously, indicating a mismatch between the output and the source information.","**Tools mentioned in the entry‑level security analyst postings**
+
+- **Security information and event management (SIEM) platforms** – required for monitoring and onboarding data [1][4]  
+- **Email security solutions** – listed as a monitoring responsibility [1]  
+- **Vulnerability scanners / vulnerability management tools** – part of daily duties and required knowledge [1][2][4]  
+- **Endpoint protection / XDR solutions** – required for configuration, deployment, and monitoring [1][4]  
+- **Intrusion detection / prevention systems (IDS/IPS, WIDS, WAF)** – mentioned in tool scope [4]  
+- **Patch management systems** – included in monitoring responsibilities [1]  
+- **Identity & Access Management (IAM) tools** – part of the monitoring set [1]  
+- **Cisco AMP, Cisco Firepower, Cisco Stealthwatch, QRadar, ESET** – specific security tools cited for daily auditing [5]  
+- **Microsoft Office 365 / Microsoft Entra / O365** – referenced as cloud services to be familiar with [3][4]  
+- **AWS (Amazon Web Services)** – required knowledge of cloud environment [4][5]  
+- **Virtualization platforms (Hyper‑V, VMware Workstation, Docker)** – listed as “awesome” familiarity [3]  
+- **Linux command line** – noted as a useful skill [3]  
+- **CyberChef** – mentioned as a helpful tool [3]  
+
+These are the tools explicitly called out across the provided entry‑level security analyst job posts."
+Which tools do entry-level security analyst jobs ask for?,AnswerRelevancy,1.0,PASS,"The score is 1.00 because the response was fully relevant to the question, with no extraneous or off‑topic statements. Great job staying on point!","**Tools mentioned in the entry‑level security analyst postings**
+
+- **Security information and event management (SIEM) platforms** – required for monitoring and onboarding data [1][4]  
+- **Email security solutions** – listed as a monitoring responsibility [1]  
+- **Vulnerability scanners / vulnerability management tools** – part of daily duties and required knowledge [1][2][4]  
+- **Endpoint protection / XDR solutions** – required for configuration, deployment, and monitoring [1][4]  
+- **Intrusion detection / prevention systems (IDS/IPS, WIDS, WAF)** – mentioned in tool scope [4]  
+- **Patch management systems** – included in monitoring responsibilities [1]  
+- **Identity & Access Management (IAM) tools** – part of the monitoring set [1]  
+- **Cisco AMP, Cisco Firepower, Cisco Stealthwatch, QRadar, ESET** – specific security tools cited for daily auditing [5]  
+- **Microsoft Office 365 / Microsoft Entra / O365** – referenced as cloud services to be familiar with [3][4]  
+- **AWS (Amazon Web Services)** – required knowledge of cloud environment [4][5]  
+- **Virtualization platforms (Hyper‑V, VMware Workstation, Docker)** – listed as “awesome” familiarity [3]  
+- **Linux command line** – noted as a useful skill [3]  
+- **CyberChef** – mentioned as a helpful tool [3]  
+
+These are the tools explicitly called out across the provided entry‑level security analyst job posts."
+Which tools do entry-level security analyst jobs ask for?,ContextualRelevancy,0.75,PASS,"The score is 0.75 because the retrieval contains many tool mentions like ""security information and event management (SIEM)"", ""Cisco AMP, Firepower, Stealthwatch, QRadar, ESET"" and other security tools, which are relevant, but also includes unrelated items such as education requirements and citizenship criteria that do not answer the question about entry‑level tools.","**Tools mentioned in the entry‑level security analyst postings**
+
+- **Security information and event management (SIEM) platforms** – required for monitoring and onboarding data [1][4]  
+- **Email security solutions** – listed as a monitoring responsibility [1]  
+- **Vulnerability scanners / vulnerability management tools** – part of daily duties and required knowledge [1][2][4]  
+- **Endpoint protection / XDR solutions** – required for configuration, deployment, and monitoring [1][4]  
+- **Intrusion detection / prevention systems (IDS/IPS, WIDS, WAF)** – mentioned in tool scope [4]  
+- **Patch management systems** – included in monitoring responsibilities [1]  
+- **Identity & Access Management (IAM) tools** – part of the monitoring set [1]  
+- **Cisco AMP, Cisco Firepower, Cisco Stealthwatch, QRadar, ESET** – specific security tools cited for daily auditing [5]  
+- **Microsoft Office 365 / Microsoft Entra / O365** – referenced as cloud services to be familiar with [3][4]  
+- **AWS (Amazon Web Services)** – required knowledge of cloud environment [4][5]  
+- **Virtualization platforms (Hyper‑V, VMware Workstation, Docker)** – listed as “awesome” familiarity [3]  
+- **Linux command line** – noted as a useful skill [3]  
+- **CyberChef** – mentioned as a helpful tool [3]  
+
+These are the tools explicitly called out across the provided entry‑level security analyst job posts."
+What skills do entry-level backend developer jobs ask for?,Faithfulness,0.35714285714285715,FAIL,"The score is 0.36 because all listed contradictions are marked as “(Ambiguous) None,” indicating no clear mismatches were identified, but the ambiguous labeling suggests uncertainty, resulting in a modest faithfulness rating.","**Common skill requirements for entry‑level backend developer positions**
+
+- **Programming languages & frameworks**  
+  - Python (Django) – [1]  
+  - Java (Spring/Java backend) – [2]  
+  - C# / .NET – [4]  
+  - Experience with a backend framework such as Django or Node.js – [1]  
+
+- **Database knowledge**  
+  - Relational databases (PostgreSQL, SQL Server, Oracle) and SQL – [1][3][4]  
+  - Familiarity with ETL tools or data migration concepts – [1][5]  
+
+- **API development**  
+  - Designing and implementing RESTful APIs – [3][4]  
+
+- **Version control**  
+  - Git – [1][3]  
+
+- **Testing**  
+  - Unit and integration testing; knowledge of testing tools (e.g., React Testing Library, Playwright, Cypress) – [1][2]  
+
+- **Cloud & DevOps basics** (optional but beneficial)  
+  - Azure services, Azure DevOps pipelines – [3]  
+
+- **Other technical basics**  
+  - Understanding of server, database, and API interactions – [1]  
+  - Familiarity with HTML, CSS, JavaScript (for full‑stack context) – [1][4]  
+
+- **Soft/analytical skills**  
+  - Strong problem‑solving and analytical abilities – [1][3]  
+  - Good communication and documentation skills – [1][4]  
+
+These skills are explicitly listed across the entry‑level backend‑focused job posts."
+What skills do entry-level backend developer jobs ask for?,AnswerRelevancy,1.0,PASS,"The score is 1.00 because the response fully addressed the question about entry‑level backend developer skills with no irrelevant content, leaving no room for improvement.","**Common skill requirements for entry‑level backend developer positions**
+
+- **Programming languages & frameworks**  
+  - Python (Django) – [1]  
+  - Java (Spring/Java backend) – [2]  
+  - C# / .NET – [4]  
+  - Experience with a backend framework such as Django or Node.js – [1]  
+
+- **Database knowledge**  
+  - Relational databases (PostgreSQL, SQL Server, Oracle) and SQL – [1][3][4]  
+  - Familiarity with ETL tools or data migration concepts – [1][5]  
+
+- **API development**  
+  - Designing and implementing RESTful APIs – [3][4]  
+
+- **Version control**  
+  - Git – [1][3]  
+
+- **Testing**  
+  - Unit and integration testing; knowledge of testing tools (e.g., React Testing Library, Playwright, Cypress) – [1][2]  
+
+- **Cloud & DevOps basics** (optional but beneficial)  
+  - Azure services, Azure DevOps pipelines – [3]  
+
+- **Other technical basics**  
+  - Understanding of server, database, and API interactions – [1]  
+  - Familiarity with HTML, CSS, JavaScript (for full‑stack context) – [1][4]  
+
+- **Soft/analytical skills**  
+  - Strong problem‑solving and analytical abilities – [1][3]  
+  - Good communication and documentation skills – [1][4]  
+
+These skills are explicitly listed across the entry‑level backend‑focused job posts."
+What skills do entry-level backend developer jobs ask for?,ContextualRelevancy,0.8888888888888888,PASS,"The score is 0.89 because while many retrieved statements are unrelated (e.g., references to ""Enterprise Content Management Systems (ECMS)"" and ""MS Excel""), the context does include several directly relevant points such as ""Education: Bachelor's degree in Computer Science,"" ""Understanding of server, database, and API interactions,"" ""Experience with a backend framework like Django or Node.js is beneficial,"" and ""Familiarity with relational databases and SQL,"" which address the skills asked for. The mix of relevant and irrelevant content yields a high but not perfect relevance score.","**Common skill requirements for entry‑level backend developer positions**
+
+- **Programming languages & frameworks**  
+  - Python (Django) – [1]  
+  - Java (Spring/Java backend) – [2]  
+  - C# / .NET – [4]  
+  - Experience with a backend framework such as Django or Node.js – [1]  
+
+- **Database knowledge**  
+  - Relational databases (PostgreSQL, SQL Server, Oracle) and SQL – [1][3][4]  
+  - Familiarity with ETL tools or data migration concepts – [1][5]  
+
+- **API development**  
+  - Designing and implementing RESTful APIs – [3][4]  
+
+- **Version control**  
+  - Git – [1][3]  
+
+- **Testing**  
+  - Unit and integration testing; knowledge of testing tools (e.g., React Testing Library, Playwright, Cypress) – [1][2]  
+
+- **Cloud & DevOps basics** (optional but beneficial)  
+  - Azure services, Azure DevOps pipelines – [3]  
+
+- **Other technical basics**  
+  - Understanding of server, database, and API interactions – [1]  
+  - Familiarity with HTML, CSS, JavaScript (for full‑stack context) – [1][4]  
+
+- **Soft/analytical skills**  
+  - Strong problem‑solving and analytical abilities – [1][3]  
+  - Good communication and documentation skills – [1][4]  
+
+These skills are explicitly listed across the entry‑level backend‑focused job posts."
+Which certifications do entry-level IT support jobs mention?,Faithfulness,0.6,FAIL,"The score is 0.60 because the actual output mentions certifications like CompTIA Security+, Apple Certified Tech, Google IT Support Professional, and other vendor‑specific certifications (VMWare, Dell, Ubiquiti) that are not present in the retrieval context, indicating several unsupported claims.","**Certifications mentioned for entry‑level IT support roles**
+
+- CompTIA A+ (mentioned in posts [3] and [4])  
+- CompTIA Network+ (post [2] and [3])  
+- CompTIA Security+ (post [5])  
+- Microsoft certifications (e.g., Microsoft Certified IT Professional, MCP/Associate) – posts [2] and [5]  
+- Cisco certifications (e.g., CCENT/CCT, Cisco Certifications) – posts [3] and [5]  
+- ITIL certification – post [5]  
+- Apple Certified Tech (ACiT/ACMT) – post [5]  
+- Google IT Support Professional Certification – post [5]  
+- Microsoft Certified IT Professional (MCITP) – post [2]  
+- Other vendor‑specific certifications (e.g., VMWare, Dell, Ubiquiti) are listed as “a plus” in post [3] but not required."
+Which certifications do entry-level IT support jobs mention?,AnswerRelevancy,1.0,PASS,"The score is 1.00 because the response fully addressed the question with no irrelevant content, demonstrating perfect relevance.","**Certifications mentioned for entry‑level IT support roles**
+
+- CompTIA A+ (mentioned in posts [3] and [4])  
+- CompTIA Network+ (post [2] and [3])  
+- CompTIA Security+ (post [5])  
+- Microsoft certifications (e.g., Microsoft Certified IT Professional, MCP/Associate) – posts [2] and [5]  
+- Cisco certifications (e.g., CCENT/CCT, Cisco Certifications) – posts [3] and [5]  
+- ITIL certification – post [5]  
+- Apple Certified Tech (ACiT/ACMT) – post [5]  
+- Google IT Support Professional Certification – post [5]  
+- Microsoft Certified IT Professional (MCITP) – post [2]  
+- Other vendor‑specific certifications (e.g., VMWare, Dell, Ubiquiti) are listed as “a plus” in post [3] but not required."
+Which certifications do entry-level IT support jobs mention?,ContextualRelevancy,0.16666666666666666,FAIL,"The score is 0.17 because the retrieval context largely lacks certification information, as noted by many irrelevancy reasons (e.g., it only mentions experience with Windows 10, hardware, soft skills, etc.), and only a few statements actually list relevant certifications such as ""CompTIA A+"", ""Network+"", ""Microsoft Certified IT Professional"" and others. The scarcity of relevant content drives the low score.","**Certifications mentioned for entry‑level IT support roles**
+
+- CompTIA A+ (mentioned in posts [3] and [4])  
+- CompTIA Network+ (post [2] and [3])  
+- CompTIA Security+ (post [5])  
+- Microsoft certifications (e.g., Microsoft Certified IT Professional, MCP/Associate) – posts [2] and [5]  
+- Cisco certifications (e.g., CCENT/CCT, Cisco Certifications) – posts [3] and [5]  
+- ITIL certification – post [5]  
+- Apple Certified Tech (ACiT/ACMT) – post [5]  
+- Google IT Support Professional Certification – post [5]  
+- Microsoft Certified IT Professional (MCITP) – post [2]  
+- Other vendor‑specific certifications (e.g., VMWare, Dell, Ubiquiti) are listed as “a plus” in post [3] but not required."

@@ -1,0 +1,52 @@
+question,metric,score,status,reason,answer
+What skills do I need to get an entry-level cloud engineer job?,Faithfulness,1.0,PASS,"The score is 1.00 because there are no contradictions, indicating the actual output perfectly aligns with the retrieval context.","**Summary**  
+Entry‑level cloud‑engineer positions across the listed postings consistently look for a mix of cloud platform knowledge, programming/scripting ability, infrastructure‑as‑code experience, and basic systems/automation skills.
+
+**Key skills mentioned**
+
+- **Cloud platforms** – experience with **AWS** (most common) and familiarity with **Azure** and **Google Cloud** / GCP [1][5]  
+- **Infrastructure‑as‑code** – Terraform, CloudFormation, Ansible, or similar tools [1][5]  
+- **Containers & orchestration** – Kubernetes or other container platforms [4]  
+- **Programming / scripting** – Python and Bash/Shell scripting (also C# in one posting) [1][2][5]  
+- **Linux systems administration** – Linux expertise, often with configuration‑management tools [1][5]  
+- **CI/CD pipelines** – building/maintaining automated deployment pipelines [4][5]  
+- **Data‑related services** – working with S3, Athena, Glue, Lambda, PostgreSQL, or other data‑warehouse tools [2][5]  
+- **Automation & monitoring** – using tools such as Ansible, Glue, Lambda, and troubleshooting distributed systems [1][5]  
+- **Communication & collaboration** – ability to work with scientists, business units, or cross‑functional teams [1][5]  
+- **Education** – Bachelor’s degree in Computer Science, IT, or a related field (often required) [1][4][5]  
+
+These are the specific skills repeatedly cited in the provided job posts for entry‑level cloud engineer roles."
+What skills do I need to get an entry-level cloud engineer job?,AnswerRelevancy,1.0,PASS,The score is 1.00 because the response fully addressed the question about entry‑level cloud engineer skills with no irrelevant content—great job staying on point!,"**Summary**  
+Entry‑level cloud‑engineer positions across the listed postings consistently look for a mix of cloud platform knowledge, programming/scripting ability, infrastructure‑as‑code experience, and basic systems/automation skills.
+
+**Key skills mentioned**
+
+- **Cloud platforms** – experience with **AWS** (most common) and familiarity with **Azure** and **Google Cloud** / GCP [1][5]  
+- **Infrastructure‑as‑code** – Terraform, CloudFormation, Ansible, or similar tools [1][5]  
+- **Containers & orchestration** – Kubernetes or other container platforms [4]  
+- **Programming / scripting** – Python and Bash/Shell scripting (also C# in one posting) [1][2][5]  
+- **Linux systems administration** – Linux expertise, often with configuration‑management tools [1][5]  
+- **CI/CD pipelines** – building/maintaining automated deployment pipelines [4][5]  
+- **Data‑related services** – working with S3, Athena, Glue, Lambda, PostgreSQL, or other data‑warehouse tools [2][5]  
+- **Automation & monitoring** – using tools such as Ansible, Glue, Lambda, and troubleshooting distributed systems [1][5]  
+- **Communication & collaboration** – ability to work with scientists, business units, or cross‑functional teams [1][5]  
+- **Education** – Bachelor’s degree in Computer Science, IT, or a related field (often required) [1][4][5]  
+
+These are the specific skills repeatedly cited in the provided job posts for entry‑level cloud engineer roles."
+What skills do I need to get an entry-level cloud engineer job?,ContextualRelevancy,0.9661016949152542,PASS,"The score is 0.97 because most of the retrieved statements directly list the technical skills needed for an entry‑level cloud engineer—e.g., ""An automation enthusiast with excellent Python/bash skills,"" ""A Google Cloud professional with Azure and AWS experience,"" and ""Proficiency in script development and scripting languages such as Python""—which align well with the query. The only irrelevant parts are the mentions of ""25+ years of experience"" and ""hundreds of Fortune 1000..."" which do not pertain to entry‑level requirements, but they are outweighed by the highly relevant skill listings.","**Summary**  
+Entry‑level cloud‑engineer positions across the listed postings consistently look for a mix of cloud platform knowledge, programming/scripting ability, infrastructure‑as‑code experience, and basic systems/automation skills.
+
+**Key skills mentioned**
+
+- **Cloud platforms** – experience with **AWS** (most common) and familiarity with **Azure** and **Google Cloud** / GCP [1][5]  
+- **Infrastructure‑as‑code** – Terraform, CloudFormation, Ansible, or similar tools [1][5]  
+- **Containers & orchestration** – Kubernetes or other container platforms [4]  
+- **Programming / scripting** – Python and Bash/Shell scripting (also C# in one posting) [1][2][5]  
+- **Linux systems administration** – Linux expertise, often with configuration‑management tools [1][5]  
+- **CI/CD pipelines** – building/maintaining automated deployment pipelines [4][5]  
+- **Data‑related services** – working with S3, Athena, Glue, Lambda, PostgreSQL, or other data‑warehouse tools [2][5]  
+- **Automation & monitoring** – using tools such as Ansible, Glue, Lambda, and troubleshooting distributed systems [1][5]  
+- **Communication & collaboration** – ability to work with scientists, business units, or cross‑functional teams [1][5]  
+- **Education** – Bachelor’s degree in Computer Science, IT, or a related field (often required) [1][4][5]  
+
+These are the specific skills repeatedly cited in the provided job posts for entry‑level cloud engineer roles."

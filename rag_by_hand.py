@@ -23,13 +23,18 @@ Example of a correct bullet:
 - Terraform for infrastructure as code [2][5]"""
 
 
-def format_sources(posts):
+def source_blocks(posts):
+    # one text block per post, exactly as the LLM sees it
     blocks = []
     for i, p in enumerate(posts, start=1):
         date = datetime.fromtimestamp(p["posted_ts"]).date()
         header = f"[{i}] {p['title']} at {p['company']} ({p['level']}, {p['source']}, {date})"
         blocks.append(header + "\n" + p["text"])
-    return "\n\n".join(blocks)
+    return blocks
+
+
+def format_sources(posts):
+    return "\n\n".join(source_blocks(posts))
 
 
 def ask_llm(system, user):
@@ -59,26 +64,40 @@ def check_citations(text, n_sources):
     return len(cited), invalid, unused
 
 
-question = "What skills do I need to get an entry-level cloud engineer job?"
-posts = retrieve(question, role_family="devops_cloud", level="entry")
+def rag_answer(question, role_family=None, level=None):
+    # the whole RAG in one call: retrieve -> build prompt -> ask -> fix citations
+    posts = retrieve(question, role_family=role_family, level=level)
+    user_message = f"Job posts:\n\n{format_sources(posts)}\n\nQuestion: {question}"
+    raw_answer, finish, usage = ask_llm(SYSTEM, user_message)
+    answer = normalize_citations(raw_answer)
+    return {
+        "answer": answer,
+        "raw_answer": raw_answer,
+        "posts": posts,
+        "sources": source_blocks(posts),
+        "finish": finish,
+        "usage": usage,
+    }
 
-user_message = f"Job posts:\n\n{format_sources(posts)}\n\nQuestion: {question}"
-raw_answer, finish, usage = ask_llm(SYSTEM, user_message)
-answer = normalize_citations(raw_answer)
 
-print("=== RAG ANSWER ===")
-print(answer)
-print(f"\n(finish: {finish}, input tokens: {usage.prompt_tokens}, output tokens: {usage.completion_tokens})")
+if __name__ == "__main__":
+    question = "What skills do I need to get an entry-level cloud engineer job?"
+    result = rag_answer(question, role_family="devops_cloud", level="entry")
+    answer, posts, usage = result["answer"], result["posts"], result["usage"]
 
-total, invalid, unused = check_citations(answer, len(posts))
-print(f"Citations: {total} | invalid numbers: {invalid or 'none'} | sources never cited: {unused or 'none'}")
-print("Model used its own citation format:", "yes (fixed)" if answer != raw_answer else "no")
+    print("=== RAG ANSWER ===")
+    print(answer)
+    print(f"\n(finish: {result['finish']}, input tokens: {usage.prompt_tokens}, output tokens: {usage.completion_tokens})")
 
-print("\nSources:")
-for i, p in enumerate(posts, start=1):
-    print(f"  [{i}] {p['title']} | {p['company']} | {p['url'] or 'no link'}")
+    total, invalid, unused = check_citations(answer, len(posts))
+    print(f"Citations: {total} | invalid numbers: {invalid or 'none'} | sources never cited: {unused or 'none'}")
+    print("Model used its own citation format:", "yes (fixed)" if answer != result["raw_answer"] else "no")
 
-if "--show" in sys.argv:
+    print("\nSources:")
     for i, p in enumerate(posts, start=1):
-        print(f"\n----- SOURCE [{i}] -----")
-        print(p["text"])
+        print(f"  [{i}] {p['title']} | {p['company']} | {p['url'] or 'no link'}")
+
+    if "--show" in sys.argv:
+        for i, p in enumerate(posts, start=1):
+            print(f"\n----- SOURCE [{i}] -----")
+            print(p["text"])
