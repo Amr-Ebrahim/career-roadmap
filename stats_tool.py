@@ -62,6 +62,23 @@ def compare_levels(role_family, levels=("entry", "mid", "senior"), top=12):
     top_skills = counts.sum(axis=1).sort_values(ascending=False).head(top).index
     return shares.loc[top_skills], sizes
 
+def skill_trend(skill, source, role_family=None, level=None, freq="M"):
+    # share of posts mentioning a skill per month, inside ONE source only:
+    # mixing sources would mix "later in time" with "different market"
+    if not source:
+        raise ValueError("Trends must use a single source, e.g. source='arbeitnow'")
+    posts = filter_posts(role_family, level, source)
+    wanted = skill.lower()
+    has = posts["skills"].apply(lambda s: any(x.lower() == wanted for x in s))
+    period = posts["posted_date"].dt.to_period(freq)
+    table = pd.DataFrame({
+        "posts": has.groupby(period).size(),
+        "with_skill": has.groupby(period).sum().astype(int),
+    })
+    table["share_%"] = (100 * table["with_skill"] / table["posts"]).round(1)
+    table["few_posts"] = table["posts"] < FEW_POSTS
+    table.index.name = "period"
+    return table
 
 if __name__ == "__main__":
     pd.set_option("display.width", 120)
@@ -77,3 +94,5 @@ if __name__ == "__main__":
     shares, sizes = compare_levels("devops_cloud")
     print(f"\n=== devops_cloud: % of posts per level  (posts: {sizes.to_dict()})")
     print(shares)
+    print("\n=== Trend: Python in Arbeitnow posts (all tech families)")
+    print(skill_trend("Python", source="arbeitnow"))

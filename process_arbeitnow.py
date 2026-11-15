@@ -1,6 +1,8 @@
+import glob
 import html
 import json
 import os
+
 import pandas as pd
 from bs4 import BeautifulSoup
 from langdetect import DetectorFactory, LangDetectException, detect
@@ -8,10 +10,16 @@ from roles import label_role
 
 DetectorFactory.seed = 0
 
-with open("data/raw/arbeitnow.json", encoding="utf-8") as f:
-    jobs = json.load(f)
+# every weekly snapshot, oldest first; the same post can appear in several of them
+frames = []
+for path in sorted(glob.glob("data/raw/arbeitnow/*.json")):
+    with open(path, encoding="utf-8") as f:
+        frames.append(pd.DataFrame(json.load(f)))
+    print(f"Snapshot {os.path.basename(path)}: {len(frames[-1])} jobs")
 
-df = pd.DataFrame(jobs).drop_duplicates(subset="slug")
+# keep the newest version of each post (keep="last" because files are sorted oldest first)
+df = pd.concat(frames, ignore_index=True).drop_duplicates(subset="slug", keep="last")
+print(f"Unique posts across {len(frames)} snapshots: {len(df)}")
 
 
 def clean_html(raw):
