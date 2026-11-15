@@ -1,8 +1,9 @@
 import re
 
 ROLE_FAMILIES = {
-    "ai_ml": ["machine learning", "ml", "mlops", "ai", "artificial intelligence",
-              "deep learning", "nlp", "computer vision", "llm"],
+    # "ai" / "artificial intelligence" on their own are handled by AI_WORD below
+    "ai_ml": ["machine learning", "ml", "mlops", "deep learning", "nlp",
+              "computer vision", "llm"],
     "data": ["data scientist", "data science", "data engineer", "data analyst",
              "analytics engineer", "business intelligence", "bi developer",
              "bi analyst", "etl", "big data", "data architect",
@@ -46,6 +47,11 @@ EXCLUDE = re.compile(
     r"|course developer|learning developer|materials developer)\b"
 )
 
+# "AI" alone is in many non-technical titles (AI Growth Manager, Head of AI, AI Product
+# Designer), so it counts as ai_ml only together with a hands-on word
+AI_WORD = re.compile(r"\b(ai|artificial intelligence)\b")
+HANDS_ON = re.compile(r"\b(engineer\w*|developer|scientist|research\w*|programmer|architect)\b")
+
 # Applied AFTER a family is found, so they only re-label tech posts and never add new ones.
 ARCHITECT = re.compile(r"\barchitect")
 KEEP_ARCHITECTS = {"data", "ai_ml"}  # data/ML architects stay in their own family
@@ -53,12 +59,18 @@ ENTERPRISE = re.compile(r"\b(salesforce|sap|oracle|servicenow|workday|netsuite|d
 REAL_DEVOPS = re.compile(r"\b(devops|sre|site reliability|platform engineer|infrastructure engineer)\b")
 
 
+def matches(family, t):
+    if family == "ai_ml":
+        return bool(PATTERNS["ai_ml"].search(t) or (AI_WORD.search(t) and HANDS_ON.search(t)))
+    return bool(PATTERNS[family].search(t))
+
+
 def label_role(title):
     t = title.lower()
     if EXCLUDE.search(t):
         return None
-    for family, pattern in PATTERNS.items():
-        if pattern.search(t):
+    for family in PATTERNS:
+        if matches(family, t):
             # design/advisory roles: kept in the data, separate from the hands-on families
             if ARCHITECT.search(t) and family not in KEEP_ARCHITECTS:
                 return "architecture"
