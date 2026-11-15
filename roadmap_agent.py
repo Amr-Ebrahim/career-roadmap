@@ -15,7 +15,7 @@ from langgraph.graph import END, START, MessagesState, StateGraph
 from langgraph.prebuilt import ToolNode
 from pydantic import BaseModel, Field
 
-from planner import make_plan, plan_to_text
+from planner import CHANGE, make_plan, plan_to_text
 from rag_by_hand import check_citations, normalize_citations
 from search_tool import SOURCES, Family, Level, reset_sources, search_job_posts
 
@@ -171,12 +171,24 @@ def build_graph(llm, judge_llm):
         _, invalid, _ = check_citations(draft, len(SOURCES))
         for n in invalid:
             problems.append({"kind": "citation", "quote": f"[{n}]", "issue": "no such source"})
+        # "rises"/"falls" only where the plan says so (the plan uses a 10-point rule)
+        trends = {s["skill"]: s["trend"] for skills in state["plan"]["phases"].values()
+                  for s in skills}
         data_part = draft.split("General advice")[0]  # the labeled advice section may generalize
         for line in data_part.splitlines():
             own_words = QUOTED.sub("", line)  # words quoted from a job post are not our claim
             if GENERALIZING.search(own_words):
                 problems.append({"kind": "comparison", "quote": line.strip()[:120],
                                  "issue": "generalizing word; give the number instead"})
+            for word in ("rises", "falls"):
+                if word not in own_words.lower():
+                    continue
+                for skill, trend in trends.items():
+                    named = re.search(rf"(?<!\w){re.escape(skill)}(?!\w)", own_words, re.IGNORECASE)
+                    if named and trend != word:
+                        problems.append({"kind": "comparison", "quote": line.strip()[:120],
+                                         "issue": f"the plan does not mark {skill} as '{word}' "
+                                                  f"(it uses a {CHANGE}-point rule)"})
 
         update = {"problems": problems}
         if problems and state["revisions"] < MAX_REVISIONS:
