@@ -1,8 +1,11 @@
-# roadmap_agent.py - Stage 6: a writer agent (tools -> roadmap) plus a critic that checks
-# the draft against the tool results and sends it back once for fixes.
+# roadmap_agent.py - Stage 6: the full roadmap pipeline in LangGraph.
+#   intake (LLM)   -> what the person wants and already knows
+#   planner (code) -> gap finder + curriculum from the stats (planner.py)
+#   writer (LLM)   -> writes the roadmap, searching one example per phase
+#   critic (LLM + code) -> checks the draft against the plan and the examples, one revision
 import re
 import sys
-from typing import List
+from typing import List, Optional
 
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -11,53 +14,77 @@ from langgraph.graph import END, START, MessagesState, StateGraph
 from langgraph.prebuilt import ToolNode
 from pydantic import BaseModel, Field
 
-from agent_tools import TOOLS as STATS_TOOLS
+from planner import make_plan, plan_to_text
 from rag_by_hand import check_citations
-from search_tool import SOURCES, reset_sources, search_job_posts
+from search_tool import SOURCES, Family, Level, reset_sources, search_job_posts
 
 load_dotenv()
 
 # 20b while developing: it has its own daily Groq budget. Switch to 120b for final runs.
 AGENT_MODEL = "openai/gpt-oss-20b"
-TOOLS = STATS_TOOLS + [search_job_posts]
+TOOLS = [search_job_posts]
 MAX_REVISIONS = 1
 # same idea as in citation_faithfulness.py: words that turn data into a generalization
 GENERALIZING = re.compile(r"\b(most|typical|typically|common|commonly|consistently|many|usually|"
                           r"generally|often|all jobs|always)\b", re.IGNORECASE)
 
-WRITER = """You build a learning roadmap for someone who wants a specific tech job.
-Work in this order:
-1. Call top_skills for the role family and level.
-2. Call level_progression for the role family, to see which skills grow later.
-3. Call search_job_posts once per phase, for that phase's main skill (3 searches),
-   so each phase's example is about its own skills.
+INTAKE = """Read a person's request for a tech career roadmap and fill in the fields.
+role_family, pick the closest:
+  software (general software engineer/developer), backend, frontend, mobile,
+  data (data analyst, data scientist, data engineer, BI), ai_ml (ML engineer, AI engineer),
+  devops_cloud (DevOps, SRE, cloud, platform engineer), security,
+  networking_it (help desk, IT support, network engineer, system administrator),
+  qa (software testing), architecture (solutions/software architect)
+level: entry for junior, graduate, beginner or no experience; intern for internships;
+  otherwise the level they ask for. If they don't say, entry.
+title_keyword: a word from job titles that narrows a family holding different jobs, e.g.
+  data -> "analyst", "scientist" or "engineer"; networking_it -> "help desk", "support",
+  "network" or "administrator"; security -> "analyst" or "engineer". Use null when the
+  family already matches the job (e.g. DevOps engineer, frontend developer).
+known_skills: skills the person says they already have, with standard names
+  (k8s -> Kubernetes, powerbi -> Power BI, js -> JavaScript). Empty list if none.
+
+REQUEST: {request}"""
+
+WRITER = """You write a learning roadmap from a PLAN that was computed from real job posts.
+For each phase, call search_job_posts ONCE with that phase's first skill plus the job
+(e.g. "Tableau data analyst"), with the plan's role_family and level, to find an example.
 Then write the roadmap:
-- Phase 1 "Foundations", Phase 2 "Core skills", Phase 3 "Next level".
-- For each skill give its share from the tools, e.g. "AWS (in 59% of 70 entry posts)".
-- Add one cited example per phase, using the source numbers exactly like [3].
+- Start with one line on what the plan is based on (number and kind of posts).
+- Then "Already have" if the plan lists skills the person has.
+- Phases in the plan's order: Foundations, Core skills, Next level. For each skill give the
+  share from the plan, e.g. "SQL (in 44% of the posts)", and say if it rises with seniority.
+- One cited example per phase, about that phase's skill, using source numbers exactly like [3].
+- Repeat every NOTE from the plan.
 Rules:
-- Every number and every comparison ("more than", "rises") must match the tool results.
+- Use only the plan's skills, phases and numbers. Never invent or change a number.
 - Never say "most", "typical", "common" or "all jobs"; give the number instead.
-- Only name skills that appear in the tool results. If you add general advice that is NOT
-  from the data (for example specific AWS services), put it under a final heading
+- An example must actually mention its skill; if no search result does, say no example was found.
+- General advice that is NOT from the data goes under a final heading
   "General advice (not from the job data)".
-- If a tool shows a WARNING about few posts, say the numbers are rough.
 - Keep it under 300 words."""
 
 CRITIC = """You check a career roadmap against the EVIDENCE it was built from.
 List every problem of these kinds:
 - number: a percentage or post count that is not in the evidence or differs from it
-- comparison: a claim like "most common", "rises", "more than" that the evidence numbers contradict
+- comparison: a claim like "rises", "more than" that the evidence numbers contradict
 - outside_knowledge: a skill, tool or fact that is not in the evidence and is NOT under the
   heading "General advice (not from the job data)"
-- citation: an example [n] whose source text in the evidence does not support it
+- citation: an example [n] whose source text in the evidence does not mention what it is used for
 Quote the exact words from the roadmap. If there are no problems, return an empty list.
 
-EVIDENCE (tool results):
+EVIDENCE (the plan and the search results):
 {evidence}
 
 ROADMAP:
 {draft}"""
+
+
+class Intake(BaseModel):
+    role_family: Family
+    level: Level
+    title_keyword: Optional[str] = Field(description="word from job titles, or null")
+    known_skills: List[str]
 
 
 class Problem(BaseModel):
@@ -71,14 +98,30 @@ class Critique(BaseModel):
 
 
 class RoadmapState(MessagesState):
+    request: str
+    intake: dict
+    plan_text: str
     revisions: int
     problems: list
 
 
-def build_graph(llm, critic_llm):
+def build_graph(llm, judge_llm):
     writer_llm = llm.bind_tools(TOOLS)
-    # json_schema + strict: Groq's constrained decoding, the reply MUST match Critique
-    critic = critic_llm.with_structured_output(Critique, method="json_schema", strict=True)
+    # json_schema + strict: Groq's constrained decoding, replies MUST match the schema
+    intake_llm = judge_llm.with_structured_output(Intake, method="json_schema", strict=True)
+    critic = judge_llm.with_structured_output(Critique, method="json_schema", strict=True)
+
+    def intake(state: RoadmapState):
+        parsed = intake_llm.invoke(INTAKE.format(request=state["request"]))
+        return {"intake": parsed.model_dump()}
+
+    def planner(state: RoadmapState):
+        i = state["intake"]
+        plan = make_plan(i["role_family"], i["level"], i["title_keyword"], i["known_skills"])
+        text = plan_to_text(plan)
+        message = (f"Request: {state['request']}\n"
+                   f"role_family={plan['role_family']}, level={plan['level']}\n\n{text}")
+        return {"plan_text": text, "messages": [HumanMessage(message)]}
 
     def writer(state: RoadmapState):
         reply = writer_llm.invoke([SystemMessage(WRITER)] + state["messages"])
@@ -89,7 +132,8 @@ def build_graph(llm, critic_llm):
 
     def review(state: RoadmapState):
         draft = state["messages"][-1].content
-        evidence = "\n\n".join(m.content for m in state["messages"] if m.type == "tool")
+        results = [m.content for m in state["messages"] if m.type == "tool"]
+        evidence = "\n\n".join([state["plan_text"]] + results)
         try:
             problems = [p.model_dump() for p in
                         critic.invoke(CRITIC.format(evidence=evidence, draft=draft)).problems]
@@ -111,9 +155,9 @@ def build_graph(llm, critic_llm):
         if problems and state["revisions"] < MAX_REVISIONS:
             notes = "\n".join(f"- [{p['kind']}] \"{p['quote']}\": {p['issue']}" for p in problems)
             update["messages"] = [HumanMessage(
-                "A reviewer checked your roadmap against the tool results and found these "
-                f"problems:\n{notes}\nRewrite the whole roadmap and fix all of them. "
-                "You may call the tools again to check numbers.")]
+                "A reviewer checked your roadmap against the plan and the search results and "
+                f"found these problems:\n{notes}\nRewrite the whole roadmap and fix all of them. "
+                "You may search again for better examples.")]
             update["revisions"] = state["revisions"] + 1
         return update
 
@@ -122,10 +166,14 @@ def build_graph(llm, critic_llm):
         return "writer" if sent_back else END
 
     graph = StateGraph(RoadmapState)
+    graph.add_node("intake", intake)
+    graph.add_node("planner", planner)
     graph.add_node("writer", writer)
     graph.add_node("tools", ToolNode(TOOLS))
     graph.add_node("critic", review)
-    graph.add_edge(START, "writer")
+    graph.add_edge(START, "intake")
+    graph.add_edge("intake", "planner")
+    graph.add_edge("planner", "writer")
     graph.add_conditional_edges("writer", after_writer)
     graph.add_edge("tools", "writer")
     graph.add_conditional_edges("critic", after_review)
@@ -138,18 +186,23 @@ def show_problems(title, problems):
         print(f"  [{p['kind']}] \"{p['quote'][:90]}\" -> {p['issue']}")
 
 
-def run(request, llm=None, critic_llm=None):
+def run(request, llm=None, judge_llm=None):
     reset_sources()
     llm = llm or ChatGroq(model=AGENT_MODEL, temperature=0.2, max_tokens=1500,
                           reasoning_effort="low", max_retries=6)
-    critic_llm = critic_llm or ChatGroq(model=AGENT_MODEL, temperature=0, max_tokens=2000,
-                                        reasoning_effort="medium", max_retries=6)
-    app = build_graph(llm, critic_llm)
+    judge_llm = judge_llm or ChatGroq(model=AGENT_MODEL, temperature=0, max_tokens=2000,
+                                      reasoning_effort="medium", max_retries=6)
+    app = build_graph(llm, judge_llm)
 
     final, open_problems = None, []
-    for step in app.stream({"messages": [HumanMessage(request)], "revisions": 0, "problems": []},
-                           {"recursion_limit": 25}, stream_mode="updates"):
+    start = {"request": request, "messages": [], "revisions": 0, "problems": []}
+    for step in app.stream(start, {"recursion_limit": 25}, stream_mode="updates"):
         for node, update in step.items():
+            if node == "intake":
+                print(f"[intake] {update['intake']}")
+            if node == "planner":
+                print(f"\n[planner]\n{update['plan_text']}\n")
+                continue  # the plan message itself is already printed
             for msg in update.get("messages", []):
                 for call in getattr(msg, "tool_calls", []) or []:
                     print(f"  -> {call['name']}({call['args']})")
@@ -179,6 +232,7 @@ def run(request, llm=None, critic_llm=None):
 
 
 if __name__ == "__main__":
-    request = " ".join(sys.argv[1:]) or "I want an entry-level DevOps / cloud engineer job. What should I learn?"
+    request = (" ".join(sys.argv[1:]) or
+               "I know Python and Excel and I want a junior data analyst job. What should I learn?")
     print("REQUEST:", request, "\n")
     run(request)
