@@ -22,12 +22,17 @@ def reset_sources():
 
 @tool
 def search_job_posts(query: str, role_family: Optional[Family] = None,
-                     level: Optional[Level] = None) -> str:
+                     level: Optional[Level] = None, title_keyword: Optional[str] = None) -> str:
     """Search real job posts and return short excerpts, each with a source number [n].
     Use it to find concrete examples of what employers write about a skill or tool.
+    title_keyword keeps only posts whose title contains that word (e.g. 'analyst').
     Cite these numbers in the final answer."""
     with _lock:
-        posts = retrieve(query, role_family=role_family, level=level, n_posts=3, mode="hybrid")
+        posts = retrieve(query, role_family=role_family, level=level, n_posts=10, mode="hybrid")
+        if title_keyword:
+            matching = [p for p in posts if title_keyword.lower() in str(p["title"]).lower()]
+            posts = matching or posts  # nothing with that title: better a near example than none
+        posts = posts[:3]
         if not posts:
             return "No matching posts."
         blocks = []

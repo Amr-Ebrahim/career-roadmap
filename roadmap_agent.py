@@ -1,7 +1,8 @@
 # roadmap_agent.py - Stage 6: the full roadmap pipeline in LangGraph.
-#   intake (LLM)   -> what the person wants and already knows
-#   planner (code) -> gap finder + curriculum from the stats (planner.py)
-#   writer (LLM)   -> writes the roadmap, searching one example per phase
+#   intake (LLM)      -> what the person wants and already knows
+#   planner (code)    -> gap finder + curriculum from the stats (planner.py)
+#   researcher (code) -> one example search per phase
+#   writer (LLM)      -> writes the roadmap (may search again when revising)
 #   critic (LLM + code) -> checks the draft against the plan and the examples, one revision
 import re
 import sys
@@ -15,7 +16,7 @@ from langgraph.prebuilt import ToolNode
 from pydantic import BaseModel, Field
 
 from planner import make_plan, plan_to_text
-from rag_by_hand import check_citations
+from rag_by_hand import check_citations, normalize_citations
 from search_tool import SOURCES, Family, Level, reset_sources, search_job_posts
 
 load_dotenv()
@@ -27,6 +28,7 @@ MAX_REVISIONS = 1
 # same idea as in citation_faithfulness.py: words that turn data into a generalization
 GENERALIZING = re.compile(r"\b(most|typical|typically|common|commonly|consistently|many|usually|"
                           r"generally|often|all jobs|always)\b", re.IGNORECASE)
+QUOTED = re.compile(r"[“\"][^”\"]*[”\"]")
 
 INTAKE = """Read a person's request for a tech career roadmap and fill in the fields.
 role_family, pick the closest:
@@ -46,23 +48,24 @@ known_skills: skills the person says they already have, with standard names
 
 REQUEST: {request}"""
 
-WRITER = """You write a learning roadmap from a PLAN that was computed from real job posts.
-For each phase, call search_job_posts ONCE with that phase's first skill plus the job
-(e.g. "Tableau data analyst"), with the plan's role_family and level, to find an example.
-Then write the roadmap:
-- Start with one line on what the plan is based on (number and kind of posts).
-- Then "Already have" if the plan lists skills the person has.
-- Phases in the plan's order: Foundations, Core skills, Next level. For each skill give the
-  share from the plan, e.g. "SQL (in 44% of the posts)", and say if it rises with seniority.
-- One cited example per phase, about that phase's skill, using source numbers exactly like [3].
-- Repeat every NOTE from the plan.
+WRITER = """You write a learning roadmap from a PLAN and SEARCH RESULTS taken from real job posts.
+Write:
+- One line on what the plan is based on (number and kind of posts).
+- "Already have" if the plan lists skills the person has.
+- The phases in the plan's order: Foundations, Core skills, Next level. For each skill give the
+  share from the plan, e.g. "SQL (in 44% of the posts)". Write "rises with seniority" or
+  "falls with seniority" ONLY for skills the plan marks (rises) or (falls).
+- One example per phase, taken from that phase's search results: quote a few words that
+  mention the skill and cite the source number exactly like [3]. If none of that phase's
+  results mention the skill, write "No example found in the searched posts."
+- If the plan has NOTE lines, list them under "Notes". If it has none, leave Notes out.
 Rules:
 - Use only the plan's skills, phases and numbers. Never invent or change a number.
-- Never say "most", "typical", "common" or "all jobs"; give the number instead.
-- An example must actually mention its skill; if no search result does, say no example was found.
+- Never say "most", "typical", "common" or "all jobs" in your own words; give the number instead.
 - General advice that is NOT from the data goes under a final heading
   "General advice (not from the job data)".
-- Keep it under 300 words."""
+- Keep it under 300 words.
+When revising, you may call search_job_posts to find a better example."""
 
 CRITIC = """You check a career roadmap against the EVIDENCE it was built from.
 List every problem of these kinds:
@@ -100,7 +103,9 @@ class Critique(BaseModel):
 class RoadmapState(MessagesState):
     request: str
     intake: dict
+    plan: dict
     plan_text: str
+    research: str
     revisions: int
     problems: list
 
@@ -118,13 +123,34 @@ def build_graph(llm, judge_llm):
     def planner(state: RoadmapState):
         i = state["intake"]
         plan = make_plan(i["role_family"], i["level"], i["title_keyword"], i["known_skills"])
-        text = plan_to_text(plan)
+        return {"plan": plan, "plan_text": plan_to_text(plan)}
+
+    def researcher(state: RoadmapState):
+        # code, not the LLM, decides the searches: one per phase, for its first skill,
+        # so no phase is skipped and every example search is about the right skill
+        plan = state["plan"]
+        job = plan["title_keyword"] or plan["role_family"].replace("_", " ")
+        parts = []
+        for phase, skills in plan["phases"].items():
+            if not skills:
+                continue
+            query = f"{skills[0]['skill']} {job}"
+            result = search_job_posts.invoke({
+                "query": query, "role_family": plan["role_family"], "level": plan["level"],
+                "title_keyword": plan["title_keyword"]})
+            parts.append(f"{phase} (searched: '{query}'):\n{result}")
+            print(f"  [researcher] {phase}: searched '{query}'")
+        research = "\n\n".join(parts)
         message = (f"Request: {state['request']}\n"
-                   f"role_family={plan['role_family']}, level={plan['level']}\n\n{text}")
-        return {"plan_text": text, "messages": [HumanMessage(message)]}
+                   f"role_family={plan['role_family']}, level={plan['level']}, "
+                   f"title_keyword={plan['title_keyword']}\n\n{state['plan_text']}\n\n"
+                   f"SEARCH RESULTS:\n{research}")
+        return {"research": research, "messages": [HumanMessage(message)]}
 
     def writer(state: RoadmapState):
         reply = writer_llm.invoke([SystemMessage(WRITER)] + state["messages"])
+        if not reply.tool_calls:  # gpt-oss sometimes cites like 【3】: turn it into [3]
+            reply.content = normalize_citations(reply.content)
         return {"messages": [reply]}
 
     def after_writer(state: RoadmapState):
@@ -133,7 +159,7 @@ def build_graph(llm, judge_llm):
     def review(state: RoadmapState):
         draft = state["messages"][-1].content
         results = [m.content for m in state["messages"] if m.type == "tool"]
-        evidence = "\n\n".join([state["plan_text"]] + results)
+        evidence = "\n\n".join([state["plan_text"], state["research"]] + results)
         try:
             problems = [p.model_dump() for p in
                         critic.invoke(CRITIC.format(evidence=evidence, draft=draft)).problems]
@@ -147,7 +173,8 @@ def build_graph(llm, judge_llm):
             problems.append({"kind": "citation", "quote": f"[{n}]", "issue": "no such source"})
         data_part = draft.split("General advice")[0]  # the labeled advice section may generalize
         for line in data_part.splitlines():
-            if GENERALIZING.search(line):
+            own_words = QUOTED.sub("", line)  # words quoted from a job post are not our claim
+            if GENERALIZING.search(own_words):
                 problems.append({"kind": "comparison", "quote": line.strip()[:120],
                                  "issue": "generalizing word; give the number instead"})
 
@@ -168,12 +195,14 @@ def build_graph(llm, judge_llm):
     graph = StateGraph(RoadmapState)
     graph.add_node("intake", intake)
     graph.add_node("planner", planner)
+    graph.add_node("researcher", researcher)
     graph.add_node("writer", writer)
     graph.add_node("tools", ToolNode(TOOLS))
     graph.add_node("critic", review)
     graph.add_edge(START, "intake")
     graph.add_edge("intake", "planner")
-    graph.add_edge("planner", "writer")
+    graph.add_edge("planner", "researcher")
+    graph.add_edge("researcher", "writer")
     graph.add_conditional_edges("writer", after_writer)
     graph.add_edge("tools", "writer")
     graph.add_conditional_edges("critic", after_review)
@@ -202,7 +231,8 @@ def run(request, llm=None, judge_llm=None):
                 print(f"[intake] {update['intake']}")
             if node == "planner":
                 print(f"\n[planner]\n{update['plan_text']}\n")
-                continue  # the plan message itself is already printed
+            if node == "researcher":
+                continue  # its searches are printed as they happen; skip the long message
             for msg in update.get("messages", []):
                 for call in getattr(msg, "tool_calls", []) or []:
                     print(f"  -> {call['name']}({call['args']})")

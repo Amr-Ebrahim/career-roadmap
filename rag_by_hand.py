@@ -53,7 +53,8 @@ def ask_llm(system, user):
 
 
 def normalize_citations(text):
-    return re.sub(r"【(\d+)†[^】]*】", r"[\1]", text)
+    # gpt-oss sometimes writes its own styles: 【3†L1-L4】 or 【3】 -> [3]
+    return re.sub(r"【(\d+)(?:†[^】]*)?】", r"[\1]", text)
 
 
 def check_citations(text, n_sources):
