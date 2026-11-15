@@ -27,7 +27,7 @@ TESTS = [
     {"question": "Which tools do entry-level security analyst jobs ask for?",
      "role_family": "security", "level": "entry"},
     {"question": "What skills do entry-level backend developer jobs ask for?",
-     "role_family": "software", "level": "entry"},
+     "role_family": "backend", "level": "entry"},
     {"question": "Which certifications do entry-level IT support jobs mention?",
      "role_family": "networking_it", "level": "entry"},
     {"question": "Which entry-level cloud jobs ask for Terraform or Kubernetes?",

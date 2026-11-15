@@ -46,6 +46,12 @@ EXCLUDE = re.compile(
     r"|course developer|learning developer|materials developer)\b"
 )
 
+# Applied AFTER a family is found, so they only re-label tech posts and never add new ones.
+ARCHITECT = re.compile(r"\barchitect")
+KEEP_ARCHITECTS = {"data", "ai_ml"}  # data/ML architects stay in their own family
+ENTERPRISE = re.compile(r"\b(salesforce|sap|oracle|servicenow|workday|netsuite|dynamics 365)\b")
+REAL_DEVOPS = re.compile(r"\b(devops|sre|site reliability|platform engineer|infrastructure engineer)\b")
+
 
 def label_role(title):
     t = title.lower()
@@ -53,5 +59,11 @@ def label_role(title):
         return None
     for family, pattern in PATTERNS.items():
         if pattern.search(t):
+            # design/advisory roles: kept in the data, separate from the hands-on families
+            if ARCHITECT.search(t) and family not in KEEP_ARCHITECTS:
+                return "architecture"
+            # "Salesforce Commerce Cloud Developer" matched only through the product name
+            if family == "devops_cloud" and ENTERPRISE.search(t) and not REAL_DEVOPS.search(t):
+                return "software"
             return family
     return None
