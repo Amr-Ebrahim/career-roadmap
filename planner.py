@@ -71,9 +71,11 @@ def plan_to_text(plan):
             lines.append("- (none)")
         for s in skills:
             line = f"- {s['skill']}: in {s['share']:.0f}% of the posts"
-            if "entry_to_senior" in s:
+            # the seniority numbers are shown ONLY when the change passes the rule:
+            # small differences (e.g. 31% -> 25%) made the writer invent "falls"
+            if s["trend"]:
                 e, sr = s["entry_to_senior"]
-                line += f"; entry {e:.0f}% -> senior {sr:.0f}%" + (f" ({s['trend']})" if s["trend"] else "")
+                line += f"; {s['trend']} with seniority (entry {e:.0f}% -> senior {sr:.0f}%)"
             lines.append(line)
     if plan["have"]:
         lines.append("\nAlready has: " + ", ".join(f"{h['skill']} (in {h['share']:.0f}% of the posts)"
