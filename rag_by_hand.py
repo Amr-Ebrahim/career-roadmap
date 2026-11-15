@@ -64,9 +64,10 @@ def check_citations(text, n_sources):
     return len(cited), invalid, unused
 
 
-def rag_answer(question, role_family=None, level=None):
+def rag_answer(question, role_family=None, level=None, mode="vector"):
     # the whole RAG in one call: retrieve -> build prompt -> ask -> fix citations
-    posts = retrieve(question, role_family=role_family, level=level)
+    # mode: "vector" (semantic search only) or "hybrid" (BM25 + vector)
+    posts = retrieve(question, role_family=role_family, level=level, mode=mode)
     user_message = f"Job posts:\n\n{format_sources(posts)}\n\nQuestion: {question}"
     raw_answer, finish, usage = ask_llm(SYSTEM, user_message)
     answer = normalize_citations(raw_answer)

@@ -18,7 +18,7 @@ load_dotenv()  # ChatGroq reads GROQ_API_KEY from the environment
 # ---- 1. Retrieval: our retrieve() wrapped so it returns LangChain Documents ----
 def retrieve_docs(inputs):
     posts = retrieve(inputs["question"], role_family=inputs.get("role_family"),
-                     level=inputs.get("level"))
+                     level=inputs.get("level"), mode=inputs.get("mode", "vector"))
     return [Document(page_content=p["text"],
                      metadata={k: v for k, v in p.items() if k != "text"})
             for p in posts]
@@ -54,9 +54,10 @@ llm = ChatGroq(model=MODEL, temperature=0.2, max_tokens=1500, reasoning_effort="
 chain = build_chain(llm)
 
 
-def rag_answer(question, role_family=None, level=None):
+def rag_answer(question, role_family=None, level=None, mode="vector"):
     # same return shape as rag_by_hand.rag_answer, so eval_rag.py can use either one
-    result = chain.invoke({"question": question, "role_family": role_family, "level": level})
+    result = chain.invoke({"question": question, "role_family": role_family,
+                           "level": level, "mode": mode})
     posts = to_posts(result["docs"])
     return {"answer": result["answer"], "posts": posts, "sources": source_blocks(posts)}
 

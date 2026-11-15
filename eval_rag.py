@@ -1,7 +1,9 @@
 # eval_rag.py - score the RAG's answers with DeepEval (judge = Groq, free)
-# Full run:  python eval_rag.py            -> evals/baseline_<date>.csv
-# Named run: python eval_rag.py langchain  -> evals/langchain_<date>.csv
-# Test run:  python eval_rag.py 1          -> first question only, evals/test_<date>.csv
+#   python eval_rag.py baseline     -> hand-built RAG, vector search
+#   python eval_rag.py langchain    -> LangChain RAG, vector search
+#   python eval_rag.py hybrid       -> hand-built RAG, hybrid search (BM25 + vector)
+#   python eval_rag.py hybrid 2     -> test run: first 2 questions only
+# Results: evals/<run>_<date>.csv  (test runs: evals/test-<run>_<date>.csv)
 import csv
 import os
 import sys
@@ -9,17 +11,14 @@ import time
 from datetime import date
 
 from groq_judge import GroqJudge  # import first: it loads .env before deepeval
-from deepeval.metrics import (
-    AnswerRelevancyMetric,
-    ContextualRelevancyMetric,
-    FaithfulnessMetric,
-)
+from deepeval.metrics import AnswerRelevancyMetric, ContextualRelevancyMetric
 from deepeval.test_case import LLMTestCase
-from rag_by_hand import rag_answer
+from citation_faithfulness import CitationFaithfulnessMetric
 
 THRESHOLD = 0.7  # a score below this counts as FAIL
 
-# Same questions every run, so scores can be compared later
+# Same questions every run, so scores can be compared later.
+# The last two use exact tool/certification names (where keyword search should help).
 TESTS = [
     {"question": "What skills do I need to get an entry-level cloud engineer job?",
      "role_family": "devops_cloud", "level": "entry"},
@@ -31,35 +30,59 @@ TESTS = [
      "role_family": "software", "level": "entry"},
     {"question": "Which certifications do entry-level IT support jobs mention?",
      "role_family": "networking_it", "level": "entry"},
+    {"question": "Which entry-level cloud jobs ask for Terraform or Kubernetes?",
+     "role_family": "devops_cloud", "level": "entry"},
+    {"question": "Do entry-level help desk jobs ask for CompTIA A+ or ITIL?",
+     "role_family": "networking_it", "level": "entry"},
 ]
 
-def make_metrics(judge):
+# run name -> (which RAG code, which search mode)
+RUNS = {
+    "baseline": ("by_hand", "vector"),
+    "langchain": ("langchain", "vector"),
+    "hybrid": ("by_hand", "hybrid"),
+}
+
+
+def load_rag(code):
+    # import only the version we need (LangChain is slow to import)
+    if code == "langchain":
+        from rag_langchain import rag_answer
+    else:
+        from rag_by_hand import rag_answer
+    return rag_answer
+
+
+def make_metrics():
     # async_mode=False: one judge call at a time, gentle on Groq's free limits
-    # penalize_ambiguous_claims=True: a claim the sources don't back up counts
-    # against the score (by default only a direct contradiction does)
     return [
-        FaithfulnessMetric(threshold=THRESHOLD, model=judge, async_mode=False,
-                           penalize_ambiguous_claims=True),
-        AnswerRelevancyMetric(threshold=THRESHOLD, model=judge, async_mode=False),
-        ContextualRelevancyMetric(threshold=THRESHOLD, model=judge, async_mode=False),
+        # our own metric: checks each answer line against the raw cited sources
+        CitationFaithfulnessMetric(GroqJudge(reasoning="medium"), threshold=THRESHOLD),
+        AnswerRelevancyMetric(threshold=THRESHOLD, model=GroqJudge(), async_mode=False),
+        ContextualRelevancyMetric(threshold=THRESHOLD, model=GroqJudge(), async_mode=False),
     ]
 
 
 def main():
     args = sys.argv[1:]
-    if args and args[0].isdigit():
-        tests, label = TESTS[: int(args[0])], "test"
-    else:
-        tests, label = TESTS, (args[0] if args else "baseline")
+    run = args[0] if args else "baseline"
+    if run not in RUNS:
+        sys.exit(f"Unknown run '{run}'. Choose one of: {', '.join(RUNS)}")
+    tests, label = TESTS, run
+    if len(args) > 1:
+        tests, label = TESTS[: int(args[1])], f"test-{run}"
 
-    metrics = make_metrics(GroqJudge())
+    code, mode = RUNS[run]
+    rag_answer = load_rag(code)
+    metrics = make_metrics()
     rows = []
+    print(f"Run: {run}  (RAG: {code}, search: {mode}, questions: {len(tests)})")
 
     for n, t in enumerate(tests, start=1):
         print(f"\n=== [{n}/{len(tests)}] {t['question']}  ({t['role_family']}, {t['level']})")
         start = time.time()
 
-        result = rag_answer(t["question"], t["role_family"], t["level"])
+        result = rag_answer(t["question"], t["role_family"], t["level"], mode=mode)
         case = LLMTestCase(
             input=t["question"],
             actual_output=result["answer"],
@@ -79,12 +102,12 @@ def main():
             print(f"  {name:<20} {shown:>5}  {status}")
             print(f"      {str(reason)[:300]}")
             rows.append({
-                "question": t["question"], "metric": name, "score": score,
+                "run": run, "question": t["question"], "metric": name, "score": score,
                 "status": status, "reason": reason, "answer": result["answer"],
             })
         print(f"  ({time.time() - start:.0f} s)")
 
-    # save every score, so later runs (LangChain, hybrid) can be compared
+    # save every score, so runs can be compared
     os.makedirs("evals", exist_ok=True)
     path = f"evals/{label}_{date.today()}.csv"
     with open(path, "w", newline="", encoding="utf-8") as f:
