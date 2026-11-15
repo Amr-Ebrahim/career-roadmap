@@ -1,0 +1,14 @@
+# .streamlit/config.toml - the look of the app (Streamlit reads this file automatically)
+[theme]
+base = "light"
+primaryColor = "#4F46E5"              # indigo: buttons, progress bars, links
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4F5FA"  # sidebar, input boxes, code blocks
+textColor = "#1F2937"
+borderColor = "#E5E7EB"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap, sans-serif"
+baseRadius = "large"
+showWidgetBorder = true
+
+[client]
+toolbarMode = "minimal"   # hide the developer menu items
