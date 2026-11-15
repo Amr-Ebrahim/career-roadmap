@@ -37,12 +37,14 @@ def search_job_posts(query: str, role_family: Optional[Family] = None,
             return "No matching posts."
         blocks = []
         for p in posts:
+            text = p["text"][:MAX_CHARS].replace("\n", " ")
             known = [s["job_id"] for s in SOURCES]
             if p["job_id"] in known:          # same post found again: keep its first number
                 n = known.index(p["job_id"]) + 1
+                if text not in SOURCES[n - 1]["shown"]:  # maybe a different part of the post
+                    SOURCES[n - 1]["shown"].append(text)
             else:
-                SOURCES.append(p)
+                SOURCES.append({**p, "shown": [text]})  # "shown" = every excerpt the agent saw
                 n = len(SOURCES)
-            text = p["text"][:MAX_CHARS].replace("\n", " ")
             blocks.append(f"[{n}] {p['title']} at {p['company']} ({p['level']}): {text}")
     return "\n\n".join(blocks)

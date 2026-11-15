@@ -17,7 +17,7 @@ from pydantic import BaseModel, Field
 
 from planner import CHANGE, make_plan, plan_to_text
 from rag_by_hand import check_citations, normalize_citations
-from search_tool import MAX_CHARS, SOURCES, Family, Level, reset_sources, search_job_posts
+from search_tool import SOURCES, Family, Level, reset_sources, search_job_posts
 
 load_dotenv()
 
@@ -33,8 +33,9 @@ CITE = re.compile(r"\[(\d+)\]")
 
 
 def _plain(text):
-    # compare text loosely: lower case, one kind of dash and quote, single spaces
-    text = re.sub(r"[\u2010-\u2015]", "-", text.lower())
+    # compare text loosely: lower case, dashes as spaces ("fault-tolerant" = "fault tolerant"),
+    # one kind of apostrophe, single spaces
+    text = re.sub(r"[-\u2010-\u2015]", " ", text.lower())
     return re.sub(r"\s+", " ", text.replace("’", "'")).strip()
 
 
@@ -47,12 +48,13 @@ def check_quotes(draft, skills):
         cites = [int(n) for n in CITE.findall(line)]
         if not quotes or not cites:
             continue
-        sources = " ".join(_plain(SOURCES[n - 1]["text"][:MAX_CHARS])
-                           for n in cites if 1 <= n <= len(SOURCES))
+        # every excerpt of the cited posts that the writer was shown
+        sources = " ".join(_plain(text) for n in cites if 1 <= n <= len(SOURCES)
+                           for text in SOURCES[n - 1]["shown"])
         outside = _plain(QUOTED.sub("", line))
         named = [s for s in skills if re.search(rf"(?<!\w){re.escape(s.lower())}(?!\w)", outside)]
         for q in quotes:
-            parts = [p.strip(" .,-") for p in re.split(r"…|\.\.\.", _plain(q)) if len(p.strip()) >= 4]
+            parts = [p.strip(" .,") for p in re.split(r"…|\.\.\.", _plain(q)) if len(p.strip()) >= 4]
             if any(part not in sources for part in parts):
                 problems.append({"kind": "citation", "quote": q[:120],
                                  "issue": f"these words are not in source {cites}"})
@@ -198,7 +200,8 @@ def build_graph(llm, judge_llm):
             problems = [p.model_dump() for p in
                         critic.invoke(CRITIC.format(evidence=evidence, draft=draft)).problems]
         except Exception as e:  # a failed review shouldn't throw away the roadmap
-            print(f"  [critic] LLM check failed ({type(e).__name__}), using code checks only")
+            print(f"  [critic] LLM check failed ({type(e).__name__}: {str(e)[:150]}), "
+                  "using code checks only")
             problems = []
 
         # checks done by code, not by the LLM: they are free and never miss
