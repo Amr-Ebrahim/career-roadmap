@@ -14,8 +14,9 @@ JUDGE_MODEL = "openai/gpt-oss-120b"
 
 
 class GroqJudge(DeepEvalBaseLLM):
-    def __init__(self, model_name=JUDGE_MODEL):
+    def __init__(self, model_name=JUDGE_MODEL, reasoning="low"):
         self.model_name = model_name
+        self.reasoning = reasoning  # "low", "medium" or "high": how much the judge thinks first
         super().__init__(model_name)  # this calls load_model() below
 
     def load_model(self):
@@ -39,8 +40,8 @@ class GroqJudge(DeepEvalBaseLLM):
             model=self.model_name,
             messages=messages,
             temperature=0,
-            reasoning_effort="low",
-            max_tokens=4000,
+            reasoning_effort=self.reasoning,
+            max_tokens=8000,
             **extra,
         )
         text = response.choices[0].message.content
@@ -53,7 +54,7 @@ class GroqJudge(DeepEvalBaseLLM):
         return self.generate(prompt, schema)
 
     def get_model_name(self):
-        return f"Groq {self.model_name}"
+        return f"Groq {self.model_name} ({self.reasoning})"
 
 
 # ---- quick self-test: python groq_judge.py ----
