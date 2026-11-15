@@ -259,13 +259,9 @@ def build_graph(llm, judge_llm):
     return graph.compile()
 
 
-def show_problems(title, problems):
-    print(f"\n=== {title}: {len(problems)} problem(s)")
-    for p in problems:
-        print(f"  [{p['kind']}] \"{p['quote'][:90]}\" -> {p['issue']}")
-
-
-def run(request, llm=None, judge_llm=None):
+def generate_roadmap(request, llm=None, judge_llm=None, on_step=print):
+    # runs the whole graph and RETURNS everything (the CLI, the API and the app all use this);
+    # on_step gets a short text for each step, e.g. to print progress
     reset_sources()
     llm = llm or ChatGroq(model=AGENT_MODEL, temperature=0.2, max_tokens=1500,
                           reasoning_effort="low", max_retries=6)
@@ -273,46 +269,65 @@ def run(request, llm=None, judge_llm=None):
                                       reasoning_effort="medium", max_retries=6)
     app = build_graph(llm, judge_llm)
 
-    final, open_problems = None, []
-    start = {"request": request, "messages": [], "revisions": 0, "problems": []}
-    for step in app.stream(start, {"recursion_limit": 25}, stream_mode="updates"):
-        for node, update in step.items():
-            if node == "intake":
-                print(f"[intake] {update['intake']}")
-            if node == "planner":
-                print(f"\n[planner]\n{update['plan_text']}\n")
-            if node == "researcher":
-                continue  # its searches are printed as they happen; skip the long message
-            for msg in update.get("messages", []):
-                for call in getattr(msg, "tool_calls", []) or []:
-                    print(f"  -> {call['name']}({call['args']})")
-                if msg.type == "tool":
-                    print(f"  <- {msg.name}: {len(msg.content)} characters")
-                if node == "writer" and msg.type == "ai" and not msg.tool_calls:
-                    final = msg.content
-                    print("  [writer] draft written")
-            if node == "critic":
-                open_problems = update["problems"]
-                show_problems("CRITIC", open_problems)
-                if update.get("messages"):
-                    print("  [critic] sent back to the writer for one revision")
+    result = {"request": request, "intake": None, "plan": None, "plan_text": "",
+              "roadmap": None, "problems": [], "steps": []}
 
+    def step(text):
+        result["steps"].append(text)
+        on_step(text)
+
+    start = {"request": request, "messages": [], "revisions": 0, "problems": []}
+    for update_by_node in app.stream(start, {"recursion_limit": 25}, stream_mode="updates"):
+        for node, update in update_by_node.items():
+            if node == "intake":
+                result["intake"] = update["intake"]
+                step(f"[intake] {update['intake']}")
+            elif node == "planner":
+                result["plan"], result["plan_text"] = update["plan"], update["plan_text"]
+                step(f"[planner] plan based on {update['plan']['n_posts']} {update['plan']['group']}")
+            elif node == "researcher":
+                step("[researcher] one example search per phase done")
+            elif node == "tools":
+                step(f"[tools] {len(update['messages'])} extra search(es) during revision")
+            elif node == "writer":
+                msg = update["messages"][-1]
+                if msg.tool_calls:
+                    step(f"[writer] asked for {len(msg.tool_calls)} search(es)")
+                else:
+                    result["roadmap"] = msg.content
+                    step("[writer] draft written")
+            elif node == "critic":
+                result["problems"] = update["problems"]
+                sent_back = bool(update.get("messages"))
+                step(f"[critic] {len(update['problems'])} problem(s)"
+                     + (", sent back for one revision" if sent_back else ""))
+
+    total, invalid, unused = check_citations(result["roadmap"] or "", len(SOURCES))
+    result["citations"] = {"total": total, "invalid": invalid, "never_cited": unused}
+    result["sources"] = [{"n": i, "title": p["title"], "company": p["company"],
+                          "level": p["level"], "source": p["source"], "url": p.get("url")}
+                         for i, p in enumerate(SOURCES, start=1)]
+    return result
+
+
+def print_result(result):
+    print(f"\n[planner]\n{result['plan_text']}")
     print("\n=== FINAL ROADMAP ===")
-    print(final)
-    if open_problems:  # the last review still found something: show it, don't hide it
+    print(result["roadmap"])
+    if result["problems"]:  # the last review still found something: show it, don't hide it
         print("\nReviewer notes (not fixed):")
-        for p in open_problems:
+        for p in result["problems"]:
             print(f"- [{p['kind']}] \"{p['quote'][:90]}\": {p['issue']}")
-    total, invalid, unused = check_citations(final, len(SOURCES))
-    print(f"\nCitations: {total} | invalid numbers: {invalid or 'none'} | sources never cited: {unused or 'none'}")
+    c = result["citations"]
+    print(f"\nCitations: {c['total']} | invalid numbers: {c['invalid'] or 'none'} "
+          f"| sources never cited: {c['never_cited'] or 'none'}")
     print("\nSources:")
-    for i, p in enumerate(SOURCES, start=1):
-        print(f"  [{i}] {p['title']} | {p['company']} | {p.get('url') or 'no link'}")
-    return final, open_problems
+    for s in result["sources"]:
+        print(f"  [{s['n']}] {s['title']} | {s['company']} | {s['url'] or 'no link'}")
 
 
 if __name__ == "__main__":
     request = (" ".join(sys.argv[1:]) or
                "I know Python and Excel and I want a junior data analyst job. What should I learn?")
     print("REQUEST:", request, "\n")
-    run(request)
+    print_result(generate_roadmap(request))

@@ -35,10 +35,10 @@ def make_plan(role_family, level="entry", title_keyword=None, known_skills=()):
     for skill, row in table.iterrows():
         if skill in GENERIC or row["share_%"] < MIN_SHARE:
             continue
-        info = {"skill": skill, "share": row["share_%"], "trend": None}
+        info = {"skill": skill, "share": float(row["share_%"]), "trend": None}
         if can_compare and skill in shares.index:
             entry, senior = shares.loc[skill, "entry"], shares.loc[skill, "senior"]
-            info["entry_to_senior"] = (entry, senior)
+            info["entry_to_senior"] = (float(entry), float(senior))
             info["trend"] = ("rises" if senior - entry >= CHANGE else
                              "falls" if entry - senior >= CHANGE else None)
         (have if skill.lower() in known_lower else gaps).append(info)
