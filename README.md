@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://YOUR-APP.streamlit.app"><b>Live demo</b></a> ·
+  <a href="https://career-roadmap-bgevtqzghvkn3mj7i5ppr7.streamlit.app/"><b>Live demo</b></a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="#evaluation">Evaluation</a> ·
   <a href="#run-it-yourself">Run it yourself</a>
