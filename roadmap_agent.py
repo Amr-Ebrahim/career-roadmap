@@ -91,9 +91,10 @@ WRITER = """You write a learning roadmap from a PLAN and SEARCH RESULTS taken fr
 Write:
 - One line on what the plan is based on (number and kind of posts).
 - "Already have" if the plan lists skills the person has.
-- The phases in the plan's order: Foundations, Core skills, Next level. For each skill give the
-  share from the plan, e.g. "SQL (in 44% of the posts)". Write "rises with seniority" or
-  "falls with seniority" ONLY for skills the plan marks (rises) or (falls).
+- The phases in the plan's order: Foundations, Core skills, Next level. Keep the plan's step
+  numbers and order, and give each skill's share from the plan, e.g. "1. SQL (in 44% of the
+  posts)". Where the plan says "learn after X" or "added because Y needs it", say so.
+  Write "rises with seniority" or "falls with seniority" ONLY for skills the plan marks.
 - For each skill, an example from that phase's search results: quote a few words that
   mention the skill and cite the source number exactly like [3]. If none of that phase's
   results mention the skill, write "No example found in the searched posts."

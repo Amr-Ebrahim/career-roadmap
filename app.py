@@ -55,6 +55,10 @@ def build_roadmap(request_text):
         return generate_roadmap(request_text, on_step=lambda text: st.write(text))
 
 
+def share_text(s):
+    return f"in {s['share']:.0f}% of posts" if s["share"] >= 0.5 else "not asked in these posts"
+
+
 def goal_name(plan):
     job = plan["title_keyword"].title() if plan["title_keyword"] else \
         FAMILY_NAMES.get(plan["role_family"], plan["role_family"])
@@ -93,13 +97,21 @@ def roadmap_flowchart(plan):
         for j, s in reversed(list(enumerate(skills))):
             node = f"p{i}_{j}"
             ids.append(node)
-            label = (f'<b>{esc(s["skill"])}</b>'
-                     f'<br/><font point-size="10" color="#6B7280">in {s["share"]:.0f}% of posts</font>')
+            step = f'{s["step"]} · ' if s.get("step") else ""
+            label = (f'<b>{step}{esc(s["skill"])}</b>'
+                     f'<br/><font point-size="10" color="#6B7280">{share_text(s)}</font>')
             extra = ""
             if s.get("trend") == "rises":
                 _, senior = s["entry_to_senior"]
                 label += f'<br/><font point-size="10" color="#7C3AED">↑ {senior:.0f}% at senior level</font>'
                 extra = ', color="#8B5CF6", penwidth=1.8'
+            if s.get("added_for"):  # a prerequisite the plan added: dashed border
+                label += (f'<br/><font point-size="10" color="#B45309">'
+                          f'needed for {esc(s["added_for"])}</font>')
+                extra += ', style="rounded,filled,dashed", color="#D97706"'
+            elif s.get("after"):
+                label += (f'<br/><font point-size="10" color="#6B7280">'
+                          f'after {esc(", ".join(s["after"]))}</font>')
             dot.append(f"{node} [label=<{label}>{extra}];")
         dot.append("}")
 
@@ -215,17 +227,25 @@ if result and result.get("roadmap"):
                 if not skills:
                     st.caption("Nothing extra in this phase.")
                 for s in skills:
+                    step = f"{s['step']}. " if s.get("step") else ""
                     st.progress(min(s["share"] / 100, 1.0),
-                                text=f"**{s['skill']}** · in {s['share']:.0f}% of posts")
+                                text=f"**{step}{s['skill']}** · {share_text(s)}")
                     if s.get("trend") == "rises":
                         _, senior = s["entry_to_senior"]
                         st.badge(f"rises to {senior:.0f}% at senior level",
                                  icon=":material/trending_up:", color="violet")
+                    if s.get("added_for"):
+                        st.badge(f"needed for {s['added_for']}", icon=":material/link:",
+                                 color="orange")
+                    elif s.get("after"):
+                        st.caption(f"Learn after {', '.join(s['after'])}")
     else:
         with st.container(border=True):
             st.graphviz_chart(roadmap_flowchart(plan), width="stretch")
-            st.caption(f"% = share of the {plan['n_posts']} job posts that ask for the skill. "
-                       "↑ = asked for much more often at senior level.")
+            st.caption(f"Numbers = learning order: what a skill needs comes first (from a prerequisite "
+                       f"list, not the job data). % = share of the {plan['n_posts']} job posts that "
+                       "ask for the skill. ↑ = asked for much more often at senior level. "
+                       "Dashed = added because a later skill needs it.")
 
     cited = {int(n) for n in re.findall(r"\[(\d+)\]", result["roadmap"])}
     tab_text, tab_sources, tab_how = st.tabs(
