@@ -1,0 +1,20 @@
+# requirements-pipeline.txt - for the weekly GitHub Action. Made by make_requirements.py: edit that, not this.
+# CPU-only PyTorch: the normal Linux build pulls ~3 GB of GPU libraries the server can't use
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0+cpu
+streamlit==1.67.0
+requests==2.34.2
+python-dotenv==1.2.4
+huggingface_hub==2.4.0
+chromadb==1.5.9
+sentence-transformers==6.3.0
+scikit-learn==1.9.1
+pandas==3.1.1
+pyarrow==26.0.1
+groq==0.37.1
+langchain-core==1.8.0
+langchain-groq==1.1.3
+langgraph==1.2.22
+pydantic==2.14.3
+beautifulsoup4==4.15.0
+langdetect==1.0.9
