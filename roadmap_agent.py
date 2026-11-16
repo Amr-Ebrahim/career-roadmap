@@ -9,7 +9,7 @@ import sys
 from typing import List, Optional
 
 from dotenv import load_dotenv
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_groq import ChatGroq
 from langgraph.graph import END, START, MessagesState, StateGraph
 from langgraph.prebuilt import ToolNode
@@ -105,8 +105,9 @@ Rules:
 - General advice that is NOT from the data goes under a final heading
   "General advice (not from the job data)". It must not contain numbers or claims about how
   many posts or roles ask for something (that belongs in the phases).
-- Keep it under 350 words.
-When revising, you may call search_job_posts (at most twice) to find a better example."""
+- Keep it under 350 words."""
+SEARCH_ALLOWED = "\nWhile revising you may call search_job_posts (at most twice) to find a better example."
+NO_SEARCH = "\nWrite the complete roadmap now, as text."
 
 CRITIC = """You check a career roadmap against the EVIDENCE it was built from.
 List every problem of these kinds:
@@ -154,9 +155,9 @@ class RoadmapState(MessagesState):
 
 def build_graph(llm, judge_llm):
     # The prompt alone did not stop the writer from searching again and again (online it hit
-    # LangGraph's 25-step limit). So code decides: same tool, but tool_choice="none" forbids calling it.
+    # LangGraph's 25-step limit), and Groq rejects tool_choice="none" when gpt-oss still tries.
+    # So when searching is not allowed, the writer gets NO tool at all and a prompt without it.
     writer_can_search = llm.bind_tools(TOOLS)
-    writer_no_search = llm.bind_tools(TOOLS, tool_choice="none")
     # json_schema + strict: Groq's constrained decoding, replies MUST match the schema
     intake_llm = judge_llm.with_structured_output(Intake, method="json_schema", strict=True)
     critic = judge_llm.with_structured_output(Critique, method="json_schema", strict=True)
@@ -192,12 +193,35 @@ def build_graph(llm, judge_llm):
                    f"SEARCH RESULTS:\n{research}")
         return {"research": research, "messages": [HumanMessage(message)]}
 
+    def as_plain_text(messages):
+        # earlier tool calls and results turned into normal messages, so a model without tools
+        # still sees the extra search results but no tool calls it could copy
+        plain = []
+        for m in messages:
+            if m.type == "tool":
+                plain.append(HumanMessage(f"EXTRA SEARCH RESULTS:\n{m.content}"))
+            elif m.type == "ai" and m.tool_calls:
+                queries = "; ".join(str(c["args"].get("query", "")) for c in m.tool_calls)
+                plain.append(AIMessage(f"(I searched again: {queries})"))
+            else:
+                plain.append(m)
+        return plain
+
     def writer(state: RoadmapState):
         # first draft: no searching (the researcher already searched);
         # revision: at most MAX_EXTRA_SEARCHES, then it must write
         can_search = state["revisions"] > 0 and state["searches"] < MAX_EXTRA_SEARCHES
-        model = writer_can_search if can_search else writer_no_search
-        reply = model.invoke([SystemMessage(WRITER)] + state["messages"])
+        if can_search:
+            reply = writer_can_search.invoke([SystemMessage(WRITER + SEARCH_ALLOWED)] + state["messages"])
+        else:
+            messages = [SystemMessage(WRITER + NO_SEARCH)] + as_plain_text(state["messages"])
+            try:
+                reply = llm.invoke(messages)
+            except Exception as e:  # gpt-oss may still try to call a tool: Groq answers 400
+                if "tool" not in str(e).lower():
+                    raise
+                reply = llm.invoke(messages + [HumanMessage(
+                    "Do not call any tool. Write the complete roadmap as text now.")])
         if not reply.tool_calls:  # gpt-oss sometimes cites like 【3】: turn it into [3]
             reply.content = normalize_citations(reply.content)
         return {"messages": [reply], "searches": state["searches"] + len(reply.tool_calls)}
