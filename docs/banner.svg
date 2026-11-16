@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" width="1200" height="440" role="img"
+  aria-label="Career Roadmap Builder: a job post with its skills highlighted, counted into bars: SQL 44%, Excel 42%, Statistics 30%, Power BI 24% of 114 entry-level analyst posts.">
+<style>
+  text { font-family: Arial, Helvetica, 'Liberation Sans', sans-serif; fill: #1B2A41; }
+  .title { font-size: 58px; font-weight: 700; letter-spacing: -1.5px; }
+  .lede { font-size: 21px; }
+  .lede.b { font-weight: 700; }
+  .small { font-size: 15px; fill: #5F6673; }
+  .card text { font-size: 19px; }
+  .hl { fill: #FFE066; transform-box: fill-box; transform-origin: left; animation: sweep .45s ease-out both; }
+  .bar { fill: #FFE066; transform-box: fill-box; transform-origin: left; animation: grow .6s ease-out both; }
+  .lbl { font-size: 16px; font-weight: 700; }
+  .pct { font-size: 16px; animation: fade .3s ease-out both; }
+  @keyframes sweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .hl, .bar, .pct { animation: none; } }
+</style>
+<rect x="1" y="1" width="1198" height="438" rx="22" fill="#FAFAF7" stroke="#E3E4DC" stroke-width="2"/>
+<text class="title" x="64" y="122">Career Roadmap</text>
+<text class="title" x="64" y="186">Builder</text>
+<text class="lede" x="64" y="250">A learning roadmap where <tspan class="lede b">every number is</tspan></text>
+<text class="lede b" x="64" y="280">counted from 10,138 real job posts.</text>
+<text class="lede" x="64" y="320">The AI writes the words.</text>
+<text class="lede" x="64" y="350">It doesn't make up the data.</text>
+<g class="card" transform="translate(650 58) rotate(-1.2)">
+  <rect x="-22" y="-26" width="512" height="168" rx="8" fill="#FFFFFF" stroke="#E3E4DC" stroke-width="1.5"/>
+  <rect class="hl" style="animation-delay:0.50s" x="284.2" y="13" width="43.3" height="23" rx="3"/><rect class="hl" style="animation-delay:0.85s" x="167.1" y="53" width="83.1" height="23" rx="3"/><rect class="hl" style="animation-delay:1.20s" x="271.2" y="53" width="72.6" height="23" rx="3"/><rect class="hl" style="animation-delay:1.55s" x="-3.0" y="93" width="78.9" height="23" rx="3"/><rect class="hl" style="animation-delay:1.90s" x="248.3" y="93" width="52.5" height="23" rx="3"/>
+  <text x="0" y="30">Junior Data Analyst: you will write SQL queries,</text><text x="0" y="70">build dashboards in Power BI or Tableau, use</text><text x="0" y="110">statistics, and keep reports in Excel.</text>
+</g>
+<text class="small" x="650" y="250">Each skill counted across 114 entry-level data analyst posts:</text>
+<text class="lbl" x="650" y="315">SQL</text><rect class="bar" style="animation-delay:2.55s" x="755" y="300" width="273" height="20" rx="3"/><text class="pct" style="animation-delay:3.05s" x="1035" y="315">44%</text><text class="lbl" x="650" y="345">Excel</text><rect class="bar" style="animation-delay:2.70s" x="755" y="330" width="260" height="20" rx="3"/><text class="pct" style="animation-delay:3.20s" x="1022" y="345">42%</text><text class="lbl" x="650" y="375">Statistics</text><rect class="bar" style="animation-delay:2.85s" x="755" y="360" width="186" height="20" rx="3"/><text class="pct" style="animation-delay:3.35s" x="948" y="375">30%</text><text class="lbl" x="650" y="405">Power BI</text><rect class="bar" style="animation-delay:3.00s" x="755" y="390" width="149" height="20" rx="3"/><text class="pct" style="animation-delay:3.50s" x="911" y="405">24%</text>
+</svg>
