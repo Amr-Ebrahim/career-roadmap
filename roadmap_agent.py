@@ -25,11 +25,14 @@ load_dotenv()
 AGENT_MODEL = "openai/gpt-oss-20b"
 TOOLS = [search_job_posts]
 MAX_REVISIONS = 1
+MAX_EXTRA_SEARCHES = 2  # searches the writer may do itself, only while revising
 # same idea as in citation_faithfulness.py: words that turn data into a generalization
 GENERALIZING = re.compile(r"\b(most|typical|typically|common|commonly|consistently|many|usually|"
                           r"generally|often|all jobs|always)\b", re.IGNORECASE)
 QUOTED = re.compile(r"[“\"][^”\"]*[”\"]")
 CITE = re.compile(r"\[(\d+)\]")
+DATA_CLAIM = re.compile(r"\d+\s*%|\b(half|majority|minority|percent)\b", re.IGNORECASE)
+JOB_WORDS = re.compile(r"\b(posts?|roles?|jobs?|listings?|employers?|openings?)\b", re.IGNORECASE)
 
 
 def _plain(text):
@@ -91,7 +94,7 @@ Write:
 - The phases in the plan's order: Foundations, Core skills, Next level. For each skill give the
   share from the plan, e.g. "SQL (in 44% of the posts)". Write "rises with seniority" or
   "falls with seniority" ONLY for skills the plan marks (rises) or (falls).
-- One example per phase, taken from that phase's search results: quote a few words that
+- For each skill, an example from that phase's search results: quote a few words that
   mention the skill and cite the source number exactly like [3]. If none of that phase's
   results mention the skill, write "No example found in the searched posts."
 - If the plan has NOTE lines, list them under "Notes". If it has none, leave Notes out.
@@ -99,9 +102,10 @@ Rules:
 - Use only the plan's skills, phases and numbers. Never invent or change a number.
 - Never say "most", "typical", "common" or "all jobs" in your own words; give the number instead.
 - General advice that is NOT from the data goes under a final heading
-  "General advice (not from the job data)".
-- Keep it under 300 words.
-When revising, you may call search_job_posts to find a better example."""
+  "General advice (not from the job data)". It must not contain numbers or claims about how
+  many posts or roles ask for something (that belongs in the phases).
+- Keep it under 350 words.
+When revising, you may call search_job_posts (at most twice) to find a better example."""
 
 CRITIC = """You check a career roadmap against the EVIDENCE it was built from.
 List every problem of these kinds:
@@ -143,11 +147,15 @@ class RoadmapState(MessagesState):
     plan_text: str
     research: str
     revisions: int
+    searches: int
     problems: list
 
 
 def build_graph(llm, judge_llm):
-    writer_llm = llm.bind_tools(TOOLS)
+    # The prompt alone did not stop the writer from searching again and again (online it hit
+    # LangGraph's 25-step limit). So code decides: same tool, but tool_choice="none" forbids calling it.
+    writer_can_search = llm.bind_tools(TOOLS)
+    writer_no_search = llm.bind_tools(TOOLS, tool_choice="none")
     # json_schema + strict: Groq's constrained decoding, replies MUST match the schema
     intake_llm = judge_llm.with_structured_output(Intake, method="json_schema", strict=True)
     critic = judge_llm.with_structured_output(Critique, method="json_schema", strict=True)
@@ -162,15 +170,15 @@ def build_graph(llm, judge_llm):
         return {"plan": plan, "plan_text": plan_to_text(plan)}
 
     def researcher(state: RoadmapState):
-        # code, not the LLM, decides the searches: one per phase, for its first skill,
-        # so no phase is skipped and every example search is about the right skill
+        # code, not the LLM, decides the searches: one per phase, with all of the phase's
+        # skills in the query, so keyword search finds posts that mention several of them
         plan = state["plan"]
         job = plan["title_keyword"] or plan["role_family"].replace("_", " ")
         parts = []
         for phase, skills in plan["phases"].items():
             if not skills:
                 continue
-            query = f"{skills[0]['skill']} {job}"
+            query = " ".join(s["skill"] for s in skills) + f" {job}"
             result = search_job_posts.invoke({
                 "query": query, "role_family": plan["role_family"], "level": plan["level"],
                 "title_keyword": plan["title_keyword"]})
@@ -184,10 +192,14 @@ def build_graph(llm, judge_llm):
         return {"research": research, "messages": [HumanMessage(message)]}
 
     def writer(state: RoadmapState):
-        reply = writer_llm.invoke([SystemMessage(WRITER)] + state["messages"])
+        # first draft: no searching (the researcher already searched);
+        # revision: at most MAX_EXTRA_SEARCHES, then it must write
+        can_search = state["revisions"] > 0 and state["searches"] < MAX_EXTRA_SEARCHES
+        model = writer_can_search if can_search else writer_no_search
+        reply = model.invoke([SystemMessage(WRITER)] + state["messages"])
         if not reply.tool_calls:  # gpt-oss sometimes cites like 【3】: turn it into [3]
             reply.content = normalize_citations(reply.content)
-        return {"messages": [reply]}
+        return {"messages": [reply], "searches": state["searches"] + len(reply.tool_calls)}
 
     def after_writer(state: RoadmapState):
         return "tools" if state["messages"][-1].tool_calls else "critic"
@@ -227,6 +239,14 @@ def build_graph(llm, judge_llm):
                         problems.append({"kind": "comparison", "quote": line.strip()[:120],
                                          "issue": f"the plan does not mark {skill} as '{word}' "
                                                   f"(it uses a {CHANGE}-point rule)"})
+
+        # the advice section may generalize, but it must not make claims about the job data
+        advice = draft.split("General advice", 1)[1] if "General advice" in draft else ""
+        for line in advice.splitlines():
+            if DATA_CLAIM.search(line) or (GENERALIZING.search(line) and JOB_WORDS.search(line)):
+                problems.append({"kind": "outside_knowledge", "quote": line.strip()[:120],
+                                 "issue": "general advice makes a claim about the job data; "
+                                          "numbers belong in the phases"})
 
         update = {"problems": problems}
         if problems and state["revisions"] < MAX_REVISIONS:
@@ -276,7 +296,7 @@ def generate_roadmap(request, llm=None, judge_llm=None, on_step=print):
         result["steps"].append(text)
         on_step(text)
 
-    start = {"request": request, "messages": [], "revisions": 0, "problems": []}
+    start = {"request": request, "messages": [], "revisions": 0, "searches": 0, "problems": []}
     for update_by_node in app.stream(start, {"recursion_limit": 25}, stream_mode="updates"):
         for node, update in update_by_node.items():
             if node == "intake":
