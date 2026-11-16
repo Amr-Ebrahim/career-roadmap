@@ -4,7 +4,9 @@
 
 <p align="center">
   <a href="https://career-roadmap-bgevtqzghvkn3mj7i5ppr7.streamlit.app/"><b>Live demo</b></a> ·
+  <a href="#architecture">Architecture</a> ·
   <a href="#how-it-works">How it works</a> ·
+  <a href="#the-data">The data</a> ·
   <a href="#evaluation">Evaluation</a> ·
   <a href="#run-it-yourself">Run it yourself</a>
 </p>
@@ -108,15 +110,62 @@ labels the two separately.
   <img src="docs/screenshots/flowchart.png" alt="A learning-order flowchart: numbered steps grouped in three phases, each with the share of posts that ask for it" width="100%">
 </p>
 
+## Architecture
+
+How the pieces connect, from your browser to the weekly data refresh:
+
+```mermaid
+flowchart TB
+    U([Visitor's browser])
+    subgraph SC[Streamlit Community Cloud]
+        APP[app.py<br/>the web page]
+        AG[roadmap_agent.py<br/>LangGraph: 5 agents]
+        PL[planner.py + stats_tool.py<br/>exact counts, the plan]
+        RT[retrieval.py<br/>hybrid search]
+        APP --> AG
+        AG --> PL
+        AG --> RT
+    end
+    GROQ[Groq API<br/>gpt-oss-20b]
+    HF[(Hugging Face dataset, private<br/>posts, skills, search index,<br/>weekly snapshots)]
+    subgraph GH[GitHub]
+        REPO[Repository<br/>the code]
+        ACT[GitHub Actions<br/>every Monday]
+    end
+    ARB[Arbeitnow API]
+    DEV[Laptop<br/>development, evaluation,<br/>Kaggle CSV, FastAPI]
+
+    U <--> APP
+    AG <-->|prompts and replies| GROQ
+    HF -->|downloaded when the app starts| APP
+    REPO -->|deploys on every push| APP
+    ARB -->|new posts| ACT
+    ACT -->|pipeline + index| HF
+    DEV -->|git push| REPO
+    DEV -->|first upload| HF
+
+    classDef default fill:#FFFFFF,stroke:#1B2A41,color:#1B2A41
+    classDef store fill:#FFE066,stroke:#C9A400,color:#1B2A41
+    class HF store
+    style SC fill:transparent,stroke:#8A93A3
+    style GH fill:transparent,stroke:#8A93A3
+```
+
+- **The app** runs everything in one process on Streamlit Community Cloud: the page, the agents, the planner and the search. Only the language steps leave it, as calls to Groq.
+- **The data** lives in a private Hugging Face dataset, not in git. The app downloads it once when it starts (about 380 MB: the search index and the skill table).
+- **The weekly refresh** runs on GitHub's machines (`.github/workflows/weekly-refresh.yml`): it downloads the current data, fetches the week's Arbeitnow posts, runs the pipeline, embeds only the new chunks and uploads the result. The app picks it up the next time it starts.
+- **The laptop** is where the code is written and evaluated. It is also the only place with the raw Kaggle file (`postings.csv`); the pipeline reuses its filtered version everywhere else.
+- **`api.py`** (FastAPI) exposes the same agent as `POST /roadmap` for local use; the page can run against it with `ROADMAP_API_URL`.
+
 ## The data
 
 ```mermaid
 flowchart LR
     K[Kaggle LinkedIn postings<br/>April 2024] --> F[filter_tech<br/>tech roles,<br/>role family]
-    A[Arbeitnow API<br/>weekly snapshots] --> PA[process_arbeitnow<br/>clean, dedupe]
-    F --> M[merge_sources]
+    A[Arbeitnow API<br/>weekly snapshots] --> PA[process_arbeitnow<br/>HTML to text,<br/>English only]
+    F --> M[merge_sources<br/>one format,<br/>no duplicates]
     PA --> M
-    M --> CL[clean_jobs<br/>clean text,<br/>find the level]
+    M --> CL[clean_jobs<br/>clean titles,<br/>find the level]
     CL --> X[extract_skills<br/>136 skills,<br/>290 aliases]
     X --> J[(jobs_skills.parquet<br/>10,138 posts)]
     J --> ST[stats_tool<br/>exact counts]
@@ -131,13 +180,100 @@ flowchart LR
     class J,CH,HF store
 ```
 
+### From 132,828 posts to 10,138
+
+| Step | Kaggle | Arbeitnow | Total |
+|---|---|---|---|
+| Collected | 123,849 | 9,070 in 2 weekly snapshots (8,979 unique) | |
+| Tech roles only (Arbeitnow: also English only) | 9,663 (7.8%) | 1,280 | 10,943 |
+| Exact duplicates removed | | | 10,175 (−768) |
+| Descriptions under 200 characters removed | 8,881 | 1,257 | **10,138** (−37) |
+| At least one known skill, so indexed | | | 9,683 posts, **20,770 chunks** |
+
+### 1. Collecting
+
+- **Kaggle:** the [LinkedIn Job Postings](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings) dataset, 123,849 posts from April 5–20, 2024, mostly in the US. Downloaded once.
+- **Arbeitnow:** a free job board API, mostly Europe. `fetch_arbeitnow.py` follows every page, waits and retries when the API answers "too many requests", and saves each fetch as a dated snapshot that is never overwritten. Posts disappear from the board within about a week (only 91 overlapped between two fetches a week apart), so every snapshot is kept and the history grows.
+
+### 2. Keeping the tech jobs: `roles.py`
+
+A post is kept when its **title** matches one of 11 role families. The families are tried in a fixed order and the first match wins, so a "Machine Learning Engineer" is AI/ML, not general software.
+
+| Family | Matched by (examples) |
+|---|---|
+| AI / ML | machine learning, ML, MLOps, deep learning, NLP, computer vision, LLM; "AI" only next to engineer, developer, scientist… |
+| Data | data scientist / engineer / analyst, analytics engineer, BI, ETL, DBA, SQL developer |
+| Security | cybersecurity, information security, SOC analyst, penetration tester, AppSec, DevSecOps |
+| DevOps / Cloud | DevOps, SRE, platform / infrastructure engineer, cloud engineer, solutions architect |
+| Mobile, Frontend, Backend | iOS, Android, Flutter · front-end, UI, web developer · back-end, Java / Python / .NET / Node developer |
+| QA | QA engineer / analyst, SDET, test automation, software tester |
+| Networking / IT | network engineer, help desk, service desk, desktop support, system administrator, IT support |
+| Software | software, developer, programmer, full stack (the catch-all, tried last) |
+
+Three kinds of rules keep the families honest:
+
+- **An exclusion list runs first:** sales, recruiter, marketing, account manager, product or project manager, underwriter, volunteer, course developer and similar titles are never tech posts, whatever else they say.
+- **Re-labels run after a family is found,** so they move posts between families but never add new ones: architect titles get their own *architecture* family (except data and ML architects), and "Salesforce Commerce Cloud Developer"-style titles don't count as DevOps just because they contain "Cloud".
+- **"AI" alone isn't enough:** "AI Growth Manager" and "Head of AI" are not hands-on roles, so "AI" counts only next to a word like engineer, developer or scientist.
+
+### 3. Cleaning the Arbeitnow posts: `process_arbeitnow.py`
+
+- All snapshots are combined and each post is kept **once, in its newest version**.
+- Descriptions arrive as HTML: they are unescaped and turned into plain text with Beautiful Soup.
+- **English only:** `langdetect` reads the first 1,000 characters (with a fixed seed, so the result never changes between runs). Much of the board is in German.
+- The same title rules decide the role family, and the posts are mapped to the Kaggle columns, with `source` marking where each one came from.
+
+### 4. Merging: `merge_sources.py`
+
+IDs get a `kaggle_` / `arbeitnow_` prefix so they can never collide, the remote flag gets one format, and **768 exact duplicates** (same title, company and description) are removed.
+
+### 5. Cleaning titles and finding the level: `clean_jobs.py`, `cleaning.py`
+
+**Titles are cleaned** before anything reads them (the original stays in `title_raw`): gender tags like *(m/w/d)* and *(all genders)*, staffing notes like *W2 only*, *No C2C*, *Locals only*, *USC/GC*, *Urgent need*, job codes like *(REQ-12345)* or *R-123456*, bracketed tags and stray punctuation all go.
+
+**The level** comes from the first source that has it:
+
+1. **The title**, checked in this order: intern (intern, trainee, apprentice, working student), leadership (head of, director, VP, manager), senior (senior, sr, staff, principal, lead, architect, III), entry (junior, jr, entry-level, graduate, associate, I, II), mid (mid-level, intermediate).
+2. **The posting's own label** (Kaggle only). LinkedIn's "Mid-Senior level" covers both, so it counts as **mid**, not senior.
+3. **Years of experience in the text**, such as "3+ years of experience" or "2–4 yrs of hands-on experience" (up to 15; the smallest number counts): under 3 is entry, 3–4 mid, 5 or more senior.
+
+The years also **correct** titles that understate the job: an "entry-level" or intern post that asks for 3+ years is moved up to the level those years mean.
+
+Finally, posts whose description is **under 200 characters** are dropped (37 posts): there is nothing to count in them.
+
+| Level | Posts |
+|---|---|
+| Senior | 4,286 |
+| Mid | 2,418 |
+| Entry | 1,679 |
+| Unknown | 1,120 |
+| Leadership | 442 |
+| Intern | 193 |
+
+### 6. Finding the skills: `skills_dict.py`, `skill_matcher.py`, `extract_skills.py`
+
+- **136 skills in 17 categories, written as 290 regular-expression aliases:** `k8s` and `OpenShift` count as Kubernetes, `PostgreSQL` and `Postgres` as PostgreSQL, `Network+` and `A+` as CompTIA.
+- **Word edges that understand tech names:** `+` and `#` count as part of a word, so `C#`, `C++` and `Network+` are matched whole, and `Java` never matches inside `JavaScript`.
+- **Case-sensitive names:** `R`, `Go`, `REST`, `Spark`, `Excel`, `SAS`, `Swift`, `Rust`, `Ruby`, `iOS` and `React` only match with that exact capitalization (and `R` and `Go` only next to words like *programming* or *language*, or inside a list), so "go to market" is not Go.
+- **Glued words:** many LinkedIn descriptions lost their line breaks ("experience using PostgresKnowledge of…"), so a skill may end where a new capitalized word begins.
+- **Result:** 9,683 posts (95.5%) mention at least one skill, 7.1 on average.
+
+### 7. The search index: `chunking.py`, `build_index.py`, `sync_index.py`
+
+- Each description is split into **300-token chunks with 50 tokens of overlap**, counted with the embedding model's own tokenizer.
+- Each chunk starts with a header (*title | family | level*), so a search for "junior data analyst" can match the job even when the text doesn't repeat it.
+- **Chunks that mention no skill are left out:** benefits, company history and legal text don't help a skills search.
+- Chunks are embedded with `BAAI/bge-small-en-v1.5` (384 dimensions, normalized) and stored in ChromaDB with the post's metadata: ID, title, company, family, level, source, remote, date, URL and skills.
+- `build_index.py` only embeds chunks that aren't in the index yet, and `sync_index.py` updates changed families and levels and deletes chunks of posts that left the data, without re-embedding.
+
+### The numbers
+
 | | |
 |---|---|
-| **Posts** | 10,138 tech posts: 8,881 from the LinkedIn dataset on Kaggle (US, April 2024) and 1,257 from the Arbeitnow API (mostly Europe, since October 2026) |
-| **Role families** | 11: software, data, networking/IT, security, DevOps/cloud, AI/ML, backend, architecture, frontend, mobile, QA |
-| **Levels** | From title rules, then the posting's own label, then "years of experience" in the text |
-| **Skills** | A hand-built dictionary: 136 skills in 17 categories, 290 regex aliases, with case-sensitive rules for names like `R`, `Go` and `REST` |
-| **Search index** | 20,770 chunks of 300 tokens (50 overlap), each with a header naming the job, embedded with `BAAI/bge-small-en-v1.5` |
+| **Posts** | 10,138 tech posts: 8,881 from Kaggle (US, April 2024) and 1,257 from Arbeitnow (mostly Europe, since October 2026) |
+| **Role families** | software 3,421 · data 1,622 · networking/IT 1,351 · security 688 · DevOps/cloud 669 · AI/ML 653 · backend 610 · architecture 451 · frontend 301 · mobile 191 · QA 181 |
+| **Skills** | 136 skills in 17 categories, 290 aliases; 7.1 per post on average |
+| **Search index** | 20,770 chunks of 300 tokens |
 
 ### Hybrid search
 
@@ -274,11 +410,12 @@ python rescore_citation.py evals/baseline_<date>.csv      # re-judge saved answe
 python check_skills.py evals/baseline_<date>.csv          # independent dictionary check, no LLM
 ```
 
-**Weekly refresh**
+**Weekly refresh:** runs by itself every Monday on GitHub (`.github/workflows/weekly-refresh.yml`), or by hand from the Actions tab. It needs a Hugging Face write token as the secret `HF_TOKEN` and the dataset name as the variable `HF_DATA_REPO`. To run the same steps on your machine:
 
 ```bash
+python hf_data.py download --all     # the current data, including the weekly snapshots
 python fetch_arbeitnow.py && python run_pipeline.py && python build_index.py && python sync_index.py
-python hf_data.py upload       # the online app picks up the new data on its next start
+python hf_data.py upload
 ```
 
 ## Project structure
@@ -299,14 +436,18 @@ skill_matcher.py        finds the dictionary's skills in text
 roles.py                role families and re-labeling rules
 fetch_arbeitnow.py      weekly job board snapshots
 run_pipeline.py         filter_tech -> process_arbeitnow -> merge_sources -> clean_jobs -> extract_skills
+cleaning.py             title cleaning, level rules, years of experience
+chunking.py             300-token chunks with a header; chunks without skills are skipped
 build_index.py          chunking and embeddings into ChromaDB
 sync_index.py           keeps the index in step with the data
-hf_data.py              uploads / downloads the app's data (Hugging Face dataset)
+hf_data.py              uploads / downloads the data (Hugging Face dataset)
+pipeline_stats.py       how many posts survive each step
+.github/workflows/      weekly-refresh.yml: the Monday data refresh
 eval_rag.py             DeepEval runs: baseline, LangChain, hybrid
 citation_faithfulness.py  the custom metric
 groq_judge.py           Groq as DeepEval's judge model
 check_skills.py         independent check of the judge, no LLM
-make_requirements.py    lean requirements.txt for the server
+make_requirements.py    requirements.txt (app) and requirements-pipeline.txt (weekly refresh)
 .streamlit/config.toml  light and dark themes
 ```
 
@@ -315,7 +456,8 @@ make_requirements.py    lean requirements.txt for the server
 - **Snapshot data:** the LinkedIn posts are from April 2024 and mostly US; the Arbeitnow posts are mostly European. Percentages describe these posts, not the whole market.
 - **A dictionary finds only what it knows.** A skill that isn't in `skills_dict.py` can't be counted; the planner tells you when one of your skills isn't in it.
 - **Free tiers:** about 200,000 Groq tokens per model per day (around ten roadmaps), and the online app sleeps after 12 hours without visitors, so the first visit after that takes a minute or two.
-- **Next:** a weekly GitHub Action for the data refresh, an evaluation set for the full agent, and the LangChain vs hybrid comparison above.
+- **Growth:** the weekly refresh adds a few hundred posts a week. The first limit to reach is the app's memory on the free tier (2.7 GB), so older Arbeitnow posts will move to a rolling window of the last 6–12 months.
+- **Next:** the full-agent evaluation (`eval_agent.py`), the LangChain vs hybrid comparison above, and removing boilerplate from the chunks.
 
 ## Credits
 
