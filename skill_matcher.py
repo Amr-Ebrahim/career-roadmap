@@ -1,8 +1,15 @@
+# skill_matcher.py - finds the skills from skills_dict.py in a text.
 import re
+
 from skills_dict import CASE_SENSITIVE, SKILLS
 
 LEFT = r"(?<![\w+#])"
-RIGHT = r"(?![\w+#])"
+# A skill ends where the word ends. Also accept a "glued" next word: Kaggle posts lost the
+# line breaks between bullet points, so "Postgres" + "Knowledge" became "PostgresKnowledge".
+# (?-i:...) turns case-insensitive matching OFF inside, so this part really means:
+# a lowercase letter, then a capital letter followed by a lowercase one (a new word started).
+# All-caps words like "LANGUAGE" are not split, so "lan" still doesn't match inside them.
+RIGHT = r"(?:(?![\w+#])|(?-i:(?<=[a-z])(?=[A-Z][a-z])))"
 
 
 def _compile(aliases, flags):

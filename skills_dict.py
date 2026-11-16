@@ -2,8 +2,8 @@
 SKILLS = {
     # languages
     "Python": ("language", [r"python"]),
-    "Java": ("language", [r"java"]),
-    "JavaScript": ("language", [r"javascript", r"ecmascript", r"es6"]),
+    "Java": ("language", [r"java(?!\s?script)"]),  # FIXED (eval): never inside "JavaScript"
+    "JavaScript": ("language", [r"java ?script", r"ecmascript", r"es6"]),  # FIXED (eval)
     "TypeScript": ("language", [r"typescript"]),
     "C++": ("language", [r"c\+\+", r"cpp"]),
     "C#": ("language", [r"c#", r"c sharp"]),
@@ -11,24 +11,24 @@ SKILLS = {
     "Kotlin": ("language", [r"kotlin"]),
     "PHP": ("language", [r"php"]),
     "Scala": ("language", [r"scala"]),
-    "SQL": ("language", [r"sql", r"t-sql", r"pl/sql"]),
+    "SQL": ("language", [r"(?<!no-)sql", r"t-sql", r"pl/sql"]),  # FIXED (eval): not inside "no-sql"
     "Bash": ("language", [r"bash", r"shell scripting"]),
     "PowerShell": ("language", [r"powershell"]),
 
     # frontend
     "HTML/CSS": ("frontend", [r"html5?", r"css3?"]),
-    "React": ("frontend", [r"react\.?js"]),
+    "React": ("frontend", [r"react[. ]?js"]),  # FIXED (eval)
     "Angular": ("frontend", [r"angular(?:js)?"]),
     "Vue.js": ("frontend", [r"vue(?:\.?js)?"]),
     "Next.js": ("frontend", [r"next\.?js"]),
 
     # backend
-    "Node.js": ("backend", [r"node\.?js"]),
+    "Node.js": ("backend", [r"node[. ]?js"]),  # FIXED (eval)
     "Django": ("backend", [r"django"]),
     "Flask": ("backend", [r"flask"]),
     "FastAPI": ("backend", [r"fastapi"]),
-    "Spring": ("backend", [r"spring ?boot", r"spring framework"]),
-    ".NET": ("backend", [r"\.net(?: core)?", r"asp\.net", r"dotnet"]),
+    "Spring": ("backend", [r"spring[- ]?boot", r"spring framework"]),  # FIXED (eval)
+    ".NET": ("backend", [r"\.net(?: core)?", r"asp\.net", r"dot ?net"]),  # FIXED (eval)
     "APIs (REST)": ("backend", [r"restful", r"rest apis?", r"apis?", r"api development"]),
     "GraphQL": ("backend", [r"graphql"]),
     "Microservices": ("backend", [r"micro-?services?"]),
@@ -39,11 +39,11 @@ SKILLS = {
     # databases
     "PostgreSQL": ("database", [r"postgres(?:ql)?"]),
     "MySQL": ("database", [r"mysql"]),
-    "SQL Server": ("database", [r"sql server", r"mssql"]),
+    "SQL Server": ("database", [r"sql ?server", r"ms ?sql"]),  # FIXED (eval)
     "Oracle Database": ("database", [r"oracle db", r"oracle database"]),
     "MongoDB": ("database", [r"mongo(?:db)?"]),
     "Redis": ("database", [r"redis"]),
-    "NoSQL": ("database", [r"nosql", r"dynamodb", r"cassandra"]),
+    "NoSQL": ("database", [r"no-?sql", r"dynamodb", r"cassandra"]),  # FIXED (eval): "no-sql"
     "Elasticsearch": ("database", [r"elastic ?search"]),
     "Relational Databases": ("database", [r"rdbms", r"relational databases?"]),
 
@@ -57,7 +57,7 @@ SKILLS = {
     "Docker": ("devops", [r"docker"]),
     "Kubernetes": ("devops", [r"kubernetes", r"k8s", r"openshift"]),  # CHANGED
     "Terraform": ("devops", [r"terraform"]),
-    "Infrastructure as Code": ("devops", [r"iac", r"infrastructure as code", r"cloudformation",
+    "Infrastructure as Code": ("devops", [r"iac", r"infrastructure[- ]as[- ]code", r"cloudformation",  # FIXED (eval)
                                           r"pulumi", r"bicep"]),
     "Ansible": ("devops", [r"ansible"]),
     "CI/CD": ("devops", [r"ci ?/ ?cd", r"cicd", r"continuous integration",
@@ -88,8 +88,8 @@ SKILLS = {
     "Statistics": ("data", [r"statistic(?:s|al)"]),
 
     # AI / ML
-    "Machine Learning": ("ml_ai", [r"machine learning", r"ml"]),
-    "Deep Learning": ("ml_ai", [r"deep learning", r"neural networks?"]),
+    "Machine Learning": ("ml_ai", [r"machine[- ]learning", r"ml"]),  # FIXED (eval)
+    "Deep Learning": ("ml_ai", [r"deep[- ]learning", r"neural networks?"]),  # FIXED (eval)
     "PyTorch": ("ml_ai", [r"pytorch", r"torch"]),
     "TensorFlow": ("ml_ai", [r"tensorflow"]),
     "Keras": ("ml_ai", [r"keras"]),
@@ -111,8 +111,9 @@ SKILLS = {
     "SIEM": ("security", [r"siem", r"splunk", r"qradar"]),
     "Penetration Testing": ("security", [r"penetration testing", r"pen ?test\w*"]),
     "Vulnerability Management": ("security", [r"vulnerability (?:management|assessments?|scanning)"]),
-    "Identity & Access Management": ("security", [r"iam", r"identity and access management", r"okta",
-                                                  r"sso", r"saml", r"ldap", r"mfa", r"oauth\s?2?"]),  # CHANGED
+    "Identity & Access Management": ("security", [r"iam", r"identity (?:and|&) access management", r"okta",
+                                                  r"sso", r"saml", r"ldap", r"mfa", r"oauth\s?2?",
+                                                  r"microsoft entra", r"entra id"]),  # FIXED (eval): "&", Entra
     "Network Security": ("security", [r"network security", r"firewalls?", r"ids/ips"]),
     "Incident Response": ("security", [r"incident response"]),
     "Security Frameworks": ("security", [r"nist", r"iso 27001", r"soc 2", r"pci(?:[- ]dss)?",
@@ -126,10 +127,10 @@ SKILLS = {
     "Cisco": ("networking", [r"cisco", r"ccna", r"ccnp"]),
     "Active Directory": ("it_support", [r"active directory"]),
     "Windows Server": ("it_support", [r"windows server"]),
-    "Microsoft 365": ("it_support", [r"office 365", r"microsoft 365", r"o365", r"m365"]),
+    "Microsoft 365": ("it_support", [r"office ?365", r"microsoft ?365", r"o365", r"m365"]),  # FIXED (eval)
     "SharePoint": ("it_support", [r"sharepoint"]),
     "ITIL / ITSM": ("it_support", [r"itil", r"itsm"]),
-    "ServiceNow": ("it_support", [r"servicenow"]),
+    "ServiceNow": ("it_support", [r"servicenow"]),  # "Service Now" is in CASE_SENSITIVE below
     "VMware": ("it_support", [r"vmware", r"vsphere", r"esxi"]),
 
     # enterprise platforms
@@ -184,4 +185,5 @@ CASE_SENSITIVE = {
     "Rust": ("language", [r"Rust"]),
     "Ruby": ("language", [r"Ruby"]),
     "iOS": ("mobile", [r"iOS"]),
+    "ServiceNow": ("it_support", [r"Service[- ]Now"]),  # FIXED (eval): not "customer service now"
 }

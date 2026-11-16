@@ -4,7 +4,10 @@
 #   python eval_rag.py hybrid       -> hand-built RAG, hybrid search (BM25 + vector)
 #   python eval_rag.py hybrid 2     -> test run: first 2 questions only
 # Results: evals/<run>_<date>.csv  (test runs: evals/test-<run>_<date>.csv)
+# Each row also saves the exact numbered sources the answer was written from,
+# so the answer can be re-checked later, even after the data has changed.
 import csv
+import json
 import os
 import sys
 import time
@@ -104,6 +107,7 @@ def main():
             rows.append({
                 "run": run, "question": t["question"], "metric": name, "score": score,
                 "status": status, "reason": reason, "answer": result["answer"],
+                "sources": json.dumps(result["sources"], ensure_ascii=False),
             })
         print(f"  ({time.time() - start:.0f} s)")
 

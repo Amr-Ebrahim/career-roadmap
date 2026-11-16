@@ -1,12 +1,21 @@
-# app.py - the web page (Streamlit). It only talks to the API, it never runs the agent itself.
-# Start the API first (uvicorn api:app --port 8000), then:  streamlit run app.py
+# app.py - the web page (Streamlit).
+# Two ways to run it:
+#   Direct (default, also online):  streamlit run app.py
+#       the page runs the agent itself, in one program
+#   Through the API:                set ROADMAP_API_URL=http://127.0.0.1:8000
+#       (start the API first with: uvicorn api:app --port 8000)   then: streamlit run app.py
 import html
+import os
 import re
+import threading
 
 import requests
 import streamlit as st
+from dotenv import load_dotenv
 
-API_URL = "http://127.0.0.1:8000"
+load_dotenv()  # on the laptop; online, Streamlit turns the secrets into environment variables
+API_URL = os.getenv("ROADMAP_API_URL")  # empty -> direct mode
+
 EXAMPLES = {
     "📊 Data analyst": "I know Python and Excel and I want a junior data analyst job. What should I learn?",
     "☁️ DevOps engineer": "I know Linux and Python, I want a junior DevOps job",
@@ -20,6 +29,30 @@ FAMILY_NAMES = {"software": "Software", "backend": "Backend", "frontend": "Front
 PHASES = [("Foundations", "1", "Asked for most often at your level: learn these first"),
           ("Core skills", "2", "The next most requested skills"),
           ("Next level", "3", "Become more important as you get more senior")]
+
+
+@st.cache_resource(show_spinner="Loading the job data and the agent (first start takes 1-2 minutes)...")
+def load_agent():
+    """Direct mode only. Runs once per server, then every visitor shares it.
+    The data must be in place BEFORE roadmap_agent is imported: retrieval opens Chroma on import."""
+    from hf_data import ensure_data
+    ensure_data()
+    from roadmap_agent import AGENT_MODEL, generate_roadmap
+    return AGENT_MODEL, generate_roadmap, threading.Lock()  # lock: one roadmap at a time (Groq limits)
+
+
+def build_roadmap(request_text):
+    """Returns the result dict, the same shape in both modes. Errors are raised."""
+    if API_URL:
+        r = requests.post(f"{API_URL}/roadmap", json={"request": request_text}, timeout=300)
+        if not r.ok:
+            raise RuntimeError(f"API error {r.status_code}: {r.json().get('detail', r.text)}")
+        return r.json()
+    _, generate_roadmap, lock = load_agent()
+    if not 10 <= len(request_text.strip()) <= 500:  # same rule the API checks
+        raise ValueError("Please write between 10 and 500 characters.")
+    with lock:
+        return generate_roadmap(request_text, on_step=lambda text: st.write(text))
 
 
 def goal_name(plan):
@@ -93,12 +126,20 @@ st.set_page_config(page_title="Career Roadmap Builder", page_icon="🧭", layout
 # ---------------- sidebar: status and how it works ----------------
 with st.sidebar:
     st.markdown("## 🧭 Career Roadmap Builder")
-    try:
-        health = requests.get(f"{API_URL}/health", timeout=3).json()
-        st.success(f"API running · {health['model']}", icon=":material/check_circle:")
-    except requests.RequestException:
-        st.error("API not running. Start it with:\n\n`uvicorn api:app --port 8000`",
-                 icon=":material/error:")
+    if API_URL:
+        try:
+            health = requests.get(f"{API_URL}/health", timeout=3).json()
+            st.success(f"API running · {health['model']}", icon=":material/check_circle:")
+        except requests.RequestException:
+            st.error("API not running. Start it with:\n\n`uvicorn api:app --port 8000`",
+                     icon=":material/error:")
+    else:
+        try:
+            model, _, _ = load_agent()
+            st.success(f"Ready · {model}", icon=":material/check_circle:")
+        except Exception as e:
+            st.error(f"Could not load the data or the agent: {type(e).__name__}: {str(e)[:200]}",
+                     icon=":material/error:")
     st.markdown("#### How it works")
     st.markdown(
         "1. **Intake** reads what you want and what you know\n"
@@ -131,22 +172,13 @@ with st.container(border=True):
     build = st.button("Build my roadmap", type="primary", icon=":material/route:")
 
 if build:
-    with st.status("Building your roadmap (about a minute)...", expanded=False) as status:
-        st.write("Reading your request, counting skills in the job posts, "
-                 "finding examples, writing and checking...")
+    with st.status("Building your roadmap (about a minute)...", expanded=True) as status:
         try:
-            r = requests.post(f"{API_URL}/roadmap", json={"request": st.session_state["request"]},
-                              timeout=300)
-            if r.ok:
-                st.session_state["result"] = r.json()
-                status.update(label="Roadmap ready", state="complete")
-            else:
-                detail = r.json().get("detail", r.text)
-                status.update(label="Something went wrong", state="error")
-                st.error(f"The API could not build a roadmap ({r.status_code}): {detail}")
-        except requests.RequestException as e:
-            status.update(label="Could not reach the API", state="error")
-            st.error(f"Could not reach the API: {e}")
+            st.session_state["result"] = build_roadmap(st.session_state["request"])
+            status.update(label="Roadmap ready", state="complete", expanded=False)
+        except Exception as e:
+            status.update(label="Something went wrong", state="error", expanded=True)
+            st.error(f"Could not build a roadmap: {type(e).__name__}: {str(e)[:300]}")
 
 # ---------------- result ----------------
 result = st.session_state.get("result")
