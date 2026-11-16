@@ -93,7 +93,8 @@ Write:
 - "Already have" if the plan lists skills the person has.
 - The phases in the plan's order: Foundations, Core skills, Next level. Keep the plan's step
   numbers and order, and give each skill's share from the plan, e.g. "1. SQL (in 44% of the
-  posts)". Where the plan says "learn after X" or "added because Y needs it", say so.
+  posts)". Where the plan says "learn after X", "added because Y needs it", "or X (pick one)"
+  or "includes X", say so.
   Write "rises with seniority" or "falls with seniority" ONLY for skills the plan marks.
 - For each skill, an example from that phase's search results: quote a few words that
   mention the skill and cite the source number exactly like [3]. If none of that phase's

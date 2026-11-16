@@ -1,14 +1,25 @@
-# .streamlit/config.toml - the look of the app (Streamlit reads this file automatically)
+# .streamlit/config.toml - the look of the app (Streamlit reads this file at start)
+# Two themes: the app follows the visitor's system setting, and the menu (top right)
+# lets them pick Light or Dark.
 [theme]
-base = "light"
-primaryColor = "#4F46E5"              # indigo: buttons, progress bars, links
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F4F5FA"  # sidebar, input boxes, code blocks
-textColor = "#1F2937"
-borderColor = "#E5E7EB"
-font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap, sans-serif"
-baseRadius = "large"
+font = "Archivo:https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap, sans-serif"
+headingFont = "Archivo:https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap, sans-serif"
+baseRadius = "medium"
 showWidgetBorder = true
 
+[theme.light]
+primaryColor = "#1F4FD8"              # blue pen: buttons, links, progress bars
+backgroundColor = "#FAFAF7"           # paper
+secondaryBackgroundColor = "#F1F2EC"  # input boxes, code blocks
+textColor = "#1B2A41"                 # navy ink
+borderColor = "#E3E4DC"
+
+[theme.dark]
+primaryColor = "#6F8CFF"              # the pen, lighter so it reads on dark
+backgroundColor = "#15202E"           # night blue: the ink color, turned into the page
+secondaryBackgroundColor = "#1E2B3C"
+textColor = "#E9ECF2"
+borderColor = "#2C3B50"
+
 [client]
-toolbarMode = "minimal"   # hide the developer menu items
+toolbarMode = "viewer"   # hide the developer items, keep the theme switch in the menu

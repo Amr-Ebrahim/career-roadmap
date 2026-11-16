@@ -1,7 +1,7 @@
 # planner.py - gap finder + curriculum + learning order, in plain code (no LLM, no tokens).
 # Same request -> same plan, and every decision can be explained by a rule.
 import stats_tool as st
-from prereqs import PREREQS
+from prereqs import GROUP_OF, PREREQS
 
 GENERIC = {"DevOps", "Site Reliability Engineering", "Troubleshooting", "Agile", "SDLC"}
 MIN_SHARE = 5                      # ignore skills in fewer than 5% of the posts
@@ -108,6 +108,25 @@ def make_plan(role_family, level="entry", title_keyword=None, known_skills=()):
         if skill in GENERIC or row["share_%"] < MIN_SHARE:
             continue
         (have if skill.lower() in known_lower else gaps).append(info_for(skill))
+
+    # 3b. groups (prereqs.py): alternatives and same-topic skills become ONE step.
+    #     The member asked for most stays; the others are shown on it ("or ..."/"includes ...").
+    #     Knowing any member already counts for the whole group.
+    kept, by_group, covered = [], {}, []
+    for g in gaps:  # gaps are sorted by share, so the first member of a group is the most asked
+        kind, members = GROUP_OF.get(g["skill"], (None, None))
+        if members is None:
+            kept.append(g)
+            continue
+        has = [m for m in members if m.lower() in known_lower]
+        if has:
+            covered.append(f"{g['skill']} ({g['share']:.0f}%, covered by {has[0]})")
+        elif members in by_group:
+            by_group[members].setdefault(kind, []).append({"skill": g["skill"], "share": g["share"]})
+        else:
+            by_group[members] = g
+            kept.append(g)
+    gaps = kept
     have_lower = {h["skill"].lower() for h in have}
     not_counted = [k for low, k in known_lower.items() if low not in st._known]
     rarely_asked = [k for low, k in known_lower.items()
@@ -128,7 +147,8 @@ def make_plan(role_family, level="entry", title_keyword=None, known_skills=()):
 
     return {"role_family": role_family, "level": level, "title_keyword": title_keyword,
             "group": group, "n_posts": n, "notes": notes, "have": have,
-            "rarely_asked": rarely_asked, "not_counted": not_counted, "phases": phases}
+            "rarely_asked": rarely_asked, "not_counted": not_counted, "covered": covered,
+            "phases": phases}
 
 
 def plan_to_text(plan):
@@ -149,6 +169,12 @@ def plan_to_text(plan):
             if s["trend"]:
                 e, sr = s["entry_to_senior"]
                 line += f"; {s['trend']} with seniority (entry {e:.0f}% -> senior {sr:.0f}%)"
+            if s.get("or"):
+                line += "; or " + ", ".join(f"{o['skill']} ({o['share']:.0f}%)" for o in s["or"]) + \
+                        " (pick one)"
+            if s.get("includes"):
+                line += "; includes " + ", ".join(f"{o['skill']} ({o['share']:.0f}%)"
+                                                  for o in s["includes"])
             if s.get("added_for"):
                 line += f"; added because {s['added_for']} needs it"
             elif s.get("after"):
@@ -159,6 +185,8 @@ def plan_to_text(plan):
                                                   for h in plan["have"]))
     if plan["rarely_asked"]:
         lines.append("Has, but rarely asked in these posts: " + ", ".join(plan["rarely_asked"]))
+    if plan.get("covered"):
+        lines.append("Not a separate step (the person has an alternative): " + ", ".join(plan["covered"]))
     if plan["not_counted"]:
         lines.append("Not in the skills dictionary (cannot be counted): " + ", ".join(plan["not_counted"]))
     for note in plan["notes"]:

@@ -1,5 +1,7 @@
-# prereqs.py - which skills to learn BEFORE others. Hand-written, NOT from the job data:
-# job posts say what employers want, not in which order people learn it.
+# prereqs.py - hand-written learning knowledge, NOT from the job data (job posts say what
+# employers want, not in which order people learn it, or which skills replace each other).
+#   PREREQS: which skills to learn BEFORE others
+#   GROUPS:  skills that are alternatives (pick one) or the same topic (one covers the other)
 # Each skill lists what it needs first. A tuple means "any ONE of these is enough".
 # Names must match skills_dict.py exactly.
 ANY_CLOUD = ("AWS", "Azure", "GCP")
@@ -84,3 +86,27 @@ PREREQS = {
     "Penetration Testing": ["Networking Fundamentals", "Linux"],
     "Incident Response": ["SIEM"],
 }
+
+
+# The planner keeps the group member asked for most and shows the others on it.
+# Knowing ANY member already counts for the whole group.
+PICK_ONE = [  # alternatives: learning one is enough to start
+    ("AWS", "Azure", "GCP"),
+    ("Power BI", "Tableau"),
+    ("React", "Angular", "Vue.js"),
+    ("Django", "Flask", "FastAPI"),
+    ("PyTorch", "TensorFlow", "Keras"),
+    ("MySQL", "PostgreSQL", "SQL Server", "Oracle Database"),
+    ("Snowflake", "BigQuery"),
+    ("Selenium", "Cypress"),
+]
+SAME_TOPIC = [  # learning one covers the other(s)
+    ("Terraform", "Infrastructure as Code"),
+    ("CI/CD", "Jenkins", "GitHub Actions"),
+    ("SQL", "Relational Databases"),
+    ("NoSQL", "MongoDB"),
+    ("Unit Testing", "TDD"),
+    ("ITIL / ITSM", "ServiceNow"),
+]
+GROUP_OF = {skill: ("or", group) for group in PICK_ONE for skill in group}
+GROUP_OF.update({skill: ("includes", group) for group in SAME_TOPIC for skill in group})
