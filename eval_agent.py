@@ -2,7 +2,8 @@
 #   python eval_agent.py              -> all requests, with the LLM judge
 #   python eval_agent.py 3            -> first 3 requests only (a test run)
 #   python eval_agent.py --no-judge   -> code checks only (no judge tokens)
-# Budget: each roadmap uses ~15-20K tokens of gpt-oss-20b; the judge ~6K of gpt-oss-120b.
+# Budget: each roadmap uses ~15-20K tokens of gpt-oss-20b; the judge ~6-7K of gpt-oss-120b.
+# The judge checks numbers and learning order against the plan, examples [n] against the posts.
 # Results: evals/agent_<date>.csv (test runs: evals/test-agent_<date>.csv), with the roadmap,
 # the plan and the exact excerpts the writer saw, so every row can be re-checked later.
 import csv
@@ -126,8 +127,11 @@ def main():
         sources = shown_sources()
         if metric:
             try:
-                metric.measure(LLMTestCase(input=t["request"], actual_output=result["roadmap"] or "",
-                                           retrieval_context=sources))
+                # the judge gets the plan too (numbers and order come from it), and only the
+                # data part: "General advice (not from the job data)" is outside the data on purpose
+                data_part = (result["roadmap"] or "").split("General advice")[0]
+                metric.measure(LLMTestCase(input=t["request"], actual_output=data_part,
+                                           retrieval_context=sources, context=[result["plan_text"]]))
                 row["citation_faithfulness"] = round(metric.score, 2)
                 row["judge_reason"] = metric.reason
             except Exception as e:

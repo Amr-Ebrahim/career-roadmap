@@ -2,6 +2,12 @@
 # Checks every line of the answer against the RAW text of the sources it cites,
 # in ONE judge call per answer. (DeepEval's built-in Faithfulness first summarizes
 # all sources into a list of "truths", which loses details and source numbers.)
+#
+# Two kinds of answers:
+# - plain RAG (eval_rag.py): written only from the job posts -> test_case.context is empty
+# - the agent (eval_agent.py): ALSO uses a plan that code counted over all matching posts
+#   (percentages, post counts, learning order). The plan goes in test_case.context, so the
+#   judge checks numbers and order against the plan and examples [n] against the posts.
 import re
 from typing import List, Literal
 
@@ -35,6 +41,34 @@ that the cited sources do NOT contain.
 "other_source": the items from "missing" that DO appear in a source the line did not cite.
 Use only the sources. Never use your own knowledge about jobs or tools."""
 
+PROMPT_WITH_PLAN = """You check a career roadmap. It was written from TWO kinds of evidence:
+1. The PLAN. Code counted it over ALL the matching job posts. Post counts, percentages,
+   step numbers, phases, the learning order ("learn after", "added because ... needs it"),
+   "rises/falls with seniority", "pick one" / "or" groups and "includes" come from the PLAN.
+2. The SOURCES: excerpts of single job posts. The roadmap cites them as examples, like [3].
+
+PLAN:
+{plan}
+
+SOURCES (each starts with its number):
+{sources}
+
+ANSWER LINES:
+{lines}
+
+Give a verdict for EVERY answer line:
+- "no_claim": a heading, or a line that states nothing about the jobs.
+- "supported": every number, skill and order item in the line matches the PLAN, AND every
+  example cited as [n] is really in source n. Paraphrase is fine.
+- "partly": some items match, some do not.
+- "unsupported": the main content is in neither the PLAN nor the cited sources.
+If a line uses [n] as an example for a skill, source n must mention that skill. If it does
+not, that skill goes in "missing", even when the skill is in the PLAN.
+"missing": each specific item (skill, number, order, requirement) in the line that is in
+neither the PLAN nor the cited sources, or that differs from the PLAN (e.g. another percentage).
+"other_source": the items from "missing" that DO appear in a source the line did not cite.
+Use only the PLAN and the sources. Never use your own knowledge about jobs or tools."""
+
 
 class LineVerdict(BaseModel):
     line: int
@@ -55,6 +89,7 @@ class CitationFaithfulnessMetric(BaseMetric):
         self.async_mode = False
         self.include_reason = True
         self.details = []
+        self.with_plan = False
 
     def _ask_judge(self, prompt):
         # one retry: if the reply breaks the schema once, ask again
@@ -69,9 +104,14 @@ class CitationFaithfulnessMetric(BaseMetric):
         self.error = None
         lines = [l.strip() for l in test_case.actual_output.splitlines() if l.strip()]
         numbered = "\n".join(f"{i}. {text}" for i, text in enumerate(lines, start=1))
-        prompt = PROMPT.format(sources="\n\n".join(test_case.retrieval_context),
-                               lines=numbered)
+        sources = "\n\n".join(test_case.retrieval_context)
+        if test_case.context:  # the agent: numbers and order come from the plan
+            prompt = PROMPT_WITH_PLAN.format(plan="\n".join(test_case.context),
+                                             sources=sources, lines=numbered)
+        else:
+            prompt = PROMPT.format(sources=sources, lines=numbered)
 
+        self.with_plan = bool(test_case.context)
         by_line = {v.line: v for v in self._ask_judge(prompt).verdicts}
 
         self.details = []
@@ -107,7 +147,8 @@ class CitationFaithfulnessMetric(BaseMetric):
         if count("skipped"):
             parts.append(f"{count('skipped')} lines skipped by the judge")
         if missing:
-            parts.append("not in cited sources: " + ", ".join(missing))
+            where = "plan or cited sources" if self.with_plan else "cited sources"
+            parts.append(f"not in {where}: " + ", ".join(missing))
         if moved:
             parts.append("wrong citation for: " + ", ".join(moved))
         if general:
