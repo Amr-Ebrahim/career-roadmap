@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://career-roadmap-bgevtqzghvkn3mj7i5ppr7.streamlit.app/"><b>Live demo</b></a> ·
+  <a href="https://YOUR-APP.streamlit.app"><b>Live demo</b></a> ·
   <a href="#architecture">Architecture</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="#the-data">The data</a> ·
@@ -49,7 +49,7 @@ is checked against the data before you see it.
 | Examples that may be invented | Every quote is checked **word for word** against the cited post |
 | One big prompt | Five agents; only three of them use an LLM, and only for language |
 | "Learn Docker, Kubernetes, AWS, Azure…" | A **learning order**: prerequisites first, alternatives grouped as "pick one" |
-| Trust me | Evaluated with DeepEval and a custom metric, and the judge itself was validated |
+| Trust me | Evaluated with DeepEval and a custom metric (0.96–0.98 citation faithfulness), and the judge itself was validated |
 
 ## How it works
 
@@ -298,6 +298,19 @@ These came out of checking the numbers instead of trusting them:
 
 <a id="evaluation"></a>
 
+Two things are evaluated: the plain RAG that answers questions about the posts, and the full
+roadmap agent.
+
+| What | Score |
+|---|---|
+| RAG citation faithfulness (7 questions) | **0.98** |
+| Agent citation faithfulness (8 roadmaps) | **0.96** |
+| Agent: right role and level understood | **8 / 8** |
+| Agent: numbers that are not in the plan | **0** |
+| Agent: citations to sources that don't exist | **0** |
+
+### The RAG
+
 The plain RAG (retrieve 5 posts, answer with citations) is evaluated with
 [DeepEval](https://github.com/confident-ai/deepeval) on 7 fixed questions, with Groq's
 `gpt-oss-120b` as the judge.
@@ -325,6 +338,37 @@ together by lost line breaks (`PostgresKnowledge`). The glued-words fix alone re
 
 Every eval run saves the exact sources next to each answer, so results can be re-checked later
 even after the data changes.
+
+### The roadmap agent
+
+`eval_agent.py` builds a roadmap for 8 requests, one per kind of job (data analyst, DevOps,
+help desk, backend, frontend, security analyst, machine learning, QA), and checks each one.
+Most checks are plain code, so they are free and exact:
+
+| Check | What it measures | Result |
+|---|---|---|
+| Intake | the request was read as the right role family and level | **1.00** (8/8) |
+| Plan coverage | every skill in the plan appears in the roadmap | **1.00** |
+| Numbers | every percentage in the roadmap is a number from the plan | **1.00** |
+| Learning order | skills are introduced in the planned order | 0.88 |
+| Citations | every `[n]` points to a source that exists | 0 invalid |
+| Citation faithfulness | LLM judge, the custom metric above | **0.96** |
+
+**My first agent score was 0.54, and the agent wasn't the problem.** The judge only saw the
+job-post excerpts, but a roadmap's percentages, post counts and learning order come from the
+plan, which code counts over *all* matching posts. Reading the judge's reasons showed it: almost
+everything it marked as unsupported was a correct plan number ("SQL: in 44% of the posts"),
+a step ("learn after SQL") or the "General advice" section, which is outside the data on
+purpose. Now the metric takes the plan as a second kind of evidence: numbers and order are
+checked against the plan, examples `[n]` against the post they cite, and the advice section is
+left out. `rescore_agent.py` judged the 8 saved roadmaps again without rebuilding them:
+**0.54 → 0.96**, with no line left unsupported.
+
+What the judge still flags is real: a few examples cite a post that doesn't mention the skill
+(for example an AWS example from a post without the word AWS). The evaluation also found two
+bugs that are being fixed: the LLM critic's structured reply was cut off in 6 of 8 runs (its
+reasoning used up the token budget, so only the code checks ran), and the planner added Kotlin
+and Swift to help desk roadmaps because help desk posts ask for Android and iOS *support*.
 
 ## Design decisions
 
@@ -408,6 +452,8 @@ streamlit run app.py
 python eval_rag.py baseline                               # or: langchain, hybrid
 python rescore_citation.py evals/baseline_<date>.csv      # re-judge saved answers
 python check_skills.py evals/baseline_<date>.csv          # independent dictionary check, no LLM
+python eval_agent.py                                      # the full agent, 8 requests (--no-judge: code checks only)
+python rescore_agent.py evals/agent_<date>.csv            # re-judge saved roadmaps without rebuilding them
 ```
 
 **Weekly refresh:** runs by itself every Monday on GitHub (`.github/workflows/weekly-refresh.yml`), or by hand from the Actions tab. It needs a Hugging Face write token as the secret `HF_TOKEN` and the dataset name as the variable `HF_DATA_REPO`. To run the same steps on your machine:
@@ -444,7 +490,9 @@ hf_data.py              uploads / downloads the data (Hugging Face dataset)
 pipeline_stats.py       how many posts survive each step
 .github/workflows/      weekly-refresh.yml: the Monday data refresh
 eval_rag.py             DeepEval runs: baseline, LangChain, hybrid
-citation_faithfulness.py  the custom metric
+eval_agent.py           the full agent on 8 requests: code checks + the judge
+rescore_agent.py        re-judges saved roadmaps
+citation_faithfulness.py  the custom metric (checks against the plan too, for roadmaps)
 groq_judge.py           Groq as DeepEval's judge model
 check_skills.py         independent check of the judge, no LLM
 make_requirements.py    requirements.txt (app) and requirements-pipeline.txt (weekly refresh)
@@ -457,7 +505,8 @@ make_requirements.py    requirements.txt (app) and requirements-pipeline.txt (we
 - **A dictionary finds only what it knows.** A skill that isn't in `skills_dict.py` can't be counted; the planner tells you when one of your skills isn't in it.
 - **Free tiers:** about 200,000 Groq tokens per model per day (around ten roadmaps), and the online app sleeps after 12 hours without visitors, so the first visit after that takes a minute or two.
 - **Growth:** the weekly refresh adds a few hundred posts a week. The first limit to reach is the app's memory on the free tier (2.7 GB), so older Arbeitnow posts will move to a rolling window of the last 6–12 months.
-- **Next:** the full-agent evaluation (`eval_agent.py`), the LangChain vs hybrid comparison above, and removing boilerplate from the chunks.
+- **Retrieval brings back some HR text.** Contextual relevancy is 0.63: chunks still contain pay ranges, benefits and equal-opportunity statements. A boilerplate filter is tested (it cuts about 14% of the words and no skill) and comes with the next re-index.
+- **Next:** the LangChain vs hybrid comparison above, the fixed critic and planner, then the boilerplate filter with a before/after score.
 
 ## Credits
 
