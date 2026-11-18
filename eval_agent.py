@@ -60,6 +60,9 @@ def plan_numbers(plan):
         nums.update(round(x) for x in s.get("entry_to_senior", ()))
         for key in ("or", "includes"):
             nums.update(round(o["share"]) for o in s.get(key, []))
+    # numbers inside the plan's NOTE lines are allowed too (e.g. "under 5%")
+    for note in plan["notes"]:
+        nums.update(round(float(x)) for x in re.findall(r"(\d{1,3}(?:\.\d)?)\s?%", note))
     return nums
 
 
@@ -138,9 +141,11 @@ def main():
                 row["citation_faithfulness"], row["judge_reason"] = None, f"{type(e).__name__}: {e}"
 
         row.update({"seconds": round(time.time() - start), "roadmap": result["roadmap"],
+                    "problems": json.dumps(result["problems"], ensure_ascii=False),
                     "plan_text": result["plan_text"], "sources": json.dumps(sources, ensure_ascii=False)})
         rows.append(row)
-        shown = {k: v for k, v in row.items() if k not in ("request", "roadmap", "plan_text", "sources", "judge_reason")}
+        shown = {k: v for k, v in row.items()
+                 if k not in ("request", "roadmap", "plan_text", "sources", "judge_reason", "problems")}
         for k, v in shown.items():
             print(f"    {k:<22} {v}")
 

@@ -154,14 +154,17 @@ class RoadmapState(MessagesState):
     problems: list
 
 
-def build_graph(llm, judge_llm):
+def build_graph(llm, judge_llm, critic_llm=None):
     # The prompt alone did not stop the writer from searching again and again (online it hit
     # LangGraph's 25-step limit), and Groq rejects tool_choice="none" when gpt-oss still tries.
     # So when searching is not allowed, the writer gets NO tool at all and a prompt without it.
     writer_can_search = llm.bind_tools(TOOLS)
     # json_schema + strict: Groq's constrained decoding, replies MUST match the schema
     intake_llm = judge_llm.with_structured_output(Intake, method="json_schema", strict=True)
-    critic = judge_llm.with_structured_output(Critique, method="json_schema", strict=True)
+    # the critic reads the plan + ALL search results (a long prompt). With reasoning "medium" and
+    # 2000 tokens, gpt-oss-20b often spent the tokens thinking and its JSON got cut off
+    # (Groq: "Failed to validate JSON"), so it gets its own LLM: less thinking, more room.
+    critic = (critic_llm or judge_llm).with_structured_output(Critique, method="json_schema", strict=True)
 
     def intake(state: RoadmapState):
         parsed = intake_llm.invoke(INTAKE.format(request=state["request"]))
@@ -234,13 +237,16 @@ def build_graph(llm, judge_llm):
         draft = state["messages"][-1].content
         results = [m.content for m in state["messages"] if m.type == "tool"]
         evidence = "\n\n".join([state["plan_text"], state["research"]] + results)
-        try:
-            problems = [p.model_dump() for p in
-                        critic.invoke(CRITIC.format(evidence=evidence, draft=draft)).problems]
-        except Exception as e:  # a failed review shouldn't throw away the roadmap
-            print(f"  [critic] LLM check failed ({type(e).__name__}: {str(e)[:150]}), "
-                  "using code checks only")
-            problems = []
+        problems = []
+        for attempt in range(2):  # one retry: a cut-off JSON reply is often fine the 2nd time
+            try:
+                problems = [p.model_dump() for p in
+                            critic.invoke(CRITIC.format(evidence=evidence, draft=draft)).problems]
+                break
+            except Exception as e:  # a failed review shouldn't throw away the roadmap
+                if attempt == 1:
+                    print(f"  [critic] LLM check failed twice ({type(e).__name__}: {str(e)[:150]}), "
+                          "using code checks only")
 
         # checks done by code, not by the LLM: they are free and never miss
         _, invalid, _ = check_citations(draft, len(SOURCES))
@@ -305,7 +311,7 @@ def build_graph(llm, judge_llm):
     return graph.compile()
 
 
-def generate_roadmap(request, llm=None, judge_llm=None, on_step=print):
+def generate_roadmap(request, llm=None, judge_llm=None, critic_llm=None, on_step=print):
     # runs the whole graph and RETURNS everything (the CLI, the API and the app all use this);
     # on_step gets a short text for each step, e.g. to print progress
     reset_sources()
@@ -313,7 +319,9 @@ def generate_roadmap(request, llm=None, judge_llm=None, on_step=print):
                           reasoning_effort="low", max_retries=6)
     judge_llm = judge_llm or ChatGroq(model=AGENT_MODEL, temperature=0, max_tokens=2000,
                                       reasoning_effort="medium", max_retries=6)
-    app = build_graph(llm, judge_llm)
+    critic_llm = critic_llm or ChatGroq(model=AGENT_MODEL, temperature=0, max_tokens=4000,
+                                        reasoning_effort="low", max_retries=6)
+    app = build_graph(llm, judge_llm, critic_llm)
 
     result = {"request": request, "intake": None, "plan": None, "plan_text": "",
               "roadmap": None, "problems": [], "steps": []}

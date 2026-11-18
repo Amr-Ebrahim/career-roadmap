@@ -10,9 +10,11 @@ CHANGE = 10                        # entry -> senior change (points) that counts
 PHASE_NAMES = ["Foundations", "Core skills", "Next level"]
 
 
-def learning_order(phases, known_lower, info_for):
+def learning_order(phases, known_lower, info_for, notes):
     """Puts every skill AFTER the skills it needs (prereqs.py), like courses with prerequisites.
-    A needed skill the person doesn't have and the plan doesn't include is added to the plan.
+    A needed skill the person doesn't have and the plan doesn't include is added to the plan,
+    but only if these posts ask for it (at least MIN_SHARE %). Otherwise a NOTE says why it
+    was left out (e.g. help desk posts ask for Android/iOS device support, not for Kotlin/Swift).
     Returns the phases again, numbered in learning order."""
     by_name, phase_of, planned = {}, {}, []
     for p, name in enumerate(PHASE_NAMES):
@@ -32,6 +34,14 @@ def learning_order(phases, known_lower, info_for):
                 continue
             # not in the plan yet: add it (of several alternatives, the one asked for most)
             pick = max(options, key=lambda o: info_for(o)["share"])
+            if info_for(pick)["share"] < MIN_SHARE:
+                # the prerequisite list says so, but these posts don't ask for it: the skill
+                # is probably meant in another way here, so don't add a step from outside the data
+                note = (f"{skill} is in the plan, but these posts rarely ask for "
+                        f"{' or '.join(options)} (under {MIN_SHARE}%), so it is not added as a step.")
+                if note not in notes:
+                    notes.append(note)
+                continue
             by_name[pick] = {**info_for(pick), "added_for": skill}
             phase_of[pick] = phase_of[skill]
             needs.append(pick)
@@ -143,7 +153,7 @@ def make_plan(role_family, level="entry", title_keyword=None, known_skills=()):
 
     # 5. learning order: what a skill needs comes first (prereqs.py, not the job data)
     phases = learning_order({"Foundations": phase1, "Core skills": phase2, "Next level": phase3},
-                            known_lower, info_for)
+                            known_lower, info_for, notes)
 
     return {"role_family": role_family, "level": level, "title_keyword": title_keyword,
             "group": group, "n_posts": n, "notes": notes, "have": have,
@@ -200,3 +210,6 @@ if __name__ == "__main__":
     print(plan_to_text(make_plan("devops_cloud", "entry", known_skills=["Linux", "Python"])))
     print("\n" + "=" * 80 + "\n")
     print(plan_to_text(make_plan("devops_cloud", "entry")))
+    print("\n" + "=" * 80 + "\n")
+    print(plan_to_text(make_plan("networking_it", "entry", "help desk",
+                                 known_skills=["Windows", "Active Directory"])))
