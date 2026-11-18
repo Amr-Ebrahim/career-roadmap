@@ -1,0 +1,45 @@
+I know Python and Excel and I want a junior data a
+  - {'kind': 'outside_knowledge', 'quote': '**R** (in 10% of the posts)', 'issue': 'The roadmap lists R as a core skill, but the evidence provided does not mention R in any of the 114 entry‑level data analyst posts searched. The evidence includes SQL, Statistics, Power\u202fBI, Machine Learning, SAS, and Data Warehousing, but no reference to R.'}
+  - {'kind': 'citation', 'quote': 'Use PowerBI and other data tools to help create and improve reporting capabilities', 'issue': 'these words are not in source [9]'}
+  - {'kind': 'citation', 'quote': 'Epsilon data assets the SAS macro library', 'issue': 'these words are not in source [5]'}
+
+I know Linux and Python, I want a junior DevOps jo
+  - {'kind': 'comparison', 'quote': 'CI/CD (in 40% of the posts; includes Jenkins (17%); *learn after Git*)', 'issue': 'The roadmap claims CI/CD rises with seniority (entry 40% -> senior 54%) but the evidence does not provide any seniority percentages to support this claim.'}
+  - {'kind': 'comparison', 'quote': 'Kubernetes (in 36% of the posts; *learn after Docker*)', 'issue': 'The roadmap states Kubernetes rises with seniority (entry 36% -> senior 56%) but the evidence contains no seniority data to back this up.'}
+  - {'kind': 'comparison', 'quote': 'Identity & Access Management (in 9% of the posts)', 'issue': 'The roadmap claims IAM rises with seniority (entry 9% -> senior 21%) but the evidence does not include any seniority percentages.'}
+  - {'kind': 'outside_knowledge', 'quote': 'Bash (in 21% of the posts)', 'issue': 'The roadmap lists Bash as a core skill, yet none of the evidence posts mention Bash, making it an outside knowledge claim.'}
+  - {'kind': 'citation', 'quote': 'CI/CD both the principles and the experience of setting up a pipeline (Azure DevOps, Gitlab, Argo\u202fCD or other similar to', 'issue': 'these words are not in source [1]'}
+
+I want my first help desk job, I already know Wind
+  - {'kind': 'outside_knowledge', 'quote': '**Android** (in 10\u202f% of the posts) – *added because Android support is listed*', 'issue': 'The roadmap lists Android as a core skill, but none of the evidence posts mention Android support or related tools.'}
+  - {'kind': 'outside_knowledge', 'quote': '**iOS** (in 9\u202f% of the posts) – *added because iOS support is listed*', 'issue': 'The roadmap lists iOS as a core skill, yet no evidence posts reference iOS support or related tools.'}
+  - {'kind': 'outside_knowledge', 'quote': '**Excel** (in 9\u202f% of the posts) – *added because Excel is mentioned*', 'issue': 'Excel is cited as a core skill, but the evidence contains no mention of Excel usage in the help‑desk posts.'}
+  - {'kind': 'citation', 'quote': 'Example: No example found in the searched posts.', 'issue': 'The roadmap claims an example for Android, iOS, and Excel, but the cited evidence provides no such examples.'}
+  - {'kind': 'citation', 'quote': 'Microsoft 365 and Office 365 support', 'issue': 'these words are not in source [1]'}
+
+I'm a computer science graduate and I know Java. I
+  - {'kind': 'comparison', 'quote': '8. **CI/CD** – in 18% of the posts; rises with seniority (entry 18% → senior 31%); includes Jenkins (11%); learn after G', 'issue': "the plan does not mark Git as 'rises' (it uses a 10-point rule)"}
+  - {'kind': 'comparison', 'quote': '12. **Kubernetes** – in 14% of the posts; rises with seniority (entry 14% → senior 28%); learn after Docker', 'issue': "the plan does not mark Docker as 'rises' (it uses a 10-point rule)"}
+
+I know HTML and CSS and I want a junior frontend d
+  - {'kind': 'comparison', 'quote': '10. **CI/CD** (in 13% of the posts; rises with seniority; learn after Git)', 'issue': "the plan does not mark Git as 'rises' (it uses a 10-point rule)"}
+
+I want to become an entry-level security analyst. 
+  - {'kind': 'outside_knowledge', 'quote': 'Identity & Access Management (in 18% of the posts; rises with seniority)', 'issue': 'The roadmap lists “Identity & Access Management” as a skill, but none of the evidence search results contain any mention of IAM or related terms. The evidence only references SIEM, incident response, vulnerability management, and various certifications, with no IAM content.'}
+  - {'kind': 'citation', 'quote': '**Networking Fundamentals** (in 30% of the posts; falls with seniority) *Example:* “our Security Information Event and Management (SIEM) to identify threats…” – [1]', 'issue': 'The quoted example for Networking Fundamentals cites source [1], which actually describes SIEM responsibilities, not networking fundamentals. The evidence does not support the claim that [1] illustrates networking fundamentals.'}
+  - {'kind': 'citation', 'quote': 'alerts and incidents across SIEM, EDR, CrowdStrike and other security platforms.', 'issue': 'these words are not in source [2]'}
+
+I know Python and statistics. How do I become a ju
+  - {'kind': 'citation', 'quote': 'Example: “deployment and infrastructure management using Terraform and CI/CD practices” [7]', 'issue': 'The roadmap cites this example as evidence for MLOps, but the quoted text does not mention MLOps at all.'}
+  - {'kind': 'citation', 'quote': 'Example: “Docker” not explicitly quoted; no example found in the searched posts.', 'issue': 'The roadmap lists Docker as a skill with 12% prevalence, yet no evidence from the job posts explicitly mentions Docker.'}
+  - {'kind': 'outside_knowledge', 'quote': 'Start by mastering core machine‑learning concepts and Python libraries (scikit‑learn, pandas).', 'issue': 'The general advice section references scikit‑learn and pandas, which are not mentioned in any of the job‑post evidence.'}
+  - {'kind': 'citation', 'quote': 'Fluency with Python, C++, CUDA, and deep learning frameworks', 'issue': 'these words are not in source [1]'}
+  - {'kind': 'citation', 'quote': 'Fluency with Python, C++, CUDA, and deep learning frameworks', 'issue': 'the example does not mention TensorFlow'}
+  - {'kind': 'comparison', 'quote': '4. **TensorFlow** (in 38% of the posts; falls with seniority; pick one of TensorFlow, PyTorch, Keras; learn after Deep L', 'issue': "the plan does not mark Deep Learning as 'falls' (it uses a 10-point rule)"}
+  - {'kind': 'comparison', 'quote': '9. **CI/CD** (in 12% of the posts; rises with seniority; learn after Git)', 'issue': "the plan does not mark Git as 'rises' (it uses a 10-point rule)"}
+  - {'kind': 'comparison', 'quote': '12. **MLOps** (in 8% of the posts; rises with seniority; learn after Machine Learning, Docker)', 'issue': "the plan does not mark Machine Learning as 'rises' (it uses a 10-point rule)"}
+  - {'kind': 'comparison', 'quote': '12. **MLOps** (in 8% of the posts; rises with seniority; learn after Machine Learning, Docker)', 'issue': "the plan does not mark Docker as 'rises' (it uses a 10-point rule)"}
+
+I have no experience and I want to get into softwa
+  - {'kind': 'citation', 'quote': 'Python (in 21% of the posts; rises with seniority) *Example:* “QA automation scripts using Selenium or AccelQ” – [1]', 'issue': 'The cited source [1] mentions Selenium or AccelQ but does not reference Python, so the example does not support the claim that Python is used in 21% of the posts.'}
+

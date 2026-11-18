@@ -1,0 +1,233 @@
+import os
+from roles import ROLE_FAMILIES, label_role
+import pandas as pd
+
+COLS = ["job_id", "title", "description", "company_name", "location",
+        "remote_allowed", "formatted_experience_level", "listed_time",
+        "job_posting_url"]
+
+df = pd.read_csv("data/raw/postings.csv", usecols=COLS)
+
+
+df["role_family"] = df["title"].apply(label_role)
+tech = df[df["role_family"].notna()]
+
+print("Tech posts:", len(tech), f"({len(tech) / len(df):.1%} of all)")
+print()
+print(tech["role_family"].value_counts())
+print()
+
+for family in ROLE_FAMILIES:
+    titles = tech[tech["role_family"] == family]["title"]
+    sample = titles.sample(min(8, len(titles)), random_state=42)
+    print(f"--- {family} ---")
+    for t in sample:
+        print("  ", t)
+
+print()
+print("=== Possibly missed: unlabeled titles with engineer/architect/technology ===")
+missed = df[
+    df["role_family"].isna()
+    & df["title"].str.lower().str.contains(r"\b(?:engineer|architect|technolog\w*)\b", regex=True)
+]
+print(missed["title"].value_counts().head(40))
+
+tech = tech.copy()
+tech["posted_date"] = pd.to_datetime(tech["listed_time"], unit="ms")
+tech = tech.drop(columns=["listed_time"])
+tech["source"] = "kaggle_linkedin"
+
+os.makedirs("data/processed", exist_ok=True)
+out = "data/processed/jobs_tech.parquet"
+tech.to_parquet(out, index=False)
+
+print()
+print("Saved", len(tech), "posts to", out)
+print("CSV size (MB):    ", round(os.path.getsize("data/raw/postings.csv") / 1e6))
+print("Parquet size (MB):", round(os.path.getsize(out) / 1e6, 1))import pandas as pd
+
+kaggle = pd.read_parquet("data/processed/jobs_tech.parquet")
+arbeit = pd.read_parquet("data/processed/jobs_arbeitnow.parquet")
+
+kaggle["job_id"] = "kaggle_" + kaggle["job_id"].astype(str)
+kaggle["remote_allowed"] = kaggle["remote_allowed"].map({1.0: True}).astype("boolean")
+arbeit["remote_allowed"] = arbeit["remote_allowed"].astype("boolean")
+
+jobs = pd.concat([kaggle, arbeit], ignore_index=True)
+print("Combined:", len(jobs))
+
+before = len(jobs)
+jobs = jobs.drop_duplicates(subset=["title", "company_name", "description"])
+print("Duplicates removed:", before - len(jobs))
+print("Final:", len(jobs))
+print()
+
+print(pd.crosstab(jobs["role_family"], jobs["source"], margins=True))
+print()
+print("Remote values:", jobs["remote_allowed"].value_counts(dropna=False).to_dict())
+
+jobs.to_parquet("data/processed/jobs_all.parquet", index=False)
+print()
+print("Saved data/processed/jobs_all.parquet")import pandas as pd
+from cleaning import KAGGLE_TO_LEVEL, clean_title, level_from_title, min_years_required
+
+df = pd.read_parquet("data/processed/jobs_all.parquet")
+print("Input:", len(df))
+
+df["title_raw"] = df["title"]
+df["title"] = df["title_raw"].apply(clean_title)
+
+title_level = df["title"].apply(level_from_title)
+kaggle_level = df["formatted_experience_level"].map(KAGGLE_TO_LEVEL)
+df["level"] = title_level.fillna(kaggle_level).fillna("unknown")
+
+df["level_source"] = "none"
+df.loc[kaggle_level.notna(), "level_source"] = "kaggle"
+df.loc[title_level.notna(), "level_source"] = "title"
+
+df["description"] = df["description"].fillna("").str.strip()
+short = df["description"].str.len() < 200
+print("Removed (description under 200 characters):", short.sum())
+df = df[~short].copy()
+
+df["min_years"] = df["description"].apply(min_years_required).astype(float)
+
+
+def years_to_level(years):
+    if years < 3:
+        return "entry"
+    if years < 5:
+        return "mid"
+    return "senior"
+
+
+too_junior = df["level"].isin(["entry", "intern"]) & (df["min_years"] >= 3)
+unknown_with_years = (df["level"] == "unknown") & df["min_years"].notna()
+fix = too_junior | unknown_with_years
+
+df.loc[fix, "level"] = df.loc[fix, "min_years"].apply(years_to_level)
+df.loc[fix, "level_source"] = "years"
+print("Junior levels corrected from stated years:", too_junior.sum())
+print("Unknown levels filled from stated years:", unknown_with_years.sum())
+
+df.to_parquet("data/processed/jobs_clean.parquet", index=False)
+print("Saved", len(df), "posts to data/processed/jobs_clean.parquet")
+print()
+print(pd.crosstab(df["level"], df["source"], margins=True))
+print()
+print("Level source:", df["level_source"].value_counts().to_dict())from transformers import AutoTokenizer
+from skill_matcher import extract_skills
+
+TOKENIZER = AutoTokenizer.from_pretrained("BAAI/bge-small-en-v1.5")
+CHUNK_TOKENS = 300
+OVERLAP = 50
+
+
+def chunk_text(text, size=CHUNK_TOKENS, overlap=OVERLAP):
+    offsets = TOKENIZER(text, add_special_tokens=False,
+                        return_offsets_mapping=True)["offset_mapping"]
+    if len(offsets) <= size:
+        return [text]
+
+    chunks = []
+    step = size - overlap
+    for start in range(0, len(offsets), step):
+        end = min(start + size, len(offsets))
+        chunks.append(text[offsets[start][0]:offsets[end - 1][1]])
+        if end == len(offsets):
+            break
+    return chunks
+
+
+def make_header(row):
+    return f"{row['title']} | {row['role_family']} | {row['level']}\n"
+
+
+def post_chunks(row):
+    header = make_header(row)
+    kept = []
+    for i, piece in enumerate(chunk_text(row["description"])):
+        skills = extract_skills(piece)
+        if skills:
+            kept.append((i, header + piece, skills))
+    return keptimport re
+
+ROLE_FAMILIES = {
+    # "ai" / "artificial intelligence" on their own are handled by AI_WORD below
+    "ai_ml": ["machine learning", "ml", "mlops", "deep learning", "nlp",
+              "computer vision", "llm"],
+    "data": ["data scientist", "data science", "data engineer", "data analyst",
+             "analytics engineer", "business intelligence", "bi developer",
+             "bi analyst", "etl", "big data", "data architect",
+             "database administrator", "dba", "sql developer"],
+    "security": ["cyber ?security", "cyber", "information security", "infosec",
+                 "security engineer", "security analyst", "soc analyst",
+                 "penetration tester", "appsec", "devsecops"],
+    "devops_cloud": ["devops", "site reliability", "sre", "platform engineer",
+                     "infrastructure engineer", "solutions? architect",
+                     "cloud (engineer|architect|developer|administrator)"],
+    "mobile": ["ios", "android", "flutter", "react native",
+               "mobile (developer|engineer)"],
+    "frontend": ["front[- ]?end", "ui developer", "ui engineer", "web developer",
+                 "javascript developer", "react developer", "angular developer"],
+    "backend": ["back[- ]?end", "java developer", "java architect", "python developer",
+                "net developer", "node(js)? developer", "golang", "php developer",
+                "ruby developer", "api developer"],
+    "qa": ["qa engineer", "qa analyst", "qa automation", "sdet",
+           "quality assurance engineer", "software test(er)?",
+           "test automation", "game tester"],
+    "networking_it": ["network engineer", "network administrator",
+                      "network technician", "it support", "help ?desk",
+                      "desktop support", "service desk", "systems? administrator",
+                      "sysadmin", "technical support", "noc", "it specialist",
+                      "it technician", "information technology"],
+    "software": ["software", "developer", "programmer", "full[- ]?stack"],
+}
+
+PATTERNS = {
+    family: re.compile(r"\b(" + "|".join(words) + r")\b")
+    for family, words in ROLE_FAMILIES.items()
+}
+
+EXCLUDE = re.compile(
+    r"\b(sales|recruit\w*|marketing|account executive|account manager"
+    r"|insurance|underwriter|industrial security|curriculum"
+    r"|product manager|product owner|project (?:lead|manager)|delivery lead"
+    r"|operations manager|associate partner|managing partner|consulting manager"
+    r"|stylist|model validation|regulatory|ai trainer|strategist|volunteer"
+    r"|retail|scheduler|procurement|business developer|cnc|cmm"
+    r"|course developer|learning developer|materials developer)\b"
+)
+
+# "AI" alone is in many non-technical titles (AI Growth Manager, Head of AI, AI Product
+# Designer), so it counts as ai_ml only together with a hands-on word
+AI_WORD = re.compile(r"\b(ai|artificial intelligence)\b")
+HANDS_ON = re.compile(r"\b(engineer\w*|developer|scientist|research\w*|programmer|architect)\b")
+
+# Applied AFTER a family is found, so they only re-label tech posts and never add new ones.
+ARCHITECT = re.compile(r"\barchitect")
+KEEP_ARCHITECTS = {"data", "ai_ml"}  # data/ML architects stay in their own family
+ENTERPRISE = re.compile(r"\b(salesforce|sap|oracle|servicenow|workday|netsuite|dynamics 365)\b")
+REAL_DEVOPS = re.compile(r"\b(devops|sre|site reliability|platform engineer|infrastructure engineer)\b")
+
+
+def matches(family, t):
+    if family == "ai_ml":
+        return bool(PATTERNS["ai_ml"].search(t) or (AI_WORD.search(t) and HANDS_ON.search(t)))
+    return bool(PATTERNS[family].search(t))
+
+
+def label_role(title):
+    t = title.lower()
+    if EXCLUDE.search(t):
+        return None
+    for family in PATTERNS:
+        if matches(family, t):
+            # design/advisory roles: kept in the data, separate from the hands-on families
+            if ARCHITECT.search(t) and family not in KEEP_ARCHITECTS:
+                return "architecture"
+            # "Salesforce Commerce Cloud Developer" matched only through the product name
+            if family == "devops_cloud" and ENTERPRISE.search(t) and not REAL_DEVOPS.search(t):
+                return "software"
+            return family
+    return None

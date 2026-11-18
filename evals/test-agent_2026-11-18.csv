@@ -1,0 +1,57 @@
+request,intake_ok,intake,plan_coverage,missing_skills,numbers_ok,wrong_numbers,order_ok,quote_problems,invalid_citations,reviewer_notes,revised,seconds,roadmap,problems,plan_text,sources,error
+I know Python and Excel and I want a junior data analyst job. What should I learn?,True,data/entry/analyst,1.0,,1.0,,0.83,0,0,1,True,61,"**Roadmap based on 114 entry‑level data posts with “analyst” in the title**
+
+**Already have**: Excel (in 42% of the posts), Python (in 23% of the posts)
+
+---
+
+### Foundations
+1. **SQL** (in 44% of the posts) – rises with seniority (entry 44% → senior 78%) – includes Relational Databases (5%)  
+   *Example*: “conducting data analyses using SQL and other tools” [5]  
+2. **Statistics** (in 30% of the posts)  
+   *Example*: “Applies basic statistical concepts and descriptive statistics” [11]  
+3. **Power BI** (in 24% of the posts) – or Tableau (16%) (pick one)  
+   *Example*: “Experience with Tableau” [9]
+
+### Core skills
+4. **Machine Learning** (in 17% of the posts) – learn after Statistics  
+   *Example*: “Builds predictive models and complex descriptive analytics” [11]  
+5. **R** (in 10% of the posts)  
+   *Example*: No example found in the searched posts.  
+6. **SAS** (in 7% of the posts)  
+   *Example*: No example found in the searched posts.  
+7. **Data Warehousing** (in 7% of the posts) – learn after SQL  
+   *Example*: “migrate our existing reporting tool to our in‑house data warehouse infrastructure” [7]
+
+### Next level
+- (none)
+
+---
+
+**Notes**
+
+None.
+
+---
+
+**General advice (not from the job data)**  
+Start by mastering SQL and basic statistics, then add a visualization tool such as Power BI or Tableau. Once you’re comfortable with data manipulation and descriptive analysis, move into machine‑learning techniques. Tools like R or SAS can deepen your statistical modeling skills, while knowledge of data‑warehousing concepts will broaden your ability to work with large, structured datasets. Practice on real datasets and contribute to open‑source projects to reinforce these skills.","[{""kind"": ""citation"", ""quote"": ""Example: “SAS macro library” [5]"", ""issue"": ""The cited example [5] mentions a SAS macro library but does not explicitly state that the skill “SAS” is required or used in the job post, so it does not support the inclusion of SAS in the roadmap.""}]","PLAN based on 114 entry-level data posts with 'analyst' in the title.
+Skills are numbered in learning order: what a skill needs comes first (the order comes from a prerequisite list, not from the job data).
+
+Foundations:
+1. SQL: in 44% of the posts; rises with seniority (entry 44% -> senior 78%); includes Relational Databases (5%)
+2. Statistics: in 30% of the posts
+3. Power BI: in 24% of the posts; or Tableau (16%) (pick one)
+
+Core skills:
+4. Machine Learning: in 17% of the posts; learn after Statistics
+5. R: in 10% of the posts
+6. SAS: in 7% of the posts
+7. Data Warehousing: in 7% of the posts; learn after SQL
+
+Next level:
+- (none)
+
+Already has: Excel (in 42% of the posts), Python (in 23% of the posts)","[""[1] Data Analyst at Cornerstone Building Brands\nand usability. Stay updated on emerging trends, best practices, and technologies in data cleansing and data management. QualificationsQualifications: Bachelor’s degree required in computer science, Statistics, Mathematics, or related field. Proven experience (2 years) as a Data Analyst, Data Engineer, or similar role, with a focus on data cleansing and preparation. Competencies: Strong analytical and problem-solving skills with the ability to translate business requirements into technical soluti"", ""[2] Business Intelligence Analyst at Wis-Pak, Inc.\nthrive in ambiguous situations, demonstrating a strong ability to adapt and innovate as the role and its demands change.  WHAT YOU’LL DO:Develop, implement, and maintain BI solutions (reports, dashboards, data models) that enhance decision-making and business performance across various departments.Collaborate with stakeholders to identify business requirements and opportunities for leveraging company data to drive business solutions.Analyze large datasets to provide actionable insights and recom"", ""[3] Data Analyst at Everway\n, you'll work with colleagues across Information Systems and other functions to transform data into meaningful insight that supports operational, commercial and product decisions. You'll be part of our Data Team, helping maintain high-quality data, developing reporting, and identifying trends that enable the business to act with confidence. Main Responsibilities In this role, you will: Collect, clean and analyse data from a variety of sources. Help maintain data quality, accuracy and consistency"", ""[4] Data Analyst at PrimePay\n. Ability to customize dashboards to meet specific business requirements and present data in a visually compelling manner Strong understanding of data mining techniques and algorithms. Ability to apply data mining methods to discover patterns, trends, and insights from large datasets, driving actionable business recommendations Experience in implementing data quality assurance processes and methodologies. Ability to assess data quality issues, develop strategies for data cleansing and validation"", ""[5] Data Analyst at Epsilon\nmanagersAnswer questions about data sets and analysesFollow all policies and procedures for programming, project documentation, and system managementBecome familiar with…all offerings outlined in the Insider’s Guide to ACGvarious statistical offerings and methods (CHAID, logistic/multiple regression, cluster analysis, factor analysis)Epsilon data assetsthe SAS macro libraryParticipate in the design, planning & execution of projectsEffectively manage time and resources in order to deliver on time ... Job Description  Summary   Epsilon Analytics partners with both internal and external clients, and data providers, leveraging various analytics to drive strategic thought and effective decision making. The Data Analyst is responsible for conducting data analyses using SQL and other tools in support of a variety of analytic solutions.  Roles & Responsibilities  Collaborate with internal/external stakeholders to manage data logistics – including data specifications, transfers, structures, and rule"", ""[6] Data Analyst at Oshkosh Defense\na variety of sources to support analyses and ad-hoc investigative requests. Help identify valuable data sources and automate related tasks (ETL, reporting, etc.). Conduct data science and analytics work in a Big Data (Hadoop) ecosystem. Undertake the processing of structured and unstructured data. Analyze large amounts of information to discover trends and patterns. Use various machine learning algorithms to build most effective and useful models. Present information using data visualization tec"", ""[7] Data Analyst at First Tek, Inc.\nTitle: Business Data Analyst (Google Sheets, SQL)Location: Los Angeles, CA  Project Details Our company is embarking on a significant project to migrate our existing reporting tool to our in-house data warehouse infrastructure. As a part of this project, we need to migrate 100+ reports, currently in Google Sheets format. Given the dataset's financial nature, it is crucial to ensure accurate data validation by meticulously comparing old reports with new ones. Furthermore, this project also involv"", ""[8] Data Analyst - Financial at Frost\nJob Description  It’s about insights that are out of sight.  Does diving into a 1,000-piece puzzle and placing all the pieces excite you? Do you want the autonomy to improve processes and find solutions? Would you consider excel to be your second language? If so, being a Data Analyst – Financial with Frost could be for you.  At Frost, it’s about more than a job. It’s about having a flourishing career where you can thrive, both in and out of work. At Frost, we’re committed to fostering an environ"", ""[9] Junior Data Analyst at Coders Data\nTerm Disability.Training & Development.Wellness Resources.Paid Time Off (PTO)Qualifications:Relevant educational qualification or degree in Data analytics or Data Science or Statistics or Applied Mathematics or equivalent qualification. (Required)Experience with Tableau.(Optional)Familiar with Python, Big Data. (Optional)Proficient in SQL.Candidates who are missing the required skills, might be provided an option to enhance their skills, so that they can also apply for the role and can make a ca"", ""[10] Data Analyst at Coders Data\nThe ideal candidate will use their passion for big data and analytics to provide insights to the business covering a range of topics. They will be responsible for conducting both recurring and ad hoc analysis for business users.  ResponsibilitiesUnderstand the day-to-day issues that our business faces, which can be better understood with data Compile and analyze data related to business' issues Develop clear visualizations to convey complicated data in a straightforward fashion QualificationsBac"", ""[11] Data Analyst at Ascendion\nData Analyst Location: Onsite in Seattle, WA Job Description:Extracts data from various databases; performs exploratory data analysis, cleanses, massages, and aggregates dataApplies basic statistical concepts and descriptive statistics to understand and describe relationships in dataBuilds predictive models and complex descriptive analytics, such as clustering and market basket analysisParticipates in discussions with business partners to define business questions and to consultCreates impactful""]",
+"I know Linux and Python, I want a junior DevOps job",,,,,,,,,,,,,,,,,"RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m5757vtpe6sbpx8syk13d3d9` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197914, Requested 3145. Please try again in 7m37.488s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+"I want my first help desk job, I already know Windows and Active Directory",,,,,,,,,,,,,,,,,"RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m5757vtpe6sbpx8syk13d3d9` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198673, Requested 1875. Please try again in 3m56.736s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"

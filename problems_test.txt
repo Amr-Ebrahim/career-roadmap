@@ -1,0 +1,9 @@
+I know Python and Excel and I want a junior data a
+  - {'kind': 'citation', 'quote': 'Example: “SAS macro library” [5]', 'issue': 'The cited example [5] mentions a SAS macro library but does not explicitly state that the skill “SAS” is required or used in the job post, so it does not support the inclusion of SAS in the roadmap.'}
+
+I know Linux and Python, I want a junior DevOps jo
+  - (run failed)
+
+I want my first help desk job, I already know Wind
+  - (run failed)
+

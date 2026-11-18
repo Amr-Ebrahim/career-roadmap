@@ -69,6 +69,29 @@ def check_quotes(draft, skills):
     return problems
 
 
+# words after which a line names OTHER skills: the learning order and the groups
+# ("CI/CD ... rises with seniority; learn after Git" says nothing about Git's trend)
+OTHER_SKILLS = re.compile(r"learn after|added because|needed for|pick one|\bincludes\b|\bor\b",
+                          re.IGNORECASE)
+
+
+def check_trends(line, own_words, trends):
+    """'rises'/'falls' only where the plan marks it (the plan uses a 10-point rule).
+    Only the line's own skill counts, not the skills named in its learning order or groups."""
+    problems = []
+    main = OTHER_SKILLS.split(own_words)[0]
+    for word in ("rises", "falls"):
+        if word not in own_words.lower():
+            continue
+        for skill, trend in trends.items():
+            named = re.search(rf"(?<!\w){re.escape(skill)}(?!\w)", main, re.IGNORECASE)
+            if named and trend != word:
+                problems.append({"kind": "comparison", "quote": line.strip()[:120],
+                                 "issue": f"the plan does not mark {skill} as '{word}' "
+                                          f"(it uses a {CHANGE}-point rule)"})
+    return problems
+
+
 INTAKE = """Read a person's request for a tech career roadmap and fill in the fields.
 role_family, pick the closest:
   software (general software engineer/developer), backend, frontend, mobile,
@@ -111,16 +134,30 @@ SEARCH_ALLOWED = "\nWhile revising you may call search_job_posts (at most twice)
 NO_SEARCH = "\nWrite the complete roadmap now, as text."
 
 CRITIC = """You check a career roadmap against the EVIDENCE it was built from.
+The EVIDENCE has two parts:
+1. The PLAN. Code counted it over ALL the matching job posts. Every skill in the plan, its
+   percentage, the post count, "rises/falls with seniority" with its entry -> senior numbers,
+   the learning order ("learn after", "added because ... needs it"), "or" / "pick one" and
+   "includes" are correct by definition. A skill from the plan does NOT have to appear in the
+   search results.
+2. The SEARCH RESULTS: excerpts of single job posts, numbered [1], [2]... They are only examples.
 List every problem of these kinds:
-- number: a percentage or post count that is not in the evidence or differs from it
-- comparison: a claim like "rises", "more than" that the evidence numbers contradict
-- outside_knowledge: a skill, tool or fact that is not in the evidence and is NOT under the
-  heading "General advice (not from the job data)"
-- citation: an example [n] whose source text in the evidence does not mention what it is used for
+- number: a percentage or post count that differs from the PLAN
+- comparison: "rises" or "falls" for a skill that the PLAN does not mark that way
+- outside_knowledge: a skill, tool or fact in the phases that is in neither the PLAN nor the
+  search results. Skip the section "General advice (not from the job data)": it may use
+  general knowledge.
+- citation: an example [n] whose source text does not mention the skill it illustrates.
+  An example only has to show the skill being used or asked for; it does not have to say
+  the skill is "required".
+"No example found in the searched posts." is a correct answer, not a problem.
 Quote the exact words from the roadmap. If there are no problems, return an empty list.
 
-EVIDENCE (the plan and the search results):
-{evidence}
+PLAN:
+{plan}
+
+SEARCH RESULTS:
+{results}
 
 ROADMAP:
 {draft}"""
@@ -236,12 +273,13 @@ def build_graph(llm, judge_llm, critic_llm=None):
     def review(state: RoadmapState):
         draft = state["messages"][-1].content
         results = [m.content for m in state["messages"] if m.type == "tool"]
-        evidence = "\n\n".join([state["plan_text"], state["research"]] + results)
+        search_results = "\n\n".join([state["research"]] + results)
         problems = []
         for attempt in range(2):  # one retry: a cut-off JSON reply is often fine the 2nd time
             try:
                 problems = [p.model_dump() for p in
-                            critic.invoke(CRITIC.format(evidence=evidence, draft=draft)).problems]
+                            critic.invoke(CRITIC.format(plan=state["plan_text"], results=search_results,
+                                                          draft=draft)).problems]
                 break
             except Exception as e:  # a failed review shouldn't throw away the roadmap
                 if attempt == 1:
@@ -262,15 +300,7 @@ def build_graph(llm, judge_llm, critic_llm=None):
             if GENERALIZING.search(own_words):
                 problems.append({"kind": "comparison", "quote": line.strip()[:120],
                                  "issue": "generalizing word; give the number instead"})
-            for word in ("rises", "falls"):
-                if word not in own_words.lower():
-                    continue
-                for skill, trend in trends.items():
-                    named = re.search(rf"(?<!\w){re.escape(skill)}(?!\w)", own_words, re.IGNORECASE)
-                    if named and trend != word:
-                        problems.append({"kind": "comparison", "quote": line.strip()[:120],
-                                         "issue": f"the plan does not mark {skill} as '{word}' "
-                                                  f"(it uses a {CHANGE}-point rule)"})
+            problems += check_trends(line, own_words, trends)
 
         # the advice section may generalize, but it must not make claims about the job data
         advice = draft.split("General advice", 1)[1] if "General advice" in draft else ""

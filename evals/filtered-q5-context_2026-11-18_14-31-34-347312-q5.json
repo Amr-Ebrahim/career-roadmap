@@ -1,0 +1,19 @@
+{
+  "run": "filtered",
+  "mode": "hybrid+sentences",
+  "context_only": true,
+  "question_id": 5,
+  "question": "Which certifications do entry-level IT support jobs mention?",
+  "role_family": "networking_it",
+  "level": "entry",
+  "answer": "",
+  "sources": [
+    "[1] IT Support Specialist at Creative Financial Staffing (CFS) (entry, kaggle_linkedin, 2024-04-06)\nBonus Experience For The IT Support Specialist\nCertifications such as CompTIA A+, Microsoft Certifications, Cisco Certifications, etc.",
+    "[2] Desktop Support Analyst at Social Capital Resources (entry, kaggle_linkedin, 2024-04-11)\nEducation and Certifications\nRelevant certifications such as CompTIA A+, Microsoft Certified: Modern Desktop Administrator Associate, or similar certifications are a plus.",
+    "[3] Technical Support Representative at TEKsystems (entry, kaggle_linkedin, 2024-04-19)\nRelevant certifications such as CompTIA A+, Network+, or Microsoft Certified Professional (MCP) are desirable.",
+    "[4] IT Systems Administrator at Hendrickson (entry, kaggle_linkedin, 2024-04-18)\nCertifications: Current certifications in Cisco (such as CCNA) and Microsoft technologies (e.g., Microsoft Certified: Fundamentals) are preferred but not mandatory.",
+    "[5] IT Service Desk Specialist at Bayforce (entry, kaggle_linkedin, 2024-04-18)\nPreferred certifications include CompTIA A+, Network+, MCSA"
+  ],
+  "posts_override": "5",
+  "recency_weight_override": "0.0"
+}

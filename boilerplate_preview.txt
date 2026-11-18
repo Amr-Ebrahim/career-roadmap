@@ -1,0 +1,174 @@
+Posts: 9,683   changed: 5,806 (60%)
+Words: 4,888,778 -> 4,211,217   cut: 677,561 (13.9%)
+
+Cut pieces by kind (pieces / words):
+  equal opportunity    5,648 /   154,091 words
+  pay                  4,846 /    96,013 words
+  section              4,775 /   243,495 words
+  apply / legal        4,230 /    79,116 words
+  benefits             2,770 /    99,777 words
+  section heading      2,260 /     5,069 words
+
+Skills lost (should be 0): 0 posts
+
+80 random cut pieces:
+
+[pay | kaggle_linkedin] A reasonable, good faith estimate of the minimum and maximum base salary or pay for this position is $131,221.20 to $196,831.80.
+
+[equal opportunity | kaggle_linkedin] We’re an equal employment opportunity/affirmative action employer that empowers our people to fearlessly drive change – no matter their race, color, ethnicity, religion, sex (including pregnancy, childbirth, lactation, or related medical conditions), national origin, ancestry, age, marital status, s
+
+[pay | kaggle_linkedin] The anticipated salary range for this role is between $175,000.00 and $225,000.00.
+
+[section | kaggle_linkedin] This position is eligible to earn a base salary in the range of $110,000 to $135,000 annually depending on job-related factors such as level of experience. Compensation for this role also includes eligibility for short-term incentive compensation and deferred incentive compensation subject to indivi
+
+[section | kaggle_linkedin] Crown offers an excellent wage and benefits package for full-time employees including Health/Dental/Vision/Prescription Drug Plan, Flexible Benefits Plan, 401K Retirement Savings Plan, Life and Disability Benefits, Paid Holidays, Paid Vacation, Parental Leave, Tuition Reimbursement, and much more.
+
+[section | kaggle_linkedin] We're partners in transformation. We help clients activate ideas and solutions to take advantage of a new world of opportunity. We are a team of 80,000 strong, working with over 6,000 clients, including 80% of the Fortune 500, across North America, Europe and Asia. As an industry leader in Full-Stac
+
+[pay | kaggle_linkedin] A reasonable estimate of the current range for this role in the U.S. is $55,600 - $130,500.
+
+[pay | kaggle_linkedin] Washington Pay Range:
+
+[section | kaggle_linkedin] Unlimited paid time off each year Company sponsored health, dental and vision benefits for you and your dependentsEmployee Advisory Groups / Proactive Social Groups401k PlanReferral BonusProgressive approach to paid parental leaveEpic personal and professional growth opportunities
+
+[section | kaggle_linkedin] This position is eligible for company sponsored benefits, including medical, dental and vision insurance, 401(k), paid leave, tuition reimbursement, and a variety of other discounts and perks. Learn more about the benefits offered by NBCUniversal by visiting the Benefits page of the Careers website.
+
+[section | kaggle_linkedin] As a Trimble intern, you will not only gain valuable hands-on experience, but you will also be given challenging, meaningful tasks that will give you insight to what it's like working full-time as a valued member of a team. Our internships are designed to prepare you for your career journey, while g
+
+[section heading | kaggle_linkedin] About GM
+
+[section | kaggle_linkedin] We acknowledge that applying for a new job can be intimidating, and we want to encourage any applicant who may be qualified for the position to apply.
+
+[section | kaggle_linkedin] Cox is an Equal Employment Opportunity employer - All qualified applicants/employees will receive consideration for employment without regard to that individual's age, race, color, religion or creed, national origin or ancestry, sex (including pregnancy), sexual orientation, gender, gender identity,
+
+[pay | kaggle_linkedin] The range includes the base salary that is expected to be paid for this role.
+
+[equal opportunity | kaggle_linkedin] CarMax is an equal opportunity employer, and all qualified candidates will receive consideration for employment without regard to age, race, color, religion, sex, sexual orientation, gender identity, gender expression, genetic information, national origin, protected veteran status, disability status
+
+[section heading | kaggle_linkedin] About Gartner IT:
+
+[apply / legal | kaggle_linkedin] Please submit applications in a timely manner as there is no guarantee the posting will be available beyond the applicable deadline.
+
+[equal opportunity | kaggle_linkedin] We do not discriminate in hiring on the basis of sex, gender identity, sexual orientation, race, color, religion, creed, national origin, physical or mental disability, protected Veteran status, or any other characteristic protected by federal, state, or local law.
+
+[section | kaggle_linkedin] The salary range for this position is $130K - 160K+ (Depending on experience and level assessed post interviews)
+
+[apply / legal | kaggle_linkedin] If you have visited our website in search of information on employment opportunities or to apply for a position, and you require an accommodation in using our website for a search or application, please contact our Employee Services Department at [email protected] or 844-463-6178 .
+
+[apply / legal | kaggle_linkedin] Ability to work on-site at approved location / hybridRelocation assistance is not available for this positionPosition does not allow for visa sponsorship
+
+[equal opportunity | kaggle_linkedin] We are an equal opportunity employer and strive to provide a professional and welcoming workplace for all employees.
+
+[equal opportunity | kaggle_linkedin] Qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability or protected veteran status, or other status protected by law or regulation.
+
+[equal opportunity | kaggle_linkedin] Discover complies with federal, state, and local laws applicable to qualified individuals with disabilities and is committed to providing reasonable accommodations.
+
+[section | kaggle_linkedin] We recognize that our people are our strength and the diverse talents they bring to our global workforce are directly linked to our success. We are an equal opportunity employer and place a high value on diversity and inclusion at our company. We do not discriminate on the basis of any protected att
+
+[apply / legal | kaggle_linkedin] If you have visited our website in search of information on employment opportunities or to apply for a position, and you require an accommodation in using our website for a search or application, please contact our Employee Services Department at [email protected] or 844-463-6178 .
+
+[equal opportunity | kaggle_linkedin] Redfin provides equal employment opportunities to all employees and applicants for employment and prohibit discrimination based on race, color, religion, age, sex, national origin, disability status, genetics, protected veteran status, sexual orientation, gender identity or expression, and any other
+
+[pay | kaggle_linkedin] Upon completion of a two-year probationary period, Special Agents will transition from GL to the General Schedule (GS) pay scale.
+
+[section | kaggle_linkedin] The Job Description is intended to be a general representation of the responsibilities and requirements of the job. However, the description may not be all-inclusive, and responsibilities and requirements are subject to change.
+
+[pay | kaggle_linkedin] $145,700 - $242,900
+
+[equal opportunity | kaggle_linkedin] Equal Opportunity Employer: Females/Minorities/Veterans/Individuals with Disabilities
+
+[section heading | kaggle_linkedin] Our Mission
+
+[pay | kaggle_linkedin] $110,000.00 - $140,000.00 Salary
+
+[section heading | kaggle_linkedin] Who We Are:
+
+[apply / legal | kaggle_linkedin] For corp-Corp rates please contact the recruiter.
+
+[pay | kaggle_linkedin] Employees may be eligible for a discretionary bonus in addition to base pay.
+
+[section | kaggle_linkedin] We are committed to working with and providing reasonable accommodations to applicants with physical and mental disabilities. If you need assistance and/or a reasonable accommodation in the application or recruiting process due to a disability, please contact us at accommodations@scale.com. Please s
+
+[equal opportunity | kaggle_linkedin] All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability status, protected veteran status, or any other characteristic protected by law.
+
+[apply / legal | kaggle_linkedin] For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits.
+
+[apply / legal | kaggle_linkedin] For technical support or questions about Capital One's recruiting process, please send an email to Careers@capitalone.com
+
+[apply / legal | kaggle_linkedin] Must be legally authorized to work in the United States without the need for employer sponsorship, now or at any time in the future * Active TS/SCI with Polygraph security clearance required * Ability to work fully onsite in Chantilly, VA
+
+[section heading | kaggle_linkedin] Who We Are
+
+[equal opportunity | kaggle_linkedin] All qualified applicants will receive consideration for employment without regard to veteran status, disability, age, race, color, religion, sex, sexual orientation, gender identity or expression, national origin, genetics, marital status, pregnancy, or any other non-merit based factor.
+
+[section | kaggle_linkedin] We’ve been named a Best Place to Work by the Washington Post. Our employees value the flexibility at CACI that allows them to balance quality work and their personal lives. We offer competitive benefits and learning and development opportunities. We are mission-oriented and ever vigilant in aligning
+
+[pay | kaggle_linkedin] United States of America Pay Range
+
+[benefits | arbeitnow] Benefits vary by country and may include healthcare coverage, parental leave, retirement plans, relocation support, wellness programs, meal and transportation allowances, and other location-specific perks.
+
+[section | kaggle_linkedin] Included Health is a new kind of healthcare company, delivering integrated virtual care and navigation. We’re on a mission to raise the standard of healthcare for everyone. We break down barriers to provide high-quality care for every person in every community — no matter where they are in their hea
+
+[equal opportunity | kaggle_linkedin] If you need a reasonable accommodation to assist with your job search or application for employment, email us at Careers.Accommodations@GM.com or call us at 800-865-7580.
+
+[pay | kaggle_linkedin] Applicants offered employment with Sandia are subject to a federal background investigation to meet the requirements for access to classified information or matter if the duties of the position require a DOE security clearance.
+
+[equal opportunity | kaggle_linkedin] Ultra Maritime is an equal opportunities employer that values diversity, inclusion, equity and equality.
+
+[section | kaggle_linkedin] At Procore, we invest in our employees and provide a full range of benefits and perks to help you grow and thrive. From generous paid time off and healthcare coverage to career enrichment and development programs, learn more details about what we offer and how we empower you to be your best.
+
+[benefits | kaggle_linkedin] Benefits:At HTC Global Services our associates have access to a comprehensive benefits package that includes Health, Dental, Vision, Paid-Time-Off, Paid Holidays, 401K matching, Life and Accidental Death Insurance, Short- & Long-Term Disability Insurance, and a variety of other offerings.
+
+[section heading | kaggle_linkedin] Compensation
+
+[pay | kaggle_linkedin] Pay range and Compensation Package
+
+[section heading | kaggle_linkedin] What we can offer you:
+
+[apply / legal | arbeitnow] We'd love to hear from you if you wish to be a part of our journey.
+
+[apply / legal | kaggle_linkedin] ATS and CRM Administration: Efficiently manage, and utilize , all aspects of the ICIMS platform, focusing on both its ATS and CRM functionalities, to enhance the recruitment process specifically tailored to the veterinary industry .
+
+[equal opportunity | kaggle_linkedin] Qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, sexual orientation, gender identity, disability or protected veteran status.
+
+[section | kaggle_linkedin] Included Health is an Equal Opportunity Employer and considers applicants for employment without regard to race, color, religion, sex, orientation, national origin, age, disability, genetics or any other basis forbidden under federal, state, or local law. Included Health considers all qualified appl
+
+[equal opportunity | kaggle_linkedin] If reasonable accommodation is needed to participate in the job application or interview process, to perform essential job functions, and/or to receive other benefits and privileges of employment, please notify the recruiter you are working with.
+
+[section | kaggle_linkedin] State Street is an equal opportunity and affirmative action employer.
+
+[pay | kaggle_linkedin] The salary range for this position may be tailored to be lower or higher in different talent markets.
+
+[equal opportunity | arbeitnow] Please email click here if you require any reasonable accommodations throughout the recruiting process.
+
+[pay | kaggle_linkedin] PVH currently provides base salary ranges for all positions-on job advertisements-in the United States based on local requirements.
+
+[benefits | kaggle_linkedin] Benefits include health, dental and vision insurances, retirement savings plan, paid time off, health savings account, flexible spending accounts, life insurance, disability insurance, tuition reimbursement, and more.
+
+[pay | kaggle_linkedin] Your recruiter can share more about the specific salary range for your preferred location during the hiring process.
+
+[equal opportunity | kaggle_linkedin] candidates' diversity and take affirmative action to employ and advance individuals
+
+[section | kaggle_linkedin] We will consider qualified applicants with arrest and conviction records based on individual circumstances and in accordance with applicable law including, but not limited to, the San Francisco Fair Chance Ordinance.
+
+[benefits | kaggle_linkedin] Benefit offerings include medical, dental, vision, term life insurance, short-term disability insurance, additional voluntary benefits, commuter benefits, and a 401K plan.
+
+[apply / legal | kaggle_linkedin] For other opportunities available at Akkodis, or any questions, please contact Ayush Nautiyal at 610-900-4827 or ayush.nautiyal@akkodisgroup.com.
+
+[pay | kaggle_linkedin] What We Can Offer YouCompetitive salary and employee stock optionsFull healthcare package including medical, dental, and vision insurance, short-term and long-term disability insurance, life, and AD&D insurance401(K) + 5% company matchFlexible paid time off policyWinter week company holiday shutdown
+
+[section | kaggle_linkedin] At TikTok, we create together and grow together. That's how we drive impact - for ourselves, our company, and the communities we serve.
+
+[benefits | arbeitnow] Work-Life Integration: Enjoy Unlimited PTO (in applicable regions) and generous PTO globally, as well as a flexible hybrid work model that balances remote focus with vibrant office collaboration.
+
+[benefits | kaggle_linkedin] Exact compensation may vary based on several factors, including skills, experience, and education.Benefit packages for this role will start on the 31st day of employment and include medical, dental, and vision insurance, as well as HSA, FSA, and DCFSA account options, and 401k retirement account acc
+
+[equal opportunity | kaggle_linkedin] We do not discriminate or allow discrimination on the basis of race, color, religion, creed, sex (including pregnancy, childbirth, breastfeeding, or related medical conditions), age, sexual orientation, gender identity, national origin, ancestry, citizenship, genetic information, registered domestic
+
+[benefits | kaggle_linkedin] BENEFITS & COMPENSATIONAll employees are provided competitive compensation, paid training, and employee discounts on our products and services.We offer a range of benefits packages based on employee eligibility*, including:Paid Vacation Time, Paid Sick Leave, Paid Holidays, Parental Leave.Health, De
+
+[benefits | kaggle_linkedin] They offer benefits including full medical, dental, and vision along with 401K and other benefits.
+
+[section | kaggle_linkedin] Goldman Sachs is an equal employment/affirmative action employer Female/Minority/Disability/Veteran/Sexual Orientation/Gender Identity
+
+[benefits | kaggle_linkedin] 401k with company match

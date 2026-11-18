@@ -1,0 +1,125 @@
+import re
+
+BRACKETS = re.compile(r"【[^】]*】")
+
+GENDER = re.compile(
+    r"\(\s*(?:[mfwdxh]\s*(?:/\s*[mfwdxh*]\s*)+|all genders?|gn\*?|div\.?)\s*\)",
+    re.IGNORECASE,
+)
+GENDER_BARE = re.compile(r"\b[mfwdxh](?:/[mfwdxh]){1,2}\s*$", re.IGNORECASE)
+
+STAFFING = re.compile(
+    r"\b(?:only\s+(?:on\s+)?|on\s+)?w-?2(?:\s+(?:only|contract|role|candidates?(?:\s+only)?))?\b"
+    r"|\b(?:no\s+)?(?:c2c|corp\s+to\s+corp)\b"
+    r"|\b(?:only\s+)?locals?\s+(?:candidates?|profiles?)(?:\s+only)?|\b(?:only\s+)?locals\b(?:\s+only)?|\bonly\s+local\b"
+    r"|\busc(?:\s*/\s*gc)?(?:\s+only)?\b"
+    r"|\b(?:immediate\s+need|urgent(?:\s+need)?)\b"
+    r"|^\s*(?:hiring\s+for|full[- ]time\s+job\s*:)",
+    re.IGNORECASE,
+)
+
+JOB_CODES = re.compile(r"\([A-Z]*-?\d{4,}[A-Z]*\)|\bR-?\d{5,}\b")
+
+EXTRA_PUNCT = re.compile(r"!!+|\|\|+|::+|\*+")
+PAREN_OPEN = re.compile(r"\(\s*[\-–/|:,\s]*")
+PAREN_CLOSE = re.compile(r"[\s\-–/|:,]*\)")
+EMPTY_PARENS = re.compile(r"\(\s*\)")
+SPACES = re.compile(r"\s{2,}")
+EDGES = re.compile(r"^[\s\-–|:,/]+|[\s\-–|:,/]+$")
+
+
+def clean_title(title):
+    t = BRACKETS.sub(" ", title)
+    t = GENDER.sub(" ", t)
+    t = GENDER_BARE.sub(" ", t)
+    t = STAFFING.sub(" ", t)
+    t = JOB_CODES.sub(" ", t)
+    t = EXTRA_PUNCT.sub(" ", t)
+    t = PAREN_OPEN.sub("(", t)
+    t = PAREN_CLOSE.sub(")", t)
+    t = EMPTY_PARENS.sub(" ", t)
+    t = SPACES.sub(" ", t)
+    t = EDGES.sub("", t)
+    return t
+
+
+LEVEL_RULES = [
+    ("intern", re.compile(r"\b(?:intern|internship|working student|trainee|apprentice\w*|co-?op)\b")),
+    ("leadership", re.compile(r"\b(?:head of|director|s?vp|vice president|chief|cto|cio|ciso|manager|supervisor)\b")),
+    ("senior", re.compile(r"\b(?:senior|sr|staff|principal|lead|architect|iii|iv)\b")),
+    ("entry", re.compile(r"\b(?:junior|jr|entry[- ]level|graduate|new grad|associate|i|ii)\b")),
+    ("mid", re.compile(r"\b(?:mid[- ]level|intermediate)\b")),
+]
+
+
+def level_from_title(title):
+    t = title.lower()
+    for level, pattern in LEVEL_RULES:
+        if pattern.search(t):
+            return level
+    return None
+
+
+KAGGLE_TO_LEVEL = {
+    "Internship": "intern",
+    "Entry level": "entry",
+    "Associate": "entry",
+    "Mid-Senior level": "mid",
+    "Director": "leadership",
+    "Executive": "leadership",
+}
+
+COMPATIBLE = {
+    "intern": {"Internship"},
+    "entry": {"Entry level", "Associate"},
+    "mid": {"Associate", "Mid-Senior level"},
+    "senior": {"Mid-Senior level"},
+    "leadership": {"Director", "Executive", "Mid-Senior level"},
+}
+
+
+# NEW: years of experience stated in the text
+YEARS = re.compile(
+    r"(\d{1,2})\s*\+?\s*(?:(?:-|–|to)\s*\d{1,2}\s*\+?\s*)?(?:years?|yrs?)\b[^.\n]{0,40}?experience",
+    re.IGNORECASE,
+)
+MAX_YEARS = 15
+
+
+def years_mentions(text):
+    found = []
+    for m in YEARS.finditer(text):
+        years = int(m.group(1))
+        if years <= MAX_YEARS:
+            found.append((years, m.group(0)))
+    return found
+
+
+def min_years_required(text):
+    found = years_mentions(text)
+    return min(y for y, _ in found) if found else NoneKAGGLE (LinkedIn postings)
+  all posts in postings.csv                        123,849
+  tech posts kept by filter_tech                   9,663
+    by role family                                 {'software': 3315, 'data': 1635, 'networking_it': 1373, 'security': 654, 'backend': 598, 'devops_cloud': 576, 'architecture': 413, 'frontend': 396, 'ai_ml': 389, 'qa': 162, 'mobile': 152}
+
+ARBEITNOW (job board API)
+  snapshot 2026-11-01.json                         4,173 posts
+  snapshot 2026-11-15.json                         4,897 posts
+  all snapshots together                           9,070 posts, 8,979 unique
+  English tech posts kept by process_arbeitnow     1,280
+
+MERGED AND CLEANED
+  jobs_all (merge_sources)                         10,175 posts, columns: job_id, company_name, title, description, location, remote_allowed, job_posting_url, formatted_experience_level, role_family, posted_date, source
+  jobs_clean (clean_jobs)                          10,138 posts, columns: job_id, company_name, title, description, location, remote_allowed, job_posting_url, formatted_experience_level, role_family, posted_date, source, title_raw, level, level_source, min_years
+  jobs_skills (extract_skills)                     10,138 posts, columns: job_id, company_name, title, description, location, remote_allowed, job_posting_url, formatted_experience_level, role_family, posted_date, source, title_raw, level, level_source, min_years, skills, n_skills
+  by source                                        {'kaggle_linkedin': 8881, 'arbeitnow': 1257}
+  by level                                         {'senior': 4286, 'mid': 2418, 'entry': 1679, 'unknown': 1120, 'leadership': 442, 'intern': 193}
+  by role family                                   {'software': 3421, 'data': 1622, 'networking_it': 1351, 'security': 688, 'devops_cloud': 669, 'ai_ml': 653, 'backend': 610, 'architecture': 451, 'frontend': 301, 'mobile': 191, 'qa': 181}
+  posts with at least 1 skill (indexed)            9,683
+  average skills per post                          7.1
+  distinct skills found                            136
+  date range arbeitnow                             2026-10-25 to 2026-11-15
+  date range kaggle_linkedin                       2024-04-05 to 2024-04-20
+
+SEARCH INDEX
+  chunks in ChromaDB                               20,770

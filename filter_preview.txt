@@ -1,0 +1,545 @@
+
+==========================================================================================
+Q: What skills do I need to get an entry-level cloud engineer job?
+1110 -> 808 words
+
+--- [1] Cloud Engineer at LanceSoft, Inc. (kept 5/13 sentences)
+  KEEP | Job Description:Principal Duties and Responsibilities:Applies Software knowledge to assist and support the design, development, creation, modification, and validation of embedded and cloud edge software, applications, and/or specialized utility programs.
+  cut  | Analyzes user needs and software requirements.
+  cut  | Designs and implements small software features for products and systems.
+  cut  | Participates in the design, coding for small features, unit testing, minor debugging fixes, and integration efforts to ensure projects are completed on schedule.
+  cut  | Assists in performing code reviews and regression tests as well as the triaging of issues to ensure the quality of code.
+  cut  | Collaborates with others inside project team to accomplish project objectives.
+  cut  | Writes technical documentation for Software projects.
+  KEEP | Cloud engineer to develop cloud-based applications & services, design & implement unstructured cloud data (S3) I/O & processing and optimize engineering data pipelines and implement data security for Product Development and Test Engineering department.
+  KEEP | Top 5 Required Skills:2 + years of work experience with Python, C#, Shell scripting.
+  KEEP | Experience with databases PostgreSQL.Experience with AWS Elastic Beanstalk, Aurora Serverless PostgreSQL + S3 + Glue + Athena + File gateway + IAM + Lambda.
+  cut  | Experience developing Data Warehouse and schema support.
+  cut  | Good Communication Skills.
+  KEEP | Technologies:2 years or more experience with databases PostgreSQL.1 year or more experience with AWS Elastic Beanstalk, Aurora Serverless PostgreSQL + S3 + Glue + Athena +
+
+--- [2] Cloud Engineer at Schrödinger (kept 3/9 sentences)
+  KEEP | We’re seeking a Cloud Engineer to join us in our mission to improve human health and quality of life through the development, distribution, and application of advanced computational methods utilizing innovative and dynamic cloud-based systems.
+  cut  | As a member of our Information Technology team, you’ll play a crucial role in facilitating the partnership between our development and operations teams.
+  cut  | By building solutions in a highly collaborative environment, you’ll help scientists accelerate their R&D activities, reduce costs, and make discoveries that wouldn’t otherwise be possible.
+  cut  | Who Will Love This Job
+  KEEP | A Google Cloud professional with Azure and AWS experience who knows the ins and outs of Internet-hosted servicesA Linux expert with exposure to Mac and WindowsAn automation enthusiast with excellent Python/bash skillsA technical innovator who thinks in Infrastructure-as-CodeAn accomplished systems architect and troubleshooterA great communicator who can work closely with other infrastructure groups and business unitsA detail-oriented self-starter with organization and documentation skills
+  cut  | What You’ll Do
+  KEEP | Help build a modern IT infrastructure in public and private clouds using Terraform and GithubInfluence project implementations and develop platform technologies to be used by other groupsWork closely with scientists, business units, and other teams to understand and shape their needs and technical pathsLook and listen for opportunities to leverage skills to improve processes and outcomesLinux systems administration using Ansible and other configuration management tools
+  cut  | What You Should Have
+  cut  | Bachelor's degree in Computer Science, Information Technology, or a related
+
+--- [3] Cloud Engineer at SAIC (kept 3/4 sentences)
+  KEEP | Active TS/SCI with CI Polygraph Bachelors degree (additional 4 years of experience in lieu of degree) 2+ years of experience in a cloud and/or hybrid environment 2+ years of demonstrated experience in one or more of the following activitiesIaaS, PaaS, and SaaS services (e.g., compute, storage, network, security, administration, automation, application services, and databases) in either native cloud or hybrid cloud environments Developing and deploying cloud solutions to Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), IBM Cloud, or Oracle Cloud Infrastructure (OCI) Experience in building and deploying systems in the cloud using continuous integration and continuous delivery (CI/CD) frameworks and infrastructure automation Large-scale data architecture, data modeling, database design, and information systems implementation Strong customer service skills, teaming skills, and the ability to collaborate within a cross-functional team, as well as the CSPs (AWS, Azure, Google, IBM, and Oracle) Certifications in any of the following CSPs Azure AWSOCI GCP IBM
+  KEEP | Strong analysis and quality assessment skills Experience with various Linux and Microsoft Windows OSs distributions Experience with Structured Query Language (SQL) and databases Experience migrating both custom built and enterprise apps to and from on-prem to cloud Experience debugging performance and technical issues
+  cut  | SAIC accepts applications on an ongoing basis and there is no deadline.
+  KEEP | Covid Policy SAIC does not require CO
+
+--- [4] Cloud Engineer at Tech Consulting (kept 4/6 sentences)
+  KEEP | organization, you come to us with the required foundational technical skills, coding ability, educational degree, and general understanding that will serve as a foundation to learning Azure Development.
+  KEEP | It’s our mission to mentor, develop, and train you, as mentioned above, to learn Azure Development, so you can then gain experience and provide world-class consultative services to our end clients.
+  KEEP | Expertise:IT consultative services and quality engineer development through recruiting, hiring, and coaching our consultants25+ years of combined domestic and international experience in IT consultingHundreds of Fortune 1000, 500, and innovative start-up end clients with 1000’s of successfully completed and on-going projects across the US, EU, and UKReach:Employee work force is diverse, spanning across 4 continents of North America, Europe, South America, and Asia& Innovation:Active monitoring and measurement of the market across all technological sectors to adapt to and implement what's "next”
+  cut  | How We Will Help You
+  KEEP | and Develop:We will instruct and train you in Azure Development to become a best-in-class consultant through our proven method and program, capable of delivering end-client deliverables, through our paid, 8-week training courseSupport:Several teams will be ready to support and collaborate with you in a custom-tailored way;
+  cut  | this includes our teams of Development Managers, Tech Subject Manager Experts, Project Deliverable Support, Corporate Trainers, Interview Coaches, Client Placement Specialists, and Immigration Specialists (for our
+
+--- [5] DevOps Engineer at Robert Half (kept 6/12 sentences)
+  KEEP | As a DevOps Engineer, you will be a core, pivotal, and transformational member of the engineering team for our client.
+  KEEP | You will work as an integral part of our agile teams in analyzing, designing, building, and testing high quality cloud deployment methodologies and systems.
+  KEEP | Working on a team under the leadership of senior architects, you will be building the future of our state-of-the-art cloud-based platforms.
+  cut  | This position will be fully responsible for our platform and application pipelines, and the flow of code updates through the engineering group, as well as creating and monitoring highly available cloud infrastructure and platforms to host that code.
+  KEEP | You will have the opportunity to work on multiple technologies, especially cloud platform services.
+  cut  | Responsibilities will span production, development, and testing environments.
+  KEEP | Responsibilities will be diverse including cloud architecture and infrastructure, build tooling and dev-ops systems and processes.
+  cut  | Show flexibility when adapting to change and must be willing to learn and develop new skill sets as applicable.
+  cut  | Have excellent interpersonal skills with the ability to develop cohesive working relationships with internal and external clients.
+  cut  | Quickly make an impact when stepping into large and complicated systems Must be driven, organized, & detail oriented.
+  KEEP | Excellent technical, logical, analytical, and problem-solving skills Must be able to collaborate with other developers/senior developers on ideas, workflows, and technologies Experience planning and managing multiple deliverables in a highly energized and fast-paced environment.
+  cut  | Have excellent technical writing and communication skills
+
+==========================================================================================
+Q: What do entry-level help desk jobs require?
+998 -> 566 words
+
+--- [1] IT Help Desk Technician at MBK Real Estate Companies (kept 11/23 sentences)
+  KEEP | Writing manuals (user guides).
+  KEEP | Ability to manage a high volume of Help Desk calls and emails every day.
+  KEEP | Other related activities that may be required and deemed necessary by the Supervisor.
+  cut  | Education Requirements:High School degree required.
+  KEEP | Experience Requirements (in years):3 years IT Help Desk.
+  KEEP | Required Competencies/Licenses/Certifications:Microsoft Suite competency.
+  cut  | Excellent working knowledge of Windows 10/11, Teams, and Outlook.
+  cut  | CompTIA A+ Certification is strongly preferred.
+  KEEP | Basic networking skills are required.A CompTIA Network+ Certification is strongly preferred.
+  KEEP | Case management software proficiency (PC patching, inventory and ticketing).
+  cut  | Dell Latitude and OptiPlex PC’s support is preferred.
+  KEEP | Active Directory and Microsoft 365 environment experience.
+  cut  | Palo Alto Global Protect VPN support is a plus.
+  cut  | SharePoint and OneDrive support is a plus.
+  cut  | PowerShell experience is a plus.
+  KEEP | Technical, analytical, interpersonal and organizational skills are required.
+  cut  | Attention to detail, and the ability to document technical issues.
+  cut  | Strong organizational skills and the ability to multi-task.
+  cut  | Ability to travel on average 2-4 weeks per year.
+  KEEP | Physical Demands & Work Environment:Must be mobile and able to perform the physical requirements of the job, bending, kneeling, stooping, pushing, pulling and repetitive motion.
+  KEEP | Ability to sit and work at a computer for long periods of time.
+  cut  | Able to move intermittently throughout the workday.
+  cut  | We offer a rich benefits package comprising of the following: competitive salaries with
+
+--- [2] Help Desk Technician at TEKsystems (kept 12/25 sentences)
+  KEEP | The Help Desk Administrator is responsible for managing all Help Desk requests and providing technical advice to resolve employee IT issues.
+  cut  | Responsibilities also include assisting the IT Director with software testing and deployment.
+  KEEP | Manage tickets (via Zendesk) received at the Help Desk in a prompt and courteous manner;
+  cut  | Troubleshoot computers/mobile devices operating systems and hardware issues;
+  cut  | Manage company anti-virus software;
+  cut  | Manage user accounts, group policy and access guidelines;
+  KEEP | Set up and deploy hardware/core software for new hires and existing employees;
+  cut  | Support IT function and employees with roll out of new technology, whether it is software, enhanced processes or hardware upgrades;
+  cut  | Support IT function and employees through mergers and acquisitions;
+  KEEP | Assist in software license management and asset tracking/inventory;
+  cut  | Maintain active directory and email distribution lists;
+  cut  | Maintain asset inventory;
+  KEEP | Assist with developing IT procedures and training staff.
+  KEEP | Sense of Urgency Initiative Job Knowledge Quality/Attention to Detail Productivity
+  cut  | Ability to multi-task and prioritize requests;
+  cut  | Attention to detail and deadlines;
+  KEEP | Good organizational, typing, and computer software skills (Microsoft suite);
+  cut  | Ability to work well with others and present professionalism via face-to-face, email and phone interactions;
+  KEEP | Ability to learn new products and communicate effectively with non-technical employees.
+  KEEP | Help desk, Troubleshooting, Active directory, Support
+  KEEP | Top Skills Details
+  KEEP | Help desk,Troubleshooting,Active directory,Support
+  KEEP | Additional Skills & Qualifications
+  cut  | Break/fix computers and mobile devices
+  cut  | A little bit of Active Directory administration and group policy
+
+--- [3] Help Desk Specialist at TEKsystems (kept 7/18 sentences)
+  KEEP | This is a help desk position that is supporting the Mass Mutual Ascend internal IT employee base (700 people).
+  KEEP | service desk and IT ops team.
+  cut  | They are looking for a person for 830-530pm Monday-Friday.
+  KEEP | 3 person services desk.
+  cut  | Dustin Mason- is the lead for the desk.
+  cut  | The services desk runs from 7-530pm staffed between the 3 of them.
+  cut  | So need to be flexible to cover different shifts if someone is on PTO.
+  KEEP | This services desk is more than just a help desk.
+  cut  | They have a high first call resolution;
+  KEEP | anything to do with personal work station O365, VPN connection issues, and then take calls within anyone else with in the org and resolve some app support stuff.
+  cut  | If they have access to an enterprise app- the service desk will resolve.
+  cut  | If required advanced security- they will move to 2nd and 3rd level support.
+  cut  | get calls, email tickets (majority).
+  KEEP | Small company around 700 employee- these three really get to know a lot of people in the company- a lot of excellence customer services skills just as important as tech skills, as well as somethin with excellence attendance.
+  cut  | want this to also also be something they are interested in, don't want it to be a stepping stone.
+  KEEP | This person needs several years of front line experience, following ITIL frame work- they want someone who enjoys working with that customer.
+  cut  | They use ServiceNow for ticketing system.
+  cut  | attention to details- getting things updated when reach out to customer
+
+--- [4] Helpdesk Tier 1.5 at TEKsystems (kept 13/24 sentences)
+  cut  | CANDIDATES MUST LIVE IN THE DFW AREA.
+  KEEP | EVEN THOUGH THE POSITION IS 95% REMOTE, YOU WILL BE REQUIRED TO COME INTO THE OFFICE 3 DAYS A MONTH.
+  cut  | The Service Desk Analyst has a very wide array of tasks all surrounding in-bound contacts via phone calls, emails, and chats.
+  cut  | This role is responsible for supporting end users with majority of locations based in USA.
+  cut  | The calls vary from a very quick password reset that require very little effort, to mid-level troubleshooting to triage and/or resolve issues.
+  KEEP | 1-2 years of helpdesk / call center experience
+  KEEP | 1-2 years of experience working with “help desk ticketing tools” i.e.
+  cut  | Service Now
+  KEEP | Experience supporting Work from Home end-users
+  KEEP | Experience working remotely yet as a team member
+  KEEP | Ability to troubleshoot common Windows related issues
+  KEEP | Working knowledge of Active Directory
+  cut  | Working knowledge of Domain hierarchy
+  KEEP | Working knowledge of Microsoft Windows OS
+  cut  | Microsoft Office Products Including:
+  KEEP | Word, Excel, Outlook, PowerPoint
+  cut  | Remote Meeting Software Including:
+  KEEP | Microsoft Teams, Cisco WebEx, Zoom
+  cut  | Strong written and oral communication
+  KEEP | Ability to learn and troubleshoot custom applications
+  cut  | Great “people skills” with demonstrated ability to communicate with a wide verity of end users including many that have little or no “technical” skills.
+  KEEP | The ability to listen to the end user and understand their needs and perspectives.
+  KEEP | Sense of urgency in supporting the end user – returning the ability for them to perform their job.
+  cut  | The successful candidate
+
+--- [5] Help Desk Support at Talon Professional Services (kept 3/3 sentences)
+  KEEP | Job Title: Help Desk Support (Tier 1)Term: Contract – 3 monthsRemote Status: OnsiteHours: 40 hours a week
+  cut  | Top Skills:Must have at least 1 year of experience in a corporate settingCreate tickets and onsite troubleshooting"Smart hands experience" = remote IT support along with experience working with monitors, printers, various hardware, and end user computer support  Responsibilities:This role is onsite 5 days a week performing Tier 1 Help Desk Support in a hospital setting.
+  cut  | They are looking for a resource who is personable and professional with experience creating tickets, remote IT Support, and various hardware experience.
+
+==========================================================================================
+Q: Which tools do entry-level security analyst jobs ask for?
+1069 -> 581 words
+
+--- [1] Information Technology Security Analyst at Matech (kept 6/12 sentences)
+  KEEP | Full job descriptionAs an Information Security Analyst, you will design and implement IT security systems, establish best practices, and monitor networks for security issues.
+  cut  | This role also includes responsibilities related to auditing, and contributing to various security projects.
+  KEEP | Roles and Responsibilities:Daily Auditing:Audit various security tools and systems, including but not limited to:Cisco AMPFirepowerCisco StealthwatchQRadarESETMaintain and update configurations as needed on both clients and servers.
+  cut  | Troubleshoot any issues that arise.
+  KEEP | Stealthwatch:Monitor and maintain Stealthwatch for network security and anomaly detection.
+  cut  | Security Projects:Collaborate on various security projects and initiatives as assigned by the Information Security team.
+  cut  | Additional Assignments:Be flexible and willing to take on additional tasks as needed, as security needs and priorities evolve.
+  KEEP | Qualifications:Bachelor's degree in Information Security, Computer Science, or a related field (or equivalent work experience).
+  cut  | Proven experience in IT security and network monitoring.
+  KEEP | Familiarity with security tools, including Cisco AMP, Firepower, Stealthwatch, and ESET.Strong troubleshooting skills for security systems and hardware.
+  KEEP | Knowledge of best practices for IT security and compliance.AWS Cloud Exp is a MUSTExcellent communication and documentation skills.
+  cut  | Ability to work effectively in a team and handle multiple tasks.
+
+--- [2] Info Security Analyst Entry Level - Vulnerability Assessment at USAA (kept 10/19 sentences)
+  KEEP | and responds to security anomalies and events (e.g.
+  KEEP | suspicious behavior, attacks, and security breaches) within USAA’s environments using a variety of cyber defense tools to detect and respond to threats.
+  KEEP | Conducts vulnerability, security configuration, and/or penetration testing assessments of systems and networks.
+  KEEP | Identifies cyber threats, analyzes operational impacts, and communicates to appropriate collaborators.
+  cut  | Stays ahead of with the latest information security threats, exploits, trends, and intelligence.
+  cut  | We offer a flexible work environment that requires an individual to be in the office 4 days per week.
+  KEEP | This position can be based in San Antonio, TX.
+  cut  | Relocation assistance is not available for this position.
+  cut  | What You'll Do
+  KEEP | Assists in monitoring internal and external networks, systems, and applications for security anomalies and events (e.g.
+  KEEP | suspicious behavior, attacks, and security breaches).
+  KEEP | Responds to cyber incidents, performing routine analysis using security tools.
+  KEEP | Assists in using the discoveries from the incident response process to make basic improvements to the existing detection capabilities.
+  KEEP | Details findings to security alerts.
+  cut  | Works under supervision and with some assistance, resolves issues and navigates obstacles to deliver work product.
+  cut  | Ensures risks associated with business activities are optimally identified, measured, monitored, and controlled in accordance with risk and compliance policies and procedures.
+  cut  | What You Have
+  cut  | Bachelor's degree: OR 4 years of related experience (in addition to the minimum years of experience required) may be substituted in lieu of degree.
+  cut  | Up to 2 years of related experience
+
+--- [3] Security Analyst- Alert Response at Convergence Networks (kept 10/22 sentences)
+  cut  | a myriad of businesses, technologies, applications, and personalities.
+  cut  | Ability to multitask in a fast-paced environment;
+  cut  | manage multiple tickets and switch between tasks with ease.
+  cut  | Ability to execute processes and procedures necessary to produce consistent results under stress.
+  cut  | Ability to build rapport with customers and teammates alike.
+  KEEP | Skilled at defusing high-stress situations and facilitating resolution to security problems.
+  cut  | Excellent communication (verbal and written) in English at all levels internally and externally.A strong sense of initiative and ownership over work.
+  KEEP | Ability to work effectively and complete assigned tasks with minimal supervision.
+  cut  | Ability to work effectively within a team as well as independently.
+  cut  | What are the qualifications I need to have?
+  cut  | High school diploma or equivalent.
+  KEEP | Experience in a technology field working as Help Desk Administrator, System Administrator, Network Administrator, Information Security, or similar role.
+  KEEP | General understanding of IT applications, processes, software, equipment, and networking.US/Canada Citizenship and a clean criminal record.
+  cut  | Would be awesome if you had… Prior SOC experience.
+  KEEP | Familiarity with malware sandbox operation.
+  KEEP | Familiarity with information technology tools such as Hyper-V, VMware Workstation, Docker, and CyberChef etc.
+  KEEP | Familiarity using the Linux command line.
+  KEEP | Familiarity with Microsoft Office 365, Microsoft Entra, and other Cloud service offerings.
+  KEEP | Understanding of, and a background working in law enforcement or criminal justice.
+  KEEP | Information Technology or Information Security Certifications
+  cut  | What is the physical work environment like?
+  cut  | This position requires standing, walking, sitting, using hands, seeing, reaching
+
+--- [4] Security Analyst / Cybersecurity Analyst - Remote, only in NC at Arch Capital Services LLC (kept 7/16 sentences)
+  cut  | cyber-attacks in order to ensure steps are taken to mitigate the threat and help the team to track all security incidents to closure.
+  KEEP | The Security Analyst will work on activities such as incident response, logging/monitoring support, application security, configuration reviews, and configuration and maintenance of various security controls, both on premise and on cloud infrastructure.
+  cut  | They will assist on creating and revising information security standards and policies as well as create and produce applicable metrics.
+  KEEP | Participate in vulnerability management related activities including the identification, prioritization and directing the remediation of security related vulnerabilities.
+  KEEP | Design, develop, implement, and maintain security documentation.
+  cut  | Document all tickets and alerts worked on in the required SLA.
+  cut  | Monitor and respond to SIEM alerts.
+  cut  | Participate in rotational on-call responsibilities.
+  cut  | Education And Experience
+  KEEP | 1-3 years of related security experienceDeep understanding of cyber incident response processes and procedures.
+  KEEP | Familiarity with network forensics including PCAP analysis, network security, and IDS/IPS analysis.
+  cut  | Understanding of Cyber Threat Intelligence and Cyber Security Awareness concepts.
+  KEEP | In-depth understanding of Windows operating systems and general knowledge of Unix, Linux, and Mac operating systems.
+  KEEP | Knowledgeable with various security infrastructure tools such as intrusion prevention/detection systems, anti-virus/endpoint detection and response, proxy servers, email controls, and SIEM.
+  cut  | Ability to work as part of a team, show initiative and take on new tasks as assigned.
+  cut  | Ability to perform risk analysis and communicate that risk to others
+
+--- [5] Security Analyst / Cybersecurity Analyst - North Carolina at Arch Capital Services LLC (kept 7/16 sentences)
+  cut  | cyber-attacks in order to ensure steps are taken to mitigate the threat and help the team to track all security incidents to closure.
+  KEEP | The Security Analyst will work on activities such as incident response, logging/monitoring support, application security, configuration reviews, and configuration and maintenance of various security controls, both on premise and on cloud infrastructure.
+  cut  | They will assist on creating and revising information security standards and policies as well as create and produce applicable metrics.
+  KEEP | Participate in vulnerability management related activities including the identification, prioritization and directing the remediation of security related vulnerabilities.
+  KEEP | Design, develop, implement, and maintain security documentation.
+  cut  | Document all tickets and alerts worked on in the required SLA.
+  cut  | Monitor and respond to SIEM alerts.
+  cut  | Participate in rotational on-call responsibilities.
+  cut  | Education And Experience
+  KEEP | 1-3 years of related security experienceDeep understanding of cyber incident response processes and procedures.
+  KEEP | Familiarity with network forensics including PCAP analysis, network security, and IDS/IPS analysis.
+  cut  | Understanding of Cyber Threat Intelligence and Cyber Security Awareness concepts.
+  KEEP | In-depth understanding of Windows operating systems and general knowledge of Unix, Linux, and Mac operating systems.
+  KEEP | Knowledgeable with various security infrastructure tools such as intrusion prevention/detection systems, anti-virus/endpoint detection and response, proxy servers, email controls, and SIEM.
+  cut  | Ability to work as part of a team, show initiative and take on new tasks as assigned.
+  cut  | Ability to perform risk analysis and communicate that risk to others
+
+==========================================================================================
+Q: What skills do entry-level backend developer jobs ask for?
+825 -> 551 words
+
+--- [1] Software Developer I - Backend at Electrify America (kept 8/17 sentences)
+  KEEP | up and use software development tools, office software, productivity toolsCritical thinking and problem solving – fluent in development using Java, troubleshooting software and writing unit test cases.
+  KEEP | Communication skills – Ability to collaborate within the development team, other teams & departments.
+  cut  | Organization and task management – managing personal workload in alignment with goals and priorities;
+  KEEP | attention to details2+ years of experience developing software solutions based on technical requirements2+ years of hands on experience as a backend software developerGrowth mindset;
+  cut  | demonstrated ability to adapt to new technologiesCuriosity to keep learning.
+  cut  | Excellent team player
+  KEEP | Specialized Skills (Required)
+  KEEP | Experience developing APIs Proficiency in backend coding/development using Java Familiarity using no-sql databases such as MongoDB;
+  KEEP | experience using PostgresKnowledge of backend frameworks, such as Spring Boot and other spring components.
+  KEEP | Basic understanding of at least one front-end tech such as JavaScript, HTML, CSS, to support efficiency and alignment with front-end developers.
+  cut  | Knowledge of software design patternsExperience writing unit tests
+  KEEP | Specialized Skills (Desired)
+  cut  | Experience with developing high-availability softwareExperience developing highly scalable applications.
+  cut  | Regular working hours;
+  cut  | occasional after-hours production support or troubleshootingUp to 5-10% domestic and international travel
+  cut  | Electrify America is an Equal Opportunity Employer.
+  cut  | We welcome and encourage applicants from all backgrounds, and do not discriminate based on race, sex, age, disability, sexual orientation, national origin, religion
+
+--- [2] Software Development Engineer II - Backend (Remote) at HackerRank (kept 4/11 sentences)
+  KEEP | At HackerRank, we help over 2,500 of the most prestigious logos across industries find, hire, and upskill amazing developer talent using our SaaS-based Developer Skills Platform.
+  KEEP | We pioneered and continue to lead the developer skills market with the ethos of “Skills over Pedigree”.
+  cut  | Everyone at HackerRank is passionate about the mission, and we are looking to add smiling faces to help us “Accelerate the World’s Innovation” by making skills matter more the pedigree.
+  cut  | This position is Full-Time and Remote within the United States.
+  cut  | HackerRank is the leader in the technical hiring space and we continue to innovate and revolutionize this space.
+  KEEP | Do you have coding skills, passion for driving innovation and creativity for solving problems?
+  cut  | Does building AI-driven next-generation products and solutions excite you?
+  cut  | Come join us!!
+  cut  | We are looking to add a full-time,100% remote engineer to our fast growing engineering team.
+  cut  | You Will Be Working On
+  KEEP | Evaluate technologies, develop POCs, solve technical challenges and propose innovative solutions for our technical and business problemsDelight our stakeholders, customers and partners by building high quality, well tested, scalable and reliable business applicationsArchitecting and developing applications and microservices using REST APIs, serverless, lambda, NodeJS, Docker, Kubernetes, CICD, automation (Backend Engineers)Deliver high-quality product experiences to these personas -- in a quality-conscious manner,
+
+--- [3] Java Backend developer at TekWissen ® (kept 4/7 sentences)
+  KEEP | Job Title: Java Backend developer Location: Seattle, WA Duration: 8 Months Job Type: Contract Work Type: Onsite/Hybrid  Pay Rate: 60-60/Hourly/W2  Job Description: The Content Platform team is looking for a Software Development Engineer.
+  cut  | who will act as first level support and development for all incoming production software application issues dealing with merchandising applications.
+  cut  | Your solutions will impact our customers directly!
+  KEEP | Primary responsibilities include Developing monitoring solutions, troubleshooting/debugging and implementing the fix for internally developed code (Perl, C/C++, JAVA), performing SQL queries, improving our systems that gather metrics on our features, updating, tracking and resolving technical challenges.
+  cut  | Responsibilities also include working alongside development on client Corporate and Divisional Software projects, updating/enhancing our current software, automation of support processes and documentation of our systems.
+  KEEP | Job Qualifications: The ideal candidate is interested in a career in software development and is looking to utilize and expand their coding skills and gain exposure to a wide variety of software applications.
+  KEEP | They must be detail oriented, have superior verbal and written communication skills, strong organizational skills, are able to work independently and can maintain
+
+--- [4] .NET Developer at Vaco (kept 6/6 sentences)
+  cut  | Proven experience as a .NET Developer or similar role.
+  cut  | Proficiency in SSIS packages, C#, Visual Studio 2019/2022, .Net4 library, XML, JSON, GitHub, SQL Server Manager, and SQL.Familiarity with .Net8 features is a plus.
+  cut  | Strong problem-solving skills and attention to detail.
+  cut  | Excellent communication and teamwork abilities.
+  cut  | Note: This is a short-term contract position based onsite in Downtown Orlando.
+  cut  | Candidates must be available to work onsite for the duration of the contract.
+
+--- [5] .Net Developer at Open Systems Technologies (kept 9/15 sentences)
+  KEEP | Our client is looking for a .Net Developer to join their team in Mt Laurel, NJ or Philadelphia, PA (2 days/week).
+  cut  | US Citizens Only
+  KEEP | As a Software Developer, you’ll work with other developers to create solutions and review code, and continuously learn and grow.
+  KEEP | We’re looking for someone with a passion for technology, an engineering mindset, and relevant experience in large software systems.
+  KEEP | Bring your analytical problem-solving skills and join us in driving innovation at our forward-thinking company.
+  KEEP | Experience Writing safe, scalable, and consistent JavaScript, Typescript, and C# code.
+  KEEP | Experience with C# and MS .NET
+  KEEP | Experience with SQL, TSQL, or RDBMS technologies.
+  cut  | Experience with WebApi technologies.
+  KEEP | Experience with a modern web based front-end framework, Angular preferred.
+  cut  | Attention to detail.
+  KEEP | Flexibility in problem-solving and handling uncertainty, adapting, and changing as needed.
+  cut  | Strong interpersonal communication and relational skills.
+  cut  | High School Diploma or equivalent is required.
+  cut  | Trade school or industry certification, college degree or equivalent work experience is nice to have.
+
+==========================================================================================
+Q: Which certifications do entry-level IT support jobs mention?
+679 -> 471 words
+
+--- [1] IT Support Specialist at Creative Financial Staffing (CFS) (kept 8/8 sentences)
+  cut  | Firewalls, VLANs and Multi-Factor Authentication (MFA).
+  cut  | Comfortable providing end-user support via phone, RMM tools, etc.
+  cut  | Strong communication and interpersonal skills.
+  KEEP | Bonus Experience For The IT Support Specialist
+  cut  | Certifications such as CompTIA A+, Microsoft Certifications, Cisco Certifications, etc.
+  cut  | Experience working for a Managed Services Provider (MSP)Experience with any of the following: ConnectWise, IT Glue, SolarWinds, WatchGuard, Ruckus, Veeam, Cisco Networking Products, Extreme Network Products, Ubiquiti, VMWare, Dell, Axix, 3OX and Adobe.
+  cut  | Experience with LAN/WAN, TCP/IP, Routers, Switches, Firewalls, Access Points, VPN, Citrix, VoIP, etc.
+  KEEP | Medical/Dental/Vision InsuranceRetirement Plan w/ 3% match2 weeks PTOPaid Training & Certifications
+
+--- [2] IT Service Desk Specialist at Bayforce (kept 4/4 sentences)
+  KEEP | Computer Backup Jobs.
+  cut  | Requirements:Minimum education - high school diploma, (Associate/Bachelors in relevant field of study valued/preferred)Two years of experience providing IT support in an enterprise environment, or equivalent.
+  cut  | Preferred certifications include CompTIA A+, Network+, MCSAServiceNow experience preferredStrong experience with PC hardwareStrong experience with Windows 10Detail oriented and organized.
+  cut  | Someone who has a sense of urgency and efficient.
+
+--- [3] Desktop Support Technician at eTeam (kept 3/3 sentences)
+  KEEP | certification or equivalent of 2-4 years of relevant experienceCertifications and Qualifications:Maintain all required OEM Certifications as directed by ManagementKnowledge of relevant software and hardware systemsUnderstanding of ITIL methodologiesA+ certification is desiredMay require additional customer-specific certifications or training as required
+  cut  | Skills:Excellence in communication and customer-facing skillsStrong oral, written, and interpersonal skillsAbility to follow instructions and processes with minimal instructionAbility to lift and move computer equipment up to 50 lbs.
+  cut  | Must own a basic repair kitAdditional requirements may exist if the offer of employment is extended.
+
+--- [4] IT Support at Triveni IT (kept 7/12 sentences)
+  KEEP | The Junior Support Helpdesk role is an entry-level position within the IT department, focused on providing technical support and assistance to end users.
+  KEEP | As a Junior Support Helpdesk professional, your primary responsibility is to respond to user inquiries, troubleshoot technical issues, and ensure the smooth operation of computer systems, software applications, and hardware devices and should also have basic programming skills.
+  cut  | Key Responsibilities: Coordinate and schedule appointments or visits to broker offices to resolve complex or critical issues that require on-site assistance.
+  cut  | Serve as the main point of contact for clients and brokers, providing timely and professional support via phone, email, or in-person interactions.
+  KEEP | Provide timely and accurate technical assistance and troubleshooting for computer systems, software applications, and hardware devices.
+  cut  | Identify, diagnose, and resolve common hardware and software issues, such as network connectivity problems, printer malfunctions, and software configuration errors.
+  KEEP | Document all support interactions, including issue details, troubleshooting steps, and resolutions, in the ticketing system or knowledge base for future reference.
+  cut  | Assist in the setup, configuration, and deployment of new hardware and software, including computer systems, peripherals, and software applications.
+  cut  | Conduct user training and guide basic software and hardware usage to enhance end-user productivity.
+  KEEP | Qualifications and Skills:High school diploma or equivalent;
+  KEEP | additional technical certifications or relevant college degrees are a plus.
+  KEEP | Basic understanding of computer hardware, operating systems (e.g., Windows, macOS), and software applications.
+
+--- [5] IT Support Specialist at Lightspeedhq (kept 10/23 sentences)
+  cut  | , functional and organized.
+  KEEP | Partner with Level 1 and 3 teammates to diagnose and troubleshoot main IT issues.
+  KEEP | Start assisting IT departments with basic configurations, initiatives, project involvement or monitoring under guidance (based on IDPs) Provide technical support to end-users and executive leadership.
+  KEEP | Educate end-users on IT best practices and provide technical training as needed.
+  cut  | Ensures that SOX compliance tasks are followed rigorously Assist with routine IT maintenance tasks.
+  cut  | Manage user access requests.
+  KEEP | Maintain knowledge of all IT compliance requirements and responsibilities.
+  cut  | Collaborate with other teams inside and outside of IT on initiatives and issues.
+  KEEP | Maintain and update the organization's IT knowledge base.
+  KEEP | Train Level 1 technicians on new technologies and procedures.
+  KEEP | Work closely with the IT-Ops team to support the office.
+  cut  | And a little bit of....
+  cut  | Host large meetings and company events.
+  cut  | Use excellent communication skills to interact clearly and confidently with executive leadership and business stakeholders.
+  cut  | Contributing as part of the wider team to achieve organizational objectives even if this means doing things that aren’t strictly within the scope of your role.
+  KEEP | Experience & Skills: Associate's degree in IT or related field;
+  KEEP | relevant certifications (e.g., CompTIA A+, Network+) preferred.
+  cut  | Good experience with MDM, ticketing system.
+  cut  | Proficiency in Mac OS & Windows environments.
+  KEEP | 1 - 3 years of experience in IT Support.
+  cut  | Attributes & Skills Strong troubleshooting and problem-solving skills, with high attention to detail.
+  cut  | Focus on outcomes.
+  cut  | An ownership mindset
+
+==========================================================================================
+Q: Which entry-level cloud jobs ask for Terraform or Kubernetes?
+1053 -> 614 words
+
+--- [1] Cloud Infrastructure Engineer (Data) at Angi (kept 3/9 sentences)
+  KEEP | in cloud computing on AWS1+ years of experience in Kubernetes and container orchestrationExposure to ML Ops or other data engineering workloads Experience building or maintaining data or ML deployment pipelines in a cloud environment Proficiency in object oriented design principles (Python and Go preferred)Basic experience in automation and infrastructure as codeStrong problem-solving skills and attention to detailExcellent communication and collaboration skillsStrong understanding of complex distributed systemsExperience with monitoring and alerting systems
+  KEEP | Master's degree in Computer Science or related fieldAWS/Kubernetes certification (preferred but not required)Experience using Terraform, Docker or other containerization technologies, Helm, data visualization and dashboarding tools, or other infrastructure as code tools
+  cut  | We value diversity
+  cut  | We know that the best ideas come from teams where diverse points of view uncover new solutions to hard problems.
+  cut  | We welcome and value individuals who bring diverse life experiences, educational backgrounds, cultures, and work experiences.
+  cut  | Compensation & Benefits
+  cut  | The salary band for this position ranges from $110,000 - $175,000, commensurate with experience and performance.
+  cut  | Compensation may vary based on factors such as cost of livingThis position will be eligible for a competitive year end performance bonus & equity packageFull medical, dental, vision package to fit your needs Flexible vacation policy;
+  KEEP | work hard and take time when you need it Pet discount plans & retirement plan with company match (401K) The rare opportunity to work with
+
+--- [2] Infrastructure Engineer (Data) at Angi (kept 3/9 sentences)
+  KEEP | in cloud computing on AWS1+ years of experience in Kubernetes and container orchestrationExposure to ML Ops or other data engineering workloads Experience building or maintaining data or ML deployment pipelines in a cloud environment Proficiency in object oriented design principles (Python and Go preferred)Basic experience in automation and infrastructure as codeStrong problem-solving skills and attention to detailExcellent communication and collaboration skillsStrong understanding of complex distributed systemsExperience with monitoring and alerting systems
+  KEEP | Master's degree in Computer Science or related fieldAWS/Kubernetes certification (preferred but not required)Experience using Terraform, Docker or other containerization technologies, Helm, data visualization and dashboarding tools, or other infrastructure as code tools
+  cut  | We value diversity
+  cut  | We know that the best ideas come from teams where diverse points of view uncover new solutions to hard problems.
+  cut  | We welcome and value individuals who bring diverse life experiences, educational backgrounds, cultures, and work experiences.
+  cut  | Compensation & Benefits
+  cut  | The salary band for this position ranges from $110,000 - $175,000, commensurate with experience and performance.
+  cut  | Compensation may vary based on factors such as cost of livingThis position will be eligible for a competitive year end performance bonus & equity packageFull medical, dental, vision package to fit your needs Flexible vacation policy;
+  KEEP | work hard and take time when you need it Pet discount plans & retirement plan with company match (401K) The rare opportunity to work with
+
+--- [3] SRE / Software Engineer (Kubernetes, AWS) at Dice (kept 11/14 sentences)
+  cut  | Dice is the leading career destination for tech experts at every stage of their careers.
+  KEEP | Our client, Artech Information Systems, is seeking the following.
+  cut  | Apply via Dice today!
+  KEEP | Software Engineer III (Spark)
+  cut  | Seattle, WA / Cupertino, CA / Austin, TX / 100% REMOTE
+  KEEP | Strong understanding of distributed systems and cloud computing principles.
+  KEEP | Demonstrated experience with Apache Spark
+  KEEP | Extensive hands-on experience and strong understanding of Kubernetes environments, preferably on AWS Cloud.
+  KEEP | Extensive experience with major cloud providers, especially with AWS services related to computing (EKS, EC2), storage (S3), and networking (VPC, NLB, Ingress) .
+  KEEP | Proficiency in at least one programming languages (Java, Scala, Python)
+  KEEP | Experience with setting up alerting, monitoring dashboards and remediation automation in a large scale distributed environment
+  KEEP | Identify opportunities for automation, optimization, and cost-saving measures within the cloud infrastructure.
+  KEEP | Scripting experience with Python or Shell
+  KEEP | SRE / Software Engineer (Kubernetes, AWS)
+
+--- [4] DevOps/ Cloud Engineer at Hexagon Safety, Infrastructure & Geospatial (kept 4/10 sentences)
+  KEEP | As a DevOps/Cloud Engineer you will help harden software solutions supporting divisions going through a technological transformation.
+  cut  | Working in a small group, you’ll guide our development teams through creating and automating their cloud infrastructure , as well as build and maintain the central platform and solutions, which the R&D teams can benefit from.
+  KEEP | We are a multi- cloud company (AWS, Azure & GCP), meaning that you will get to apply a diverse mix of tools and services.
+  cut  | You will implement best practices and help teams to build upon the solutions.
+  cut  | You should be well versed and have good practical experience in the following topics:
+  KEEP | Site Reliability Engineering  Kubernetes, and Kubernetes Operators  Containerisation across different platforms, operating systems, and CPU types  Best practices and patterns in software development  Cloud Native tools and their applicability across different Cloud providers  Scalable and secure cloud infrastructure solutions.
+  cut  | Automation scripts for provisioning, configuration, and orchestration of cloud resources.
+  cut  | You should have a good understanding of the following topics:
+  cut  | Feature flags, Blue/Green, Canary and Ring release strategies and tools  Cloud Native tools and their applicability across different Cloud providers  Monitoring, Observability and how it is used to manage MTTR.
+  KEEP | Cloud provider services and capabilities  CI/CD both the principles and the experience of setting up a pipeline (Azure DevOps, Gitlab, Argo CD or other similar tools )  Managing Hybrid and Multi-Cloud environments  Security best practices in cloud
+
+--- [5] Data Platform Engineer at Angi (kept 3/9 sentences)
+  KEEP | in cloud computing on AWS1+ years of experience in Kubernetes and container orchestrationExposure to ML Ops or other data engineering workloads Experience building or maintaining data or ML deployment pipelines in a cloud environment Proficiency in object oriented design principles (Python and Go preferred)Basic experience in automation and infrastructure as codeStrong problem-solving skills and attention to detailExcellent communication and collaboration skillsStrong understanding of complex distributed systemsExperience with monitoring and alerting systems
+  KEEP | Master's degree in Computer Science or related fieldAWS/Kubernetes certification (preferred but not required)Experience using Terraform, Docker or other containerization technologies, Helm, data visualization and dashboarding tools, or other infrastructure as code tools
+  cut  | We value diversity
+  cut  | We know that the best ideas come from teams where diverse points of view uncover new solutions to hard problems.
+  cut  | We welcome and value individuals who bring diverse life experiences, educational backgrounds, cultures, and work experiences.
+  cut  | Compensation & Benefits
+  cut  | The salary band for this position ranges from $110,000 - $175,000, commensurate with experience and performance.
+  cut  | Compensation may vary based on factors such as cost of livingThis position will be eligible for a competitive year end performance bonus & equity packageFull medical, dental, vision package to fit your needs Flexible vacation policy;
+  KEEP | work hard and take time when you need it Pet discount plans & retirement plan with company match (401K) The rare opportunity to work with
+
+==========================================================================================
+Q: Do entry-level help desk jobs ask for CompTIA A+ or ITIL?
+929 -> 589 words
+
+--- [1] Help Desk Specialist at TEKsystems (kept 18/26 sentences)
+  KEEP | of Software Deployment tools (SCCM) iOS/Android experience Excellent troubleshooting skills Excellent customer service skills Quality research skills to aid in troubleshooting and resolution of user problems.
+  KEEP | Experience using ticketing systems for incident and request management.
+  cut  | Thorough ticketing management skills.
+  KEEP | Previous experience staffing an internal Service Desk and being part of a small team environment.
+  KEEP | Candidate must possess excellent customer service skills and be able to work with and communicate with other support teams within the IT department.
+  KEEP | Knowledge of ITIL processes.
+  KEEP | Education: High School Diploma required.
+  KEEP | Preferred But Not Required:
+  KEEP | CompTIA A+ Certification
+  KEEP | Previous Customer Service Experience
+  KEEP | Skills And Experience:
+  KEEP | Excellent Customer Service Skills
+  cut  | ANDROID
+  KEEP | COMPTIA
+  KEEP | ACTIVE DIRECTORY
+  KEEP | ITIL
+  KEEP | Certifications & Licenses:
+  KEEP | A+
+  KEEP | A+ Certification
+  cut  | We're partners in transformation.
+  cut  | We help clients activate ideas and solutions to take advantage of a new world of opportunity.
+  cut  | We are a team of 80,000 strong, working with over 6,000 clients, including 80% of the Fortune 500, across North America, Europe and Asia.
+  cut  | As an industry leader in Full-Stack Technology Services, Talent Services, and real-world application, we work with progressive leaders to drive change.
+  cut  | That's the power of true partnership.
+  cut  | TEKsystems is an Allegis Group company.
+  KEEP | The company is an equal opportunity employer
+
+--- [2] IT Help Desk Technician at MBK Real Estate Companies (kept 15/23 sentences)
+  KEEP | Writing manuals (user guides).
+  cut  | Ability to manage a high volume of Help Desk calls and emails every day.
+  KEEP | Other related activities that may be required and deemed necessary by the Supervisor.
+  KEEP | Education Requirements:High School degree required.
+  KEEP | Experience Requirements (in years):3 years IT Help Desk.
+  KEEP | Required Competencies/Licenses/Certifications:Microsoft Suite competency.
+  cut  | Excellent working knowledge of Windows 10/11, Teams, and Outlook.
+  KEEP | CompTIA A+ Certification is strongly preferred.
+  KEEP | Basic networking skills are required.A CompTIA Network+ Certification is strongly preferred.
+  KEEP | Case management software proficiency (PC patching, inventory and ticketing).
+  cut  | Dell Latitude and OptiPlex PC’s support is preferred.
+  KEEP | Active Directory and Microsoft 365 environment experience.
+  cut  | Palo Alto Global Protect VPN support is a plus.
+  KEEP | SharePoint and OneDrive support is a plus.
+  KEEP | PowerShell experience is a plus.
+  KEEP | Technical, analytical, interpersonal and organizational skills are required.
+  cut  | Attention to detail, and the ability to document technical issues.
+  KEEP | Strong organizational skills and the ability to multi-task.
+  cut  | Ability to travel on average 2-4 weeks per year.
+  cut  | Physical Demands & Work Environment:Must be mobile and able to perform the physical requirements of the job, bending, kneeling, stooping, pushing, pulling and repetitive motion.
+  KEEP | Ability to sit and work at a computer for long periods of time.
+  cut  | Able to move intermittently throughout the workday.
+  KEEP | We offer a rich benefits package comprising of the following: competitive salaries with
+
+--- [3] Associate Service Desk Technician at Iron Bow Technologies (kept 3/8 sentences)
+  cut  | AS Degree preferred.
+  KEEP | Apple Certified Tech (ACiT/ACMT), ITIL certification, Cisco Certification (CCENT/CCT or higher), Comp TIA Certification (A+, Security+ or Network+), Microsoft (MCP/Associate or higher) and Google IT Support Professional Certification will be considered in lieu of experience.
+  cut  | Will also accept completion of an Iron Bow approved SkillBridge Internship program in lieu of IT experience or certification.
+  KEEP | Strong familiarity with mobile devices (iOS/Android), Tablets, Windows / Mac PCs, and related hardware technologiesSuperior customer service skills a must.
+  KEEP | Strong desire to provide the highest quality of service to the customer is requiredExperience working in help desk ticketing platforms/systems, ability to type and document notes in real-time while engaged with customer on phoneAbility to maintain calm composure and customer focus while troubleshooting and solving issues with frustrated end-users that may have little understanding of technologyAbility to possess strong sense of ownership of client relationshipsBe accountable, on-time, and available to take service desk calls at start of shift.
+  cut  | Regular, reliable attendance is requiredAbility to work successfully as part of a teamAbility to keep sensitive and confidential material privatePrior service military or knowledge of military agencies and veteran community helpfulRegular & reliable attendance requiredAbility to obtain and maintain Public Trust Security ClearanceUS Citizen
+  cut  | TRAVEL REQUIREMENTSThis position will require no travel.
+  cut  | WHY YOU’LL LOVE ITShowcase you IT knowledge in a
+
+--- [4] Associate Service Desk Technician at Iron Bow Technologies (kept 3/8 sentences)
+  cut  | AS Degree preferred.
+  KEEP | Apple Certified Tech (ACiT/ACMT), ITIL certification, Cisco Certification (CCENT/CCT or higher), Comp TIA Certification (A+, Security+ or Network+), Microsoft (MCP/Associate or higher) and Google IT Support Professional Certification will be considered in lieu of experience.
+  cut  | Will also accept completion of an Iron Bow approved SkillBridge Internship program in lieu of IT experience or certification.
+  KEEP | Strong familiarity with mobile devices (iOS/Android), Tablets, Windows / Mac PCs, and related hardware technologiesSuperior customer service skills a must.
+  KEEP | Strong desire to provide the highest quality of service to the customer is requiredExperience working in help desk ticketing platforms/systems, ability to type and document notes in real-time while engaged with customer on phoneAbility to maintain calm composure and customer focus while troubleshooting and solving issues with frustrated end-users that may have little understanding of technologyAbility to possess strong sense of ownership of client relationshipsBe accountable, on-time, and available to take service desk calls at start of shift.
+  cut  | Regular, reliable attendance is requiredAbility to work successfully as part of a teamAbility to keep sensitive and confidential material privatePrior service military or knowledge of military agencies and veteran community helpfulRegular & reliable attendance requiredAbility to obtain and maintain Public Trust Security ClearanceUS Citizen
+  cut  | TRAVEL REQUIREMENTSThis position will require no travel.
+  cut  | WHY YOU’LL LOVE ITShowcase you IT knowledge in a
+
+--- [5] Desktop Support Technician at eTeam (kept 3/3 sentences)
+  cut  | of ITIL methodologies A+ certification is desired May require additional customer-specific certifications or training as required  Skills: Excellence in communication and customer-facing skills Strong oral, written, and interpersonal skills Ability to follow instructions and processes with minimal instruction Ability to lift and move computer equipment up to 50 lbs.
+  cut  | Must own a basic repair kit Additional requirements may exist if the offer of employment is extended.
+  cut  | Other attributes desired: ServiceNow ticketing system experienceAsset management/inventory experienceCustomer facing deskside troubleshootingRemote desktop supportEnd of Life refresh workstation exchange

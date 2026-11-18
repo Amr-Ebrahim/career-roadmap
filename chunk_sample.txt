@@ -1,0 +1,372 @@
+40 random chunks of 20,770
+
+===== [1] kaggle_3886837532_1 | kaggle_linkedin | software | senior | 203 words
+Staff Engineer, Software | software | senior
+analysis, software architecture, OS porting, driver development, and application development through the lifecycle of the productPossess strong design skills and collaborate with multidisciplinary teams to deliver high-quality results within budget and on time.Responsible for crafting, implementing, and maintaining embedded software.Improve technology partnership and champion design reuse across multiple product lines.Improve design efficiency by standardizing design processes, tools, and practices and building a common platform.Mentor and guide junior team members by reviewing their code submissions.Communicate with the team members in a transparent, respectful, constructive, and professional way.Establish relationships across the global organization.Writing SOP and work instruction according to ISO 9001 requirements.
+
+Education:
+
+Bachelor’s degree in Computer Science, Computer Engineering, or related technical field
+
+Experience/Requirements:
+
+Minimum 10 years of experience in developing Real Time Embedded Systems.Must be an expert in Embedded Software/Firmware Design and Development.Possess a strong background in Software architecture design.Experience in Embedded product development with GUI (Graphical User Interface) and Touchscreen.Development experience with low-level drivers and peripherals, such as USB, Ethernet, SPI, UART, and I2C.Development of communication protocols like Ethernet/USB/WIFI and CAN/Profibus.Strong knowledge in C / C++ language/Qt and MISRA coding standards.Willingness to perform both unit and integration testing.Familiarity with IDEs such as ARM KEIL/IAR .
+
+===== [2] kaggle_3887571883_0 | kaggle_linkedin | software | entry | 234 words
+Salesforce Developer 100% Remote | software | entry
+Description 
+
+ Designs, builds, tests, debugs, secures, and deploys usable & scalable solutions in Salesforce leveraging Force.com, VisualForce, Apex, Lightning Web Components, Web Services, APIs, Flows, Experience Cloud sites, and OmniStudio Supports Salesforce integration implementations with on-prem, 3rd party and cloud applications Attends Agile ceremonies such as daily stand-ups, backlog grooming, sprint planning and provides regular updates to maintain transparency Performs peer code reviews as necessary to ensure consistent quality and adherence to best practices Creates and maintains technical artifacts such as API specifications and technical programming specifications for the assigned development modules Works with product owners, business analysts, architects, and cross-area teams to deliver tailored solutions that meet business requirements and align with business goals Participates in requirement analysis & design discussions, offering recommendations to make the best use of Salesforce platform and products Creates time estimates for assigned project tasks Conforms to security and governance requirements Collaborates and shares development tasks with external service vendors Provides day-to-day support and troubleshoots production issues ensuring smooth operations and delivery Participates in on-call support rotation which includes 24x7 support for critical systems
+
+
+ About TEKsystems 
+
+We're partners in transformation. We help clients activate ideas and solutions to take advantage of a new world of opportunity. We are a team of 80,000 strong, working with over 6,000 clients, including 80% of the Fortune 500, across North America, Europe and Asia.
+
+===== [3] kaggle_3887577232_0 | kaggle_linkedin | networking_it | entry | 234 words
+Helpdesk Analyst | networking_it | entry
+Description 
+
+Client is looking for entry level helpdesk candidate to help in their solution center. They are low on bandwidth and need to staff up. They would like to find recent college graduates or currently attending college or school who would like to pursue a career in IT. Ideally, they want candidates with an internal drive to learn, strong customer service, and the ability to pick things up quickly and apply them. This is a 3-6 month contract role. Should the candidate do well they will likely hire perm. For the contract portion they will be making $16/hr but once they go perm they will bump up to $18. The shift needed is all 7a-3:30pm.
+
+ Skills 
+
+password reset, customer service, printer support, troubleshooting, help desk, phone support, ticketing system
+
+ Top Skills Details 
+
+password reset,customer service,printer support,troubleshooting
+
+ Additional Skills & Qualifications 
+
+A+ certification (bonus) college degree/ associates degree (in tech) desire to have a career in IT Have a college degree in IT/ IS or be working towards that
+
+ Experience Level 
+
+Entry Level
+
+ About TEKsystems 
+
+We're partners in transformation. We help clients activate ideas and solutions to take advantage of a new world of opportunity. We are a team of 80,000 strong, working with over 6,000 clients, including 80% of the Fortune 500, across North America, Europe and Asia. As an industry leader in Full-Stack Technology Services, Talent Services
+
+===== [4] kaggle_3887598015_4 | kaggle_linkedin | ai_ml | senior | 176 words
+Principal Field Solution Architect - AWS AI - Digital Velocity | ai_ml | senior
+in designing and implementing RESTful APIs.Mathematics and Algorithms: A solid foundation in advanced mathematics (including linear algebra and calculus). Additionally, understanding various machine learning algorithms and their implementation is essential.Demonstrated understanding of Terraform/Ansible or equivalent automation technologies Demonstrated knowledge of public cloud platforms, aware of multi-platform solutions and capabilities Expert level proficiency in AWSExcellent written and verbal communication skills, must be able to lead client facing conversations to drive success in consulting engagements Demonstrate solid interpersonal skills, able to mentor and guide internal engineering and personnel technical development teams Ability to understand, remember, and apply oral and/or written instructions or other information. Ability to organize thoughts and ideas into understandable terminology. Ability to multitask, organize and prioritize. Ability to apply common sense while engaging with customers and providing solutions. Ability to understand and follow complex instructions and guidelines. 
+
+
+Preferred Qualifications
+
+AWS Solutions Architect Professional Certification Additional technology areas and experience: Python, Terraform, CloudFormation, and specialty AWS and AI/ML certifications Previous consulting experience
+
+===== [5] kaggle_3887945490_0 | kaggle_linkedin | data | entry | 47 words
+Database Administrator AS400 | data | entry
+BRMS, Tapes and Restore,Printer , General. TCP Administration. OS : As400 / IBMi (V5R4 to V7R5) Replication Tools : QEDD, iTera and MIMIX Monitoring Tools : Nimbus, Tivoli, Control-M, Nagios and SolarWinds.
+
+Scheduling Tools : AJS, Robot, Control-M, Halcyon, TaaTools
+
+===== [6] kaggle_3887996346_1 | kaggle_linkedin | architecture | senior | 218 words
+Solutions Architect | devops_cloud | senior
+min systems to the print systems.
+
+ Skills 
+
+Architecture, Solution architecture, print, customer communications management, ccm, quadient, gmc inspire, quadient inspire, cloud, conversion
+
+ Top Skills Details 
+
+Architecture,Solution architecture,print,customer communications management,ccm
+
+ Additional Skills & Qualifications 
+
+ Work collaboratively with other architects, data scientists, analytics teams, and business product owners in an agile environment. Architect, build and support the operation of Cloud and On-Premises enterprise data infrastructure and tools. Design robust, reusable and scalable data driven solutions and data pipeline frameworks to automate the ingestion, processing and delivery of structured and unstructured batch and real-time streaming data. Lead the development of data APIs and data delivery services to support critical operational processes, analytical models, and machine learning applications. Recommend the selection and integration of data related tools, frameworks and applications required to expand our platform capabilities. Recommend and implement best practices for the management of enterprise data, including master data, reference data, metadata, data quality, and lineage. Learn and keep pace with the latest advances in the field; rapidly grasp new technologies to support the environment and contribute to project deliverables. May manage/coach staff. QualificationsBachelor’s degree in computer science, math, engineering, MIS, or equivalent experienceFive years of collective experience in the application of architecture, enterprise roadmaps, analytics, cloud, IT strategies, innovation, SAFE, TOGAF and data integration
+
+===== [7] kaggle_3888474810_2 | kaggle_linkedin | security | entry | 244 words
+Associate Managing Consultant, Cybersecurity | security | entry
+tor for transactions? We play a much larger role in the world by enabling those that have no access to financial systems. We have the technology, people and Brand to serve modern society. Today, we are a global tech company that connects everyone to endless possibilities, priceless possibilities.
+
+Overview
+
+The Data & Services team is a key differentiator for Mastercard, providing the cutting-edge services that help our customers grow. Focused on thinking big and scaling fast around the globe, this agile team is responsible for end-to-end solutions for a diverse global customer base. Centered on data-driven technologies and innovation, these services include payments-focused consulting, loyalty and marketing programs, business Test & Learn experimentation, and data-driven information and risk management services. Client verticals include Financial Institutions, Retail & Commerce and Digital Partners, Governments and many others.
+
+Role
+
+Manager level role focused on our Test & Learn platform, leveraged by 300+ clients globally and growing revenue with new clients in key segments (Retail, Restaurants, Grocery).
+
+ Responsible for developing and executing the sales strategy for a key set of prospect accounts within the US to secure multimillion-dollar, multi-year deals Build and develop a cold pipeline into an active one, ultimately progressing to signed platform deals Ability to message the benefits of bundling Test & Learn with other Data & Services products (SessionM, Managed Services, SpendingPulse, Customer Data Enhancement, etc.) Advocate for funding incentives the Market Development team and with
+
+===== [8] kaggle_3889114336_1 | kaggle_linkedin | software | unknown | 136 words
+Wordpress Developer | software | unknown
+to new technologies.
+Preferred Qualifications:
+ • Previous experience with Wordpress development or other web development projects. • Knowledge of version control systems such as Git. • Understanding of SEO principles and best practices. • Familiarity with front-end frameworks like Bootstrap or Foundation.
+Benefits:
+ • Hands-on experience in Wordpress development within a supportive team environment. • Mentorship and guidance from experienced developers. • Opportunity to contribute to real-world projects and build a portfolio. • Possibility for future career advancement within the company.
+How to Apply:To apply for this internship, please submit your resume and a brief cover letter explaining your interest in Wordpress development and any relevant experience or projects to services@marocedge.org
+Maroc Edge is committed to providing equal opportunities for all interns and encourages candidates from diverse backgrounds to apply.
+
+===== [9] kaggle_3889289967_0 | kaggle_linkedin | software | mid | 96 words
+Wireless Embedded Software Engineer | software | mid
+Embedded Software EngineerIrvine: 4 days onsite per weekSalary: 200k DOE + Benefits
+Our client is leading the way in the IoT industry focusing on Mobile networks and wireless communication. 
+Key skills:Strong experience in Embedded SystemsTrack record of C/C++ ExperienceStrong Experience in wireless technologies like WiFi for exampleMobile ad-hoc networking experience ideally
+If you are an Embedded Software looking to take a progressive step in your career, then please apply today to learn more.
+If you are interested in this or other opportunities across US/Canada please contact Jack Christodoulou.
+
+===== [10] kaggle_3891010624_2 | kaggle_linkedin | networking_it | unknown | 97 words
+Information Technology System Administrator | networking_it | unknown
+Make changes to system reports, etc. Work with consultants to test software changes prior to implementation.Other duties assigned by Supervision or Management. Education: Bachelor’s degree in Computer Science, Information Technology, or related field, or equivalent experience. Experience: 3-5 years of System Administration, Network Administration, or similar role. Knowledge of: Windows operating systems and applicationsVmware virtualizationM365 Office productivity softwareAzure or similar cloud managementTCP/IP NetworkingCyber SecuritySQL databasesProgramming or scripting languages Skilled at: Active directory network administrationComputer troubleshooting and repair – hardware and softwareUser computer support – hardware and softwareExcellent communication skills
+
+===== [11] kaggle_3891073452_2 | kaggle_linkedin | software | senior | 239 words
+Software Engineer III | software | senior
+and recommendations to different levels of management and developers. Stays current on technological innovations. 
+ 
+
+ Skills and Abilities:  
+Must be able to work in an Agile environment. Must be proactive and demonstrate initiative. Must be able to work on a cross-functional team where you may be called upon to work the highest priority task which may be non-programming. Must possess strong communication skills. Communicates ideas, concerns, and issues effectively both written and verbally. Speaking up when necessary and demonstrating effective conflict resolution skills and flexibility and patience. Must be able to effectively represent the team in a variety of forums. Must possess the desire to succeed through teamwork. Must embrace customer service by placing service first in all priorities. 
+ 
+ Minimum Education and/or experience required: 
+Bachelor's degree (B.A. or B.S.) in Computer Science or Associates Degree in Applied Science specific to Computer Science, and five to eight years related work experience; or an equivalent combination of education and work experience. Must have experience with the entire development life cycle: analysis, design, construction, and implementation. 
+
+Required coding experience in Java (version 8 or 11) Required strong experience with fundamental web technology (JavaScript/HTML/CSS). Required strong experience with modern framework (Angular, React libraries). Required Oracle SQL experience. Required Spring Boot experience. 
+ 
+Preferred Experience: 
+Comfortable with maintaining and improving legacy code. Strongly prefer experience in test-driven development using framework like Jest/JUnit Strongly prefer candidates with strong opinions regarding
+
+===== [12] kaggle_3891079139_2 | kaggle_linkedin | data | senior | 121 words
+Senior Data Engineer | data | senior
+with a relevant degree in Computer Science or a related field and a solid understanding of the insurance industry. Your hands-on experience of at least five years with cloud providers is crucial, as is proficiency in SQL, PostgreSQL, Elasticsearch, Redis, Snowflake and ETL methodologies. Experience with public cloud platforms such as Azure, AWS, or Google Cloud is highly valued, and a comprehensive grasp of data warehousing, big data, and data lake concepts is explicitly tailored to insurance challenges and opportunities. If you're passionate about driving innovation in the insurance sector through cutting-edge data solutions, we want to hear from you! 
+
+
+Desired Skills and Experience
+
+SQL, PostgreSQL, Elasticsearch, Redis, Snowflake, ETL, AWS, Azure, Google Cloud
+
+===== [13] kaggle_3894983882_1 | kaggle_linkedin | ai_ml | entry | 239 words
+AI Engineer | ai_ml | entry
+stakeholders with analysis and implementationTransform machine learning models into APIs that can be integrated with other applicationsStay current with new and emerging technology and industry trends to identify solutions that may benefit the businessLeverage monitoring and other analytical tools to measure security, performance and health of the IT Infrastructure and drive continuous service improvement of employees, processes and technologies. Provide capacity planning, trend analysis and resource utilization reporting to manage and improve application environment and infrastructure performance and prevent issues
+ AI Engineer Requirements:Proven experience as an AI Engineer, with a strong track record of developing and deploying AI solutionsExtensive knowledge of AI algorithms, machine learning techniques and deep learning frameworksProficiency in Python and other relevant programming languagesExperience with popular AI libraries and tools such as TensorFlow, PyTorch, Keras or CaffeSolid understanding of data management, data preprocessing and feature engineeringStrong analytical and problem-solving skills, with the ability to think creatively and propose innovative AI solutionsExcellent communication and collaboration skills, with the ability to work effectively in a team environment and communicate complex ideas to both technical and non-technical stakeholdersProven leadership skills, with the ability to mentor and guide junior team members
+ If you are passionate about using data to drive business decisions and have experience in data analytics and ERP systems, we would love to hear from you.
+ 
+ Thank you,
+ 
+ Scott Kohut
+ Technology Services Recruiter
+ LaSalle NetworkLaSalle Network is an Equal Opportunity Employer m
+
+===== [14] kaggle_3895536356_2 | kaggle_linkedin | architecture | senior | 225 words
+Solutions Architect | devops_cloud | senior
+(e.g. PowerBI, Tableau) BA/BS degree or equivalent degree with an emphasis in Computer Science, Mathematics, Statistics, or related fields 
+
+Preferred Qualifications:
+
+Successfully implemented a self-service model using Microsoft stack (Hybrid and / or full cloud) for a large company Experience with Microsoft stack beyond PowerBI (e.g. Analysis Services) Experience with MDX or DAX coding to query against tabular and multidimensional models Prior experience works closely with or having implemented a semantic layer 
+
+Suggested Skills:
+
+Critical Thinking Analytics Project Management Strategic planning 
+
+The pay range for this role is $107,000 to $178,000. Actual compensation packages are based on several factors that are unique to each candidate, including but not limited to skill set, depth of experience, certifications, and specific work location. This may be different in other locations due to differences in the cost of labor.
+
+The total compensation package for this position may also include annual performance bonus, stock, benefits and/or other applicable incentive compensation plans. For more information, visit https://careers.linkedin.com/benefits.
+
+Additional Information
+
+Equal Opportunity Statement
+
+LinkedIn is committed to diversity in its workforce and is proud to be an equal opportunity employer. LinkedIn considers qualified applicants without regard to race, color, religion, creed, gender, national origin, age, disability, veteran status, marital status, pregnancy, sex, gender expression or identity, sexual orientation, citizenship, or any other legally protected class. Linked
+
+===== [15] kaggle_3898158999_1 | kaggle_linkedin | devops_cloud | unknown | 154 words
+Site Reliability Engineer | devops_cloud | unknown
+components to deliver complete, efficient systems providing excellent utility & ease of use. Support deployed systems, troubleshoot issues, and participate in an on-call rotation. 
+ Preferred Qualifications  Bachelor’s degree in information technology or any related field. 2+ years in a SRE or DevOps related role, and 5+ years in an IT or Software Development related role. Experience administering IT Infrastructure such as VMware, Active Directory, Windows Server, Linux, Networking, Cloud Infrastructure (AWS, Azure), Monitoring.Expertise in scripting, coding, automation, and integration with tools such as Python, Ansible, Chef, Puppet, REST, YAML, JSON, etc.Experience working with SCADA, OT, MES, or other industrial related software & systems.Self-motivated, hands-on mindset, with a willingness to contribute at all levels. A passion for sustainability and making the world a better place!  The full-time position is in McCarran, Nevada. Compensation will be commensurate with experience.  The position is full-time. Compensation will be commensurate with experience.
+
+===== [16] kaggle_3898169067_0 | kaggle_linkedin | ai_ml | senior | 220 words
+Java Developer with SAML, oAuth2, noSQL DB andgenerative AI | ai_ml | unknown
+Looking for : Java Developer Location : San Jose CAResponsibilities:• Build high-quality, clean, scalable and reusable code by enforcing best practices around software engineering architecture and processes (Code Reviews, Unit testing, etc.)• Work with the product owners, design and engineering to understand detailed requirements and own your code from design, implementation, test automation and delivery of a high-quality unified platform to our users.• Implement software partnering closely with the front end engineering team that allows a scalable and performant User Experience.• Manage multiple projects with material technical risk across teams and processes; may serve as a functional lead or technical owner.• Create quick prototypes, and POCs to show technical feasibility of complex unification topics around bringing multiple products into a single platform.• Be a mentor for colleagues and help promote knowledge-sharing.
+Qualifications:• 10+ years of experience designing/building enterprise-grade solutions using microservices.• Passion and experience with recognizing, raising, and reconciling gaps and redundant efforts across organizations.• Success with cross-company collaboration.• Experience influencing and performance coaching engineers.• Background in Java, SAML, oAuth2, noSQL DB, Postgres or similar technologies.• Experience with decoupled message bus based architectures.• Experience building RESTful endpoints.• Demonstrated ability to build scalable, and performant systems from ground up.• Experience designing solutions for deploying to public clouds with
+
+===== [17] kaggle_3901454966_3 | kaggle_linkedin | security | mid | 238 words
+Cybersecurity Tools Engineer | security | mid
+ad-hoc briefs of status of responsible tool sets to a wider audience to help them understand capability, next actions, and communicate deliverable timeframes Participate in group sessions as well as attend and share in agile sprint daily meetings to track progress to ensure development of solutions is in support of the CDM project and customer requirements Serve as a trusted advisor, providing subject matter expertise, guidance, and best practice recommendations Document the installation and configuration for deployment into production Secure the solution by being familiarity with TLS, certificates, SSO/PIV authentication, and encryption technologies Test data flows, troubleshooting issues, and monitoring the health of the solution and servers to maximize performance and minimize downtime 
+What you need to know: 
+Experience with Tenable products, including Tenable.SC and Nessus Experience with configuration management of operating system and applications of popular security benchmarks published by DoD STIG, USGCB, and FDCC Experience with designing, implementing, configuring, and operating information security continuous monitoring tools Maintain and/or update system architecture to fit changes in environment. Automate task depending upon OS. Routinely research assigned tools for vulnerabilities and system patches Follow strict change management guidelines in Service Now to implement changes in support of SLAs and SLOsWindows and Linux Server commands, networking knowledge, and PKI knowledge assist in troubleshooting testing scenarios, implementations, and system patches/updates
+Must have’s: 
+BS in Computer Science or related field experience required Minimum of 2
+
+===== [18] kaggle_3901670521_0 | kaggle_linkedin | devops_cloud | senior | 243 words
+Site Reliability Engineer, Enterprise Justice | devops_cloud | entry
+Description
+
+This Site Reliability Engineer position is a technical role within the Technical and Cloud Services group that helps ensure the reliability, scalability, and performance of our infrastructure while driving automation and efficiency in our development process. This engineer provides technical guidance to team members and other development teams related to the Cloud Services initiatives and helps to ensure our Cloud initiatives are consistently improving. This role requires a proactive problem-solving mindset, excellent communication skills, and the ability to collaborate effectively with our cross-functional teams that help courts and public safety organizations of all sizes better protect and serve the public. By helping provide solutions that improve efficiency and response time, you can help serve our citizens and make communities safer.
+
+Shift Expectation
+
+Second Shift: 11 AM – 8 PM CST (with one-hour break) 
+
+Responsibilities
+
+Design, build, and maintain highly available, scalable, and secure infrastructure components to support our applications and services.Implement and maintain monitoring, alerting, and logging systems to proactively identify andresolve issues before they impact users.Collaborate with development teams to automate deployment pipelines, infrastructure provisioning, and configuration management using tools like Jenkins, Terraform, and Kubernetes.Lead incident response and post-mortem activities to identify root causes and implement preventive measures to minimize future incidents.Conduct regular performance tuning and optimization of system resources to ensure optimal efficiency and cost-effectiveness.Drive continuous improvement initiatives to streamline processes, enhance reliability, and increase productivity across the organization.Stay current with
+
+===== [19] kaggle_3901684766_2 | kaggle_linkedin | software | entry | 85 words
+Salesforce Developer | software | entry
+and interpersonal skills with the ability to interact effectively with stakeholders at all levels.
+8. Self-motivated with a strong desire to learn and grow in the Salesforce ecosystem.
+Preferred Qualifications:
+1. Experience working in an Agile development environment.
+2. Familiarity with other Salesforce ecosystem tools and technologies, such as Salesforce Lightning, Process Builder, and Flow.
+3. Previous exposure to basic Apex and Visualforce development concepts.
+4. Knowledge of data management best practices, including data modelling and data migration tools
+
+===== [20] kaggle_3901947040_1 | kaggle_linkedin | data | mid | 70 words
+Business Intelligence Developer | data | mid
+processes. Day to Day: Design, develop, and maintain Tableau dashboards and reports to meet business requirements.Collaborate with stakeholders to understand their data visualization needs and translate them into effective Tableau solutions.Perform data analysis and visualization to uncover insights and trends.Optimize Tableau workbooks and dashboards for performance and usability.Implement best practices for data visualization and dashboard design.Provide guidance and mentorship to junior Tableau developers.
+
+===== [21] kaggle_3902776458_0 | kaggle_linkedin | networking_it | senior | 224 words
+Information Technology Project Coordinator | networking_it | unknown
+Project Coordinator PositionHybrid in Irving, Texas - 3 days per week in officeContract to Hire5 years relevant experience required, Solid Budget/Forecasting experience is required 
+Requires experience with IT Project Management & Technology Operations processes in order to be successful. This individual will need to be highly accountable, proactive, able to work autonomously and capable of applying critical thinking to a wide range of support activities. Position requires individual to regularly apply analytical skills to make recommendations to IT Leadership regarding system administration, budget or process improvements.
+This team is seeking a professional that is detailed, already preforms basic functions and open to continued learning and growing.
+ResponsibilitiesManage IT project financials including budgets, forecasts, and actuals.Perform system administration (Workday Financials, SharePoint, PowerBI, PowerApps)Load & maintain data from a variety of sourcesManage and track vendor contracts and SOWs to ensure compliance with internal policies and SLAsAssist with staff planning, resource capacity tracking, and new hire onboardingReview timesheets, create purchase requisitions and code invoices in Workday, as neededCreate end user training manuals and update procedure guidesLook for efficiencies and streamline business operations processesPrepare financial reports and assist with planning, tracking, and forecasting on a project level rolling up to an organization viewMay serve as liaison with the Finance/Accounting teams to ensure alignment on department budgets
+Requirements 5+ years relevant
+
+===== [22] kaggle_3903448775_0 | kaggle_linkedin | software | senior | 235 words
+Lead .Net/Azure Developer with Azure Purview | software | senior
+Title: Azure Developer/.Net Lead (Azure Purview)Location: Louisville, KY (REMOTE)Job type: Contract
+Note: Need good experience with Azure Purview and Azure Services Description:
+Description: An Azure Developer specializes in developing and managing applications within the Microsoft Azure cloud platform. One needs a strong foundation in cloud computing concepts and expertise in Azure services to become an Azure Developer. Mastery of programming languages such as C#, Python, and JavaScript is essential since these are commonly used in Azure application development. This role involves a deep understanding of Azure-specific services like Azure SQL Database, Azure DevOps, and Azure Active Directory, which are instrumental in designing, building, and managing scalable, efficient cloud applications.
+Responsibilities:Design and Implement Azure Solutions: Develop scalable, maintainable, and secure cloud solutions. Ensure these solutions integrate seamlessly with existing systems and meet business requirements.Analysis and Design – Converts high-level design to low-level design and implements it Run unit and integration tests on all created code – Create and run unit and integration tests throughout the development lifecycle Support and Troubleshooting – Assist the Operations Team with any environmental issues that arise during application deployment in the Development, QA, Staging, and Production environments Cloud Infrastructure Management: Oversee the deployment, management, and operation of applications on Azure. This includes configuring cloud environments and ensuring optimal performance.Documentation: Create and maintain comprehensive documentation for cloud architectures, processes, and best practices.Collaborate
+
+===== [23] kaggle_3904361632_0 | kaggle_linkedin | software | leadership | 259 words
+Embedded Software Manager (EAST COAST REMOTE) | software | leadership
+Company Overview
+
+At Motorola Solutions, we're guided by a shared purpose - helping people be their best in the moments that matter - and we live up to our purpose every day by solving for safer. Because people can only be their best when they not only feel safe, but are safe. We're solving for safer by building the best possible technologies across every part of our safety and security ecosystem. That's mission-critical communications devices and networks, AI-powered video security & access control and the ability to unite voice, video and data in a single command center view. We're solving for safer by connecting public safety agencies and enterprises, enabling the collaboration that's critical to connect those in need with those who can help. The work we do here matters.
+
+Department Overview
+
+Motorola Solutions Video Division is defining the future of the security industry through innovative end-to-end-solutions. We’re changing the landscape of the surveillance industry through advanced award-winning AI based surveillance systems. Artificial Intelligence is transforming the world and our team is advancing the field as it applies to the surveillance industry. We are proud to be industry leaders in video analytics with features which include edge-based, deep learning driven object detection, and Appearance Search. Motorola Video analytics platforms allow our users to proactively monitor their premises using advanced video analytics and high resolution / high quality video.
+
+As we transmit video and other situational information in real-time from our clients’ devices to their command centers, we turn this
+
+===== [24] kaggle_3904577555_2 | kaggle_linkedin | software | senior | 253 words
+Senior Lead Software Engineer - Full Stack | software | senior
+cloud service  4+ years of experience in open source frameworks  1+ years of people management experience  2+ years of experience in Agile practices 
+
+Capital One will consider sponsoring a new qualified applicant for employment authorization for this position. 
+
+The minimum and maximum full-time annual salaries for this role are listed below, by location. Please note that this salary information is solely for candidates hired to perform work within one of these locations, and refers to the amount Capital One is willing to pay at the time of this posting. Salaries for part-time roles will be prorated based upon the agreed upon number of hours to be regularly worked.
+
+New York City (Hybrid On-Site): $234,700 - $267,900 for Sr. Lead Software Engineer
+
+Candidates hired to work in other locations will be subject to the pay range associated with that location, and the actual annualized salary amount offered to any candidate at the time of hire will be reflected solely in the candidate’s offer letter.
+
+This role is also eligible to earn performance based incentive compensation, which may include cash bonus(es) and/or long term incentives (LTI). Incentives could be discretionary or non discretionary depending on the plan.
+
+Capital One offers a comprehensive, competitive, and inclusive set of health, financial and other benefits that support your total well-being. Learn more at the Capital One Careers website . Eligibility varies based on full or part-time status, exempt or non-exempt status, and management level.
+
+This role is
+
+===== [25] kaggle_3904701924_2 | kaggle_linkedin | data | mid | 216 words
+Data Scientist | data | entry
+experience. Experience translating business questions into data analytics approaches. Strong proficiency in querying and manipulating large datasets using SQL-like languages (Hive, Spark, etc.). Experience developing and operationalizing consistent approaches to experimentation, using appropriate statistical techniques to reduce bias and interpret statistical significance. Proficiency with descriptive and inferential statistics (i.e., t-test, chi-square, ANOVA, correlation, regression, etc.) to understand customer engagement and generate hypotheses. Experience crafting data visualizations and storytelling to efficiently communicate analysis results to both technical and non-technical audiences. Knowledge of relevant tools in this field such as Hadoop, Hive, Splunk, Spark, Tableau, Excel (Charting and Pivot-Tables), and Power BI. Experience in product instrumentation is a plus. Possess natural curiosity and technical competence, being capable of asking critical questions and always ready to address any challenges. Experience addressing an executive level audience. Excellent communication, relationship skills, and a strong teammate. 
+
+Our compensation reflects the cost of labor across several  U.S. geographic markets, and we pay differently based on those defined markets. The U.S. pay range for this position is $107,900 -- $192,300 annually. Pay within this range varies by work location and may also depend on job-related knowledge, skills, and experience. Your recruiter can share more about the specific salary range for the job location during the hiring process.
+
+At
+
+===== [26] kaggle_3904952118_1 | kaggle_linkedin | software | entry | 192 words
+Cloud Software Engineer | software | entry
+for Cloud Software Engineers, who will partner with a variety of stakeholders to building next generation technical platform for Integrated Services. As an integral part of our team, you will have the opportunity to work on cutting-edge projects that challenge your skills and push you to grow as a software engineer. Our team members are dedicated to helping each other succeed, and you will have access to mentorship and support from experienced professionals who are committed to helping you achieve your career goals.
+
+What you'll be able to do:
+
+Collaborate with other team members to design and develop software solutions that meet the needs of our clients.Write code in a variety of programming languages with a high degree of software craftsmanship.Debug and troubleshoot any issues that arise during the development process.Product support on a rotation basis.Opportunity to work on the following tech stacks:Java, Spring/SpringBoot, Microservices, Agile, CI/CD,Tekton, Terraform, DevOps, Public Cloud (Google Cloud Platform/Azure/AWS), React, NextJS, SQL, GitHub, JSON, Swagger/OpenAPI, Cucumber/Other test frameworks, TDD/BDD, SonarQube, Checkmarx/42Crunch, NoSQL DB (MongoDb / Cassandra etc), Caching framework (Redis/Memcached).Java Spring, Android, and/or iOS development experience depending on the team.
+
+===== [27] kaggle_3904952415_0 | kaggle_linkedin | backend | entry | 237 words
+Junior Java Developer | backend | entry
+Overview
+
+Job Purpose
+
+At Intercontinental Exchange (ICE), we engineer technology, exchanges and clearing houses that connect companies around the world to global capital and derivative markets. With a leading-edge approach to developing technology platforms, we have built market infrastructure in all major trading centers, offering customers the ability to manage risk and make informed decisions globally. By leveraging our core strengths in technology, we continue to identify new ways to serve our customers and transform global markets. We're looking for motivated, results-oriented people to join our team.
+
+As an intern, you be exposed to the design, development, maintenance, and support of critical and highly visible platforms for ICE. You will work under the guidance of a more senior engineer on an existing product team to develop real-world skills. The ideal candidate must be results-oriented, self-motivated, and can thrive in a fast-paced environment. This is a temporary position that will last approximately 10 -12 weeks.
+
+Responsibilities
+
+Participate in the design, architecture, and planning of technology solutions to meet the business needParticipate in the development of new methods, procedures, processes, or systemsCollaborate with team members and stakeholdersCreate comprehensive unit tests for new development itemsAdhere to coding style guidelines and development best practices
+
+Knowledge And Experience
+
+Currently pursuing a bachelor’s degree in computer science, Engineering, or a related fieldSolid problem-solving and analytical skillsGood attitude and eager to learnExperience in an object-oriented programming language
+
+===== [28] kaggle_3904967149_0 | kaggle_linkedin | data | senior | 213 words
+Data Science Program Lead II | data | senior
+Company Description
+
+AbbVie's mission is to discover and deliver innovative medicines and solutions that solve serious health issues today and address the medical challenges of tomorrow. We strive to have a remarkable impact on people's lives across several key therapeutic areas immunology, oncology, neuroscience, and eye care and products and services in our Allergan Aesthetics portfolio. For more information about AbbVie, please visit us at www.abbvie.com. Follow @abbvie on Twitter, Facebook, Instagram, YouTube and LinkedIn.
+
+Job Description
+
+Key Responsibilities
+
+Align Data & Statistical Science (DSS) study teams with program & study-level strategies.Lead the DSS Study Team & represent DSS as a member of cross-functional study team.Act as single point of contact & accountable operational lead from DSS. Coordinates associated DSS study teams to meet operational objectives.Utilize clinical trial systems including Electronic Data Capture (EDC), Interactive Response Technology (IRT) & Clinical Trial Management Systems (CTMS).Utilize understanding of Laboratory data, Clinical Outcomes Assessments (COA/eCOA), ECG, IRT, Pharmocokinetic & other external data types.Engage & connect global functional & cross-functional teams at study level. Interact with & influence cross-functional team members to achieve program objectives.Plan, coordinate, & deliver data management tasks within timeline.Utilize operational analytics & project management tools to optimize execution of programs & studies, manage internal
+
+===== [29] kaggle_3905216662_0 | kaggle_linkedin | backend | senior | 241 words
+Senior Software Engineer - Backend | backend | senior
+A Little Bit About Us:Telegraph is a B2B SaaS company disrupting the underdigitized freight railroad segment of the supply chain. Our product is the first-ever cloud-based operating system for the rail ecosystem. On any given day, 40% of all goods in North America are moved on a freight train. We deliver software for railroads, logistics companies, and end customers to make shipping by rail simple, efficient, and automated. 
+A Little Bit About the Role:As a Senior Backend Engineer, you will be a key player in enhancing the backbone of our SaaS platform. This role involves direct collaboration with the VP of Engineering, where you will co-lead the development initiatives to adapt and scale our solutions for new and existing customers. Your contributions will be critical in driving the future expansions and capabilities of our platform. As our Senior Software Engineer - Backend, you will be responsible for the following:
+Strategic Development: Spearhead the backend development of our platform, ensuring scalability, performance, and reliability.Close Collaboration: Work closely with the VP of Engineering to align development with overall business objectives and customer needs.API Craftsmanship: Design, develop, and maintain robust APIs that enable flexible and scalable interactions between different system components.Technical Leadership: Provide technical leadership within the team, promoting best practices in coding, testing, and maintenance.Complex Problem Solving: Address complex technical challenges with innovative solutions, contributing to all software development lifecycle phases.
+We are excited
+
+===== [30] kaggle_3906226638_2 | kaggle_linkedin | qa | senior | 237 words
+Software Test Engineer - Senior - TGC | qa | senior
+Experience with writing and/or developing test procedures for systems and subsystems. 
+
+Desired Qualifications / Skills
+
+ Knowledgeable on various Software Development Lifecycles.  Working knowledge of the following: Linux, Windows, VMware, OSI Model, Network traffic collection and analysis, enterprise network architecture, communication equipment and technologies, routers, mail and web servers, Intrusion Detection & Prevention Systems, firewalls, anti-virus tools, Jira, Confluence, Zephyr, and network traffic generation.  Programming or scripting skillset.  Understanding of AFIN & DODIN architecture. 
+
+Responsibilities
+
+ Prepare Developmental Test & Evaluation (DT&E) plans, test cases, and report according to established test methodologies and procedures.  Perform functional testing at the system, interoperability, and integration test levels on various systems and networks.  Participate in all phases of software and hardware development to include requirements development, risk assessments, and acceptance criteria development.  Coordinate with customers, test engineers and range engineers to ensure the test infrastructure meet desired test objectives and data collection requirements.  Actively communicate throughout the acquisition process in order to influence development of a testable capability or product.  Compile and analyze test results data to determine conformity of the product or capability to the requirements.  Document change requests/deficiencies of the product or capability as a result of test data analysis.  Actively participate cooperatively in Agile team planning and test execution  Support the test and integration process by performing all necessary planning, design, development, and implementation.  Effectively communicate with external
+
+===== [31] arbeitnow_mission-critical-security-engineer-threat-hunting-schiphol-rijk-484413_1 | arbeitnow | security | unknown | 249 words
+Mission Critical Security Engineer – Threat Hunting | security | unknown
+do Threat intelligence & continuous improvement Actively follow security developments, vulnerabilities, and threat intelligence and translate these into relevant hunts and detections. Identify security risks and gaps in detection coverage and proactively propose improvements. Use your knowledge of the customer's application and infrastructure landscape to continuously strengthen its security posture. Contribute to the evolution of the team's security monitoring and detection strategy. Communication & advisory Translate findings into clear, actionable communication for engineers, customer stakeholders, and security specialists. Contribute to security advisories and share relevant threats across the customer team and wider organization. Work closely with engineers to understand system behavior and validate detection strategies. Collaborate with the customer's Security Operations Center (SOC) to align security monitoring, threat detection, and response activities. Help establish and improve integrations with the customer's SIEM/SOAR platform, including the forwarding of relevant logs and security telemetry. Detection engineering & threat hunting Develop and continuously improve detection use cases based on emerging threats and observed behavior. Translate threat scenarios and security insights into actionable detection logic tailored to the customer's environment. Proactively perform threat hunting across the application and infrastructure landscape to identify abnormal or suspicious patterns. Analyze logs and telemetry data to uncover behaviors that are not yet covered by existing detections. Use your understanding of the customer's technology stack to distinguish normal from potentially malicious behavior. Use case development & response design Define what should happen when detections trigger, including response actions,
+
+===== [32] arbeitnow_data-engineer-berlin-58843_0 | arbeitnow | data | unknown | 228 words
+Data Engineer | data | unknown
+KAYAK, part of Booking Holdings (NASDAQ: BKNG), is the world's leading travel search engine. With billions of queries across our platforms, we help people find their perfect flight, stay, rental car and vacation package. We're also transforming business travel with a new corporate travel solution, KAYAK for Business. As an employee of KAYAK, you will be part of a travel company that operates a portfolio of global metasearch brands including momondo, Cheapflights and HotelsCombined, among others. From start-up to industry leader, innovation is at our core and every employee has an opportunity to make their mark. Our focus is on building the best travel search engine to make it easier for everyone to experience the world. KAYAK is looking for a Data Engineer to build the trusted data foundation behind machine learning across the company. You’ll partner with data scientists to understand their modeling needs and what the available data can (and can’t) support. You’ll transform large-scale raw data into production-ready datasets and build the scalable pipelines that make them dependable and reusable. Working across Data Science, Data Engineering, and Data Platform, you’ll help address data gaps and bring new machine-learning use cases into production. If you’re excited to shape how teams across KAYAK use data to build and scale machine learning, we’d love to hear from you. This role will be
+
+===== [33] arbeitnow_solutions-architect-search-specialist-261556_0 | arbeitnow | architecture | senior | 251 words
+Solutions Architect - Search Specialist | devops_cloud | senior
+Elastic, the Search AI Company, enables everyone to find the answers they need in real time, using all their data, at scale — unleashing the potential of businesses and people. The Elastic Search AI Platform, used by more than 50% of the Fortune 500, brings together the precision of search and the intelligence of AI to enable everyone to accelerate the results that matter. By taking advantage of all structured and unstructured data — securing and protecting private information more effectively — Elastic’s complete, cloud-based solutions for search, security, and observability help organizations deliver on the promise of AI. What Is The Role At Elastic, we're revolutionizing the search and data analytics space. We're pioneers in the integration of Gen AI, powerful retrieval models like ELSER, and cutting-edge semantic search technologies like vector search, empowering businesses to unlock unprecedented insights and experiences. As a Search Solutions Architect, you'll be at the forefront of this transformative journey. You'll play a pivotal role in designing and deploying innovative solutions that leverage the combined power of these technologies, helping organizations unlock the full potential of their data. Your work will directly influence the success of organizations worldwide, helping them unlock new opportunities and make insightful decisions. Are you ready to join the Elastic Revolution and be a pioneer in the next generation of Search powered AI? Apply now and embark on this exciting journey with us! We're eager to welcome you to a team that's
+
+===== [34] arbeitnow_senior-backend-engineer-berlin-230943_2 | arbeitnow | backend | senior | 205 words
+Senior Backend Engineer | backend | senior
+fig, or the infrastructure. Workflow Engineering & Temporal Design and build durable workflows using Temporal - long-running processes, async coordination, saga patterns. Own workflow observability: know when a workflow is stuck, degraded, or silently wrong before a customer notices. Think carefully about idempotency, failure modes, and replay semantics - not just the happy path. Evolve workflows without breaking running instances; manage versioning with intention. Reliability & Systems Thinking Detect regressions before they become incidents; build the tooling to catch them early. Own the operational posture of the services you build: alerting, runbooks, on-call readiness. Identify structural debt before it compounds; propose refactors that are thoughtful, not just correct. What we are looking for Experience: 6+ years building and operating backend systems in Python, with clear ownership of production services - not just feature delivery. Python depth: Non-negotiable. You make deliberate choices about async vs. sync, framework selection, and performance tradeoffs. You know the language well enough to have opinions. Temporal or equivalent: You've used Temporal (or a comparable workflow engine) in production. You understand durable execution, not just task queues. Reliability instinct: Idempotency, retries, and observability are part of how you design, not afterthoughts. End-to-end ownership: You're comfortable
+
+===== [35] arbeitnow_machine-learning-engineer-london-263239_2 | arbeitnow | ai_ml | unknown | 220 words
+Machine Learning Engineer | ai_ml | unknown
+bility, and commercial impact. Defining and implementing Faculty’s standards for deploying machine learning systems in production. Acting as a trusted technical advisor to customers and partners, translating complex ML concepts into actionable business outcomes. Applying machine learning to challenges such as demand forecasting, customer analytics, personalisation, pricing, marketing optimisation, inventory management, and operational efficiency. Supporting clients in adopting AI capabilities that improve customer experiences and drive sustainable growth. Who we’re looking for You understand the full machine learning lifecycle and have experience operationalising models built with frameworks such as Scikit-learn, TensorFlow, or PyTorch. You possess strong Python skills and solid experience in software engineering best practices. You bring hands-on experience with cloud platforms and infrastructure (e.g. AWS, Azure, GCP), including architecture and security. You’ve worked with containerisation and orchestration tools such as Docker and Kubernetes to build and manage applications at scale. You are comfortable with core ML concepts, including probability, statistics, experimentation, and common machine learning techniques. Experience working with retail, consumer, ecommerce, marketing, supply chain, or customer data is beneficial but not essential. You’re an excellent communicator, able to guide technical teams and confidently advise non-technical stakeholders. You thrive in a fast-paced environment and enjoy the autonomy to own scope, solve challenging problems, and deliver impactful solutions. Our interview process Talent
+
+===== [36] arbeitnow_senior-product-security-engineer-396481_3 | arbeitnow | security | senior | 223 words
+Senior Product Security Engineer | security | senior
+, RBAC, and ABAC. Demonstrated ability to drive cross-functional security initiatives — partnering with engineering, product, and compliance to embed security into roadmaps, influence architectural decisions, and align stakeholders across boundaries. Nice to Have Proficiency in Python, Java, and/or JavaScript for security automation and tooling. Container and orchestration security (Kubernetes runtime protection). Software supply chain security and artifact integrity verification. Experience with bug bounty programs — triaging findings, driving root-cause analysis, and turning results into systemic security improvements. Familiarity with compliance and governance frameworks (SOC 2, ISO 27001, NIST 800-53, NIST AI RMF). Certifications such as CKS, CISSP, CSSLP, or AI/ML security credentials. Why Join Us? Work on cutting-edge security challenges in a fast-growing company. Opportunity to shape and drive product security strategy. Collaborative and security-minded engineering culture. Competitive compensation, benefits, and career growth opportunities. For base compensation, we set standard ranges for all roles based on function and level benchmarked against similar stage growth companies and internal comparables. In order to be compliant with local legislation, as well as to provide greater transparency to candidates, we share salary ranges on all job postings regardless of desired hiring location. Final offer amounts are determined by multiple factors including candidate experience/expertise and may vary from the amounts listed below. You may also be offered a performance
+
+===== [37] arbeitnow_phd-graduate-ai-algorithms-engineer-2026-or-2027-start-326987_1 | arbeitnow | ai_ml | entry | 236 words
+PhD Graduate AI & Algorithms Engineer (2026 or 2027 start) | ai_ml | entry
+in applying AI and algorithmic techniques to real-world problems. Strong Python programming skills and appreciation for modern software development practices Demonstrable research experience in a data-driven field (such as project work, conference proceedings or papers published in scientific journals). While not essential requirements, we would also be very interested if you have experience with any of the following: Information science Bioinformatics Reinforcement learning Transformer, diffusion models Robotics Edge compute Some projects at Cambridge Consultants are subject to security restrictions. This role requires you to obtain a Security Check level security clearance ( https://www.gov.uk/guidance/united-kingdom-security-vetting-applicant ). You must be able to work in the UK without restrictions in accordance with UK National Law and be prepared to successfully undertake an appropriate level of UK National Security Vetting according to UK Government National Security Vetting criteria. By submitting an application to Cambridge Consultants, you confirm that the information provided in this application, together with any supporting documentation, is true, complete, and accurate to the best of your knowledge and belief. You understand that any false statement, misleading information, or material omission may render you liable to disqualification from the recruitment process, withdrawal of any offer of employment, or dismissal without notice if discovered following appointment. You acknowledge that the organisation reserves the right to verify the information supplied. Find Jobs in United Kingdom on Arbeitnow
+
+===== [38] arbeitnow_senior-software-engineer-inference-performance-munich-188667_2 | arbeitnow | software | senior | 224 words
+Senior Software Engineer, Inference Performance | software | senior
+high performance at the layer that fits their problem. Make models fast. Take priority workloads, from LLMs to multimodal models, to peak performance on real silicon. Profile, find the bottleneck across kernels, compiler, runtime, and parallelism, and fix it at the right layer. Close the gap between model and measurement. Compare measured performance against analytical models and simulation. Explain every material gap, and turn the explanation into a fix or a better model. Build the agentic performance loop. Give agents the profilers, traces, counters, and benchmark harnesses to form a hypothesis, change code, and measure the result in minutes. Make the results trustworthy enough to act on. Set the bar for performance. Define how we measure, track regressions, and report results. Build for the next chip. Design abstractions that carry forward to future hardware generations. Work with hardware architects to test how architectural choices affect real workloads. What we need from you You understand hardware performance. You’ve optimized AI workloads on GPUs or custom accelerators and can reason about compute utilization, memory hierarchy, latency hiding, synchronization, and multi-chip scaling. You build excellent software. You’ve owned substantial systems from design through production. You’re strong in Python and/or at least one systems language such as Rust, C++, or C, and rigorous about interfaces, abstractions, and testing. We
+
+===== [39] arbeitnow_principal-software-engineer-security-united-kingdom-324713_1 | arbeitnow | software | senior | 197 words
+Principal Software Engineer - Security | software | senior
+Ensure strong tenant isolation and least-privilege access across the control plane and network and data plane. Act as a senior technical voice in enterprise customer security reviews, audits, and incident response. Raise the security engineering bar across the organisation through mentoring, code review, and technical standards. Your Profile Strong hands-on engineering skills in one or more systems languages such as Go or similar. Extensive experience building and operating large-scale distributed systems, with significant depth in cloud and network security, IAM, or security infrastructure. A track record of technical leadership at staff or principal level, including setting direction across multiple teams and delivering complex, high-stakes systems. Deep technical expertise across: Identity & access: IAM, RBAC/ABAC, OAuth 2.0, OIDC, SAML, SSO, federation, mTLS, workload and service identity Security controls: applied cryptography, encryption at rest and in transit, secrets management, KMS/HSM, key rotation, policy engines Infrastructure: Kubernetes internals, containers and runtime isolation, cloud networking, compute, storage Security operations: audit logging pipelines, detection engineering, vulnerability management, incident response Automation: policy-as-code, infrastructure-as-code, CI/CD security, software supply chain (signing, SBOMs, provenance) Hands-on experience with technologies such as Vault, OPA/Gatekeeper, SPIFFE/SPIRE, Kubernetes admission control and
+
+===== [40] arbeitnow_staff-software-engineer-new-verticals-london-403189_2 | arbeitnow | software | senior | 210 words
+Staff Software Engineer - New Verticals | software | senior
+full software development lifecycle, including designing, generating code, testing, monitoring and releasing software Strong Engineering Principles: Deep pride in writing readable, well-designed, and well-tested software. Backend Expertise: Significant experience building web-based applications (we use Go, Ruby/Rails, Python, Scala, and Rust). Data Proficiency: Practical experience with relational databases (PostgreSQL, MySQL) and "NoSQL" backends like Redis, DynamoDB, or ElasticSearch. Systems at Scale: Proven ability to manage web architecture at scale (handling 20krpm and above). Technical Leadership: Experience breaking down large pieces of work and guiding implementation choices for a team of engineers. Why Join Us? At Deliveroo, you’ll do work that matters—solving real-world problems in a three-sided marketplace that’s constantly evolving. We’re food lovers, problem solvers, community organisers, proud parents, and more, brought together by a shared drive to make things better. Working here you can expect to: 🔧 Solve meaningful problems at real scale Work on a complex, always-on marketplace that impacts millions every day. 🌱 See your impact, fast Ship, test and improve ideas quickly in a low-hierarchy, high-ownership environment. 🧠 Grow through challenge and ownership Take on big, ambiguous problems and accelerate your career with strong support. 🌎 A culture built for builders High standards, collaboration, flexible working and
