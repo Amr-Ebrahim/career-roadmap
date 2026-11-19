@@ -150,7 +150,7 @@ def normalize_citations(text):
 def check_citations(text, n_sources):
     cited = [
         int(number)
-        for number in re.findall(r"$$(\d+)$$", text)
+        for number in re.findall(r"\[(\d+)\]", text)
     ]
 
     used = set(cited)
