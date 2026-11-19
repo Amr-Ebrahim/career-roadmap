@@ -3,30 +3,23 @@
 # Select evidence before answer generation.
 # No remote LLM or judge calls.
 #
-# Focused questions:
+# Focused questions are filtered:
 #   - Certification questions: keep certification evidence.
-#   - Named-skill questions: keep units mentioning those skills.
+#   - Category questions ("which languages / databases ..."):
+#     keep sentences that name a skill of that kind.
+#   - Named-skill questions ("... Terraform or Kubernetes?"):
+#     keep sentences mentioning those skills.
 #
-# Broad questions:
-#   - Rank units by embedding similarity.
-#   - Keep a small selection, without filling a word budget.
-#
-# WORD_BUDGET is a soft limit for broad questions.
-# Focused evidence is not truncated merely to meet that budget.
+# Broad questions ("what skills do I need ...", "what do ... jobs require?")
+# and tools questions are NOT filtered. Their answer is the whole requirements list, so the
+# full retrieved chunk is returned unchanged. (Measured on 2026-11-19:
+# filtering broad questions cut useful requirements and lowered
+# contextual relevancy from 1.00 to 0.43 on the help desk question.)
 
 import re
 
-import numpy as np
-
 from skill_matcher import CATEGORY, extract_skills
 
-
-WORD_BUDGET = 110
-MAX_BROAD_SENTENCES = 3
-SKILL_BONUS = 0.03
-
-# Experimental relative cutoff, not a calibrated relevance threshold.
-BROAD_SCORE_MARGIN = 0.08
 
 # These describe roles/topics rather than specific requested evidence.
 GENERIC_SKILLS = {
@@ -38,12 +31,33 @@ GENERIC_SKILLS = {
     "programming",
     "it",
     "it support",
+    "help desk",
+    "helpdesk",
+    "desktop support",
+    "technical support",
+    "devops",
+    "data",
 }
 
 CERT_QUESTION = re.compile(
     r"\bcertif",
     re.IGNORECASE,
 )
+
+# Category questions: question words -> which skill categories count.
+# None means "any technology": every category except the ones below.
+CATEGORY_QUESTIONS = [
+    (re.compile(r"\b(?:programming\s+)?languages?\b", re.IGNORECASE),
+     {"language"}),
+    (re.compile(r"\bdatabases?\b", re.IGNORECASE),
+     {"database"}),
+]
+# No rule for "which tools / software / technologies" questions: the skill
+# dictionary groups skills by field (security, cloud, ...), not by kind, so
+# it cannot tell a tool (QRadar) from an activity (incident response).
+# Tested 2026-11-19: such a rule kept mostly activities. These questions
+# are therefore treated like broad questions and not filtered.
+NOT_A_TECHNOLOGY = {"certification", "practice"}
 
 CERT_EVIDENCE = re.compile(
     r"\bcertif"
@@ -87,6 +101,7 @@ SPLIT = re.compile(
     r"(?<=[.!?;])\s+"
     r"|(?<=[a-z0-9)][.!?])(?=[A-Z][a-z])"
     r"|\n+"
+    r"|\s{2,}"          # list items separated by 2+ spaces in scraped posts
     r"|\s*[•●▪]\s*"
 )
 
@@ -107,6 +122,7 @@ def split_sentences(text):
     ]
 
     return [part for part in parts if part]
+
 
 def _skills(text):
     return set(extract_skills(text))
@@ -135,6 +151,35 @@ def _is_certification_evidence(text, skills):
     )
 
 
+def _asked_categories(question):
+    """
+    Return the set of skill categories a category question asks for,
+    "any" for a general tools/technologies question, or None if the
+    question is not a category question.
+    """
+    for pattern, categories in CATEGORY_QUESTIONS:
+        if pattern.search(question):
+            return "any" if categories is None else categories
+    return None
+
+
+def _is_category_evidence(text, skills, wanted):
+    if _is_heading(text):
+        return False
+
+    for skill in skills:
+        if str(skill).lower() in GENERIC_SKILLS:
+            continue
+        category = CATEGORY.get(skill)
+        if wanted == "any":
+            if category is not None and category not in NOT_A_TECHNOLOGY:
+                return True
+        elif category in wanted:
+            return True
+
+    return False
+
+
 def _include_qualifier_headings(sentences, selected):
     """
     Preserve a directly preceding qualification heading.
@@ -152,83 +197,45 @@ def _include_qualifier_headings(sentences, selected):
     return keep
 
 
-def _select_broad(question, sentences, skills, encode):
-    eligible = [
-        index
-        for index, sentence in enumerate(sentences)
-        if not _is_heading(sentence)
-    ]
+def question_strategy(question):
+    """Which filter applies to this question (also used for reporting)."""
+    if CERT_QUESTION.search(question):
+        return "certification"
 
-    if not eligible:
-        return set()
+    if _asked_categories(question) is not None:
+        return "category"
 
-    query = np.asarray(
-        encode([question], True)[0],
-        dtype=float,
-    )
+    named = {
+        skill
+        for skill in _skills(question)
+        if str(skill).lower() not in GENERIC_SKILLS
+    }
+    if named:
+        return "named-skills"
 
-    vectors = np.asarray(
-        encode(
-            [sentences[index] for index in eligible],
-            False,
-        ),
-        dtype=float,
-    )
-
-    scores = vectors @ query
-
-    for position, index in enumerate(eligible):
-        scores[position] += (
-            SKILL_BONUS * min(len(skills[index]), 3)
-        )
-
-    ranked = np.argsort(-scores, kind="stable")
-    best_score = float(scores[ranked[0]])
-
-    keep = set()
-    words = 0
-
-    for position in ranked:
-        position = int(position)
-        index = eligible[position]
-
-        if float(scores[position]) < (
-            best_score - BROAD_SCORE_MARGIN
-        ):
-            break
-
-        sentence_words = len(sentences[index].split())
-
-        # Keep the best unit intact, even if it exceeds the budget.
-        if keep and words + sentence_words > WORD_BUDGET:
-            continue
-
-        keep.add(index)
-        words += sentence_words
-
-        if (
-            len(keep) >= MAX_BROAD_SENTENCES
-            or words >= WORD_BUDGET
-        ):
-            break
-
-    return keep
+    return "none"
 
 
-def filter_posts(question, posts, encode):
+def filter_posts(question, posts, encode=None):
     """
     posts: dictionaries returned by retrieve()
 
-    encode(texts, is_query):
-        returns normalized embedding vectors
+    encode is accepted for compatibility with the earlier version
+    and is no longer used (broad questions are not filtered).
 
     Returns copies containing selected evidence.
-    Focused mode may return fewer posts, including zero.
+    Focused modes may return fewer posts, including zero.
     """
-    certification_question = bool(
-        CERT_QUESTION.search(question)
-    )
+    strategy = question_strategy(question)
 
+    # Broad question: keep the full retrieved chunks.
+    if strategy == "none":
+        return [
+            {**post, "kept": "all", "filter_strategy": "none"}
+            for post in posts
+        ]
+
+    wanted = _asked_categories(question)
     named_skills = {
         skill
         for skill in _skills(question)
@@ -248,7 +255,7 @@ def filter_posts(question, posts, encode):
             for sentence in sentences
         ]
 
-        if certification_question:
+        if strategy == "certification":
             selected = {
                 index
                 for index, sentence in enumerate(sentences)
@@ -257,9 +264,19 @@ def filter_posts(question, posts, encode):
                     found_skills[index],
                 )
             }
-            strategy = "certification"
 
-        elif named_skills:
+        elif strategy == "category":
+            selected = {
+                index
+                for index, sentence in enumerate(sentences)
+                if _is_category_evidence(
+                    sentence,
+                    found_skills[index],
+                    wanted,
+                )
+            }
+
+        else:  # named-skills
             selected = {
                 index
                 for index, skills in enumerate(found_skills)
@@ -268,16 +285,6 @@ def filter_posts(question, posts, encode):
                     and not _is_heading(sentences[index])
                 )
             }
-            strategy = "named-skills"
-
-        else:
-            selected = _select_broad(
-                question,
-                sentences,
-                found_skills,
-                encode,
-            )
-            strategy = "semantic"
 
         # Do not replace missing focused evidence with unrelated text.
         if not selected:

@@ -11,6 +11,10 @@
 #
 # Original first-N syntax still works:
 #   python eval_rag.py hybrid 2
+#
+# Held-out questions (never used to design the filter):
+#   python eval_rag.py hybrid --set heldout --metrics context
+#   python eval_rag.py filtered --set heldout --metrics context
 
 import argparse
 import csv
@@ -84,6 +88,42 @@ TESTS = [
     },
 ]
 
+# Held-out set: written on 2026-11-19 AFTER the filter rules were frozen.
+# Same question kinds as TESTS, but different roles and skills.
+# Do not change the filter based on these results.
+HELDOUT = [
+    {
+        "question": (
+            "Which certifications do entry-level cybersecurity jobs mention?"
+        ),
+        "role_family": "security",
+        "level": "entry",
+    },
+    {
+        "question": (
+            "Which programming languages do junior data analyst jobs ask for?"
+        ),
+        "role_family": "data",
+        "level": "entry",
+    },
+    {
+        "question": (
+            "Do entry-level DevOps jobs ask for Docker or Ansible?"
+        ),
+        "role_family": "devops_cloud",
+        "level": "entry",
+    },
+    {
+        "question": (
+            "What do entry-level backend developer jobs require?"
+        ),
+        "role_family": "backend",
+        "level": "entry",
+    },
+]
+
+SETS = {"main": TESTS, "heldout": HELDOUT}
+
 RUNS = {
     "baseline": ("by_hand", "vector"),
     "langchain": ("langchain", "vector"),
@@ -148,6 +188,14 @@ def parse_args():
     )
 
     parser.add_argument(
+        "--set",
+        dest="question_set",
+        default="main",
+        choices=SETS,
+        help="Question set: main (7 tuning questions) or heldout (4 new ones).",
+    )
+
+    parser.add_argument(
         "--questions",
         nargs="+",
         type=positive_int,
@@ -185,11 +233,13 @@ def parse_args():
     if args.limit is not None and args.questions is not None:
         parser.error("Use either limit or --questions, not both.")
 
+    tests = SETS[args.question_set]
+
     if args.questions and any(
-        number > len(TESTS) for number in args.questions
+        number > len(tests) for number in args.questions
     ):
         parser.error(
-            f"Question numbers must be between 1 and {len(TESTS)}."
+            f"Question numbers must be between 1 and {len(tests)}."
         )
 
     if "all" in args.metrics and len(args.metrics) > 1:
@@ -319,10 +369,12 @@ def main():
             args.recency_weight
         )
 
+    tests = SETS[args.question_set]
+
     if args.questions:
         question_ids = list(dict.fromkeys(args.questions))
     else:
-        count = min(args.limit or len(TESTS), len(TESTS))
+        count = min(args.limit or len(tests), len(tests))
         question_ids = list(range(1, count + 1))
 
     code, mode = RUNS[args.run]
@@ -368,8 +420,10 @@ def main():
     question_label = "-".join(map(str, question_ids))
     metric_label = "-".join(args.metrics)
 
+    set_label = "" if args.question_set == "main" else f"{args.question_set}-"
+
     stem = (
-        f"evals/{args.run}-q{question_label}-"
+        f"evals/{args.run}-{set_label}q{question_label}-"
         f"{metric_label}_{timestamp}"
     )
 
@@ -378,7 +432,7 @@ def main():
     stop = False
 
     print(
-        f"Run: {args.run} | questions: {question_ids} "
+        f"Run: {args.run} | set: {args.question_set} | questions: {question_ids} "
         f"| metrics: {args.metrics}"
     )
 
@@ -414,7 +468,7 @@ def main():
             rows.append(row)
 
         for question_id in question_ids:
-            test = TESTS[question_id - 1]
+            test = tests[question_id - 1]
             start = time.time()
 
             print(
@@ -423,7 +477,10 @@ def main():
             )
 
             base = {
-                "run": args.run,
+                "run": (
+                    args.run if args.question_set == "main"
+                    else f"{args.run}-{args.question_set}"
+                ),
                 "question_id": question_id,
                 "question": test["question"],
                 "role_family": test["role_family"],
