@@ -1,9 +1,13 @@
-I know Python and Excel and I want a junior data a
-  - {'kind': 'citation', 'quote': 'Example: “SAS macro library” [5]', 'issue': 'The cited example [5] mentions a SAS macro library but does not explicitly state that the skill “SAS” is required or used in the job post, so it does not support the inclusion of SAS in the roadmap.'}
+File: evals\test-agent_2026-11-19.csv
 
-I know Linux and Python, I want a junior DevOps jo
-  - (run failed)
+=== Row 0: I know Python and Excel and I want a junior data analyst job. What should I learn? | True ===
+- {'kind': 'citation', 'quote': 'Experience with machine learning of engineering or service data and application to preventive maintenance.', 'issue': 'these words are not in source [9]'}
 
-I want my first help desk job, I already know Wind
-  - (run failed)
+=== Row 1: I know Linux and Python, I want a junior DevOps job | True ===
+- {'kind': 'citation', 'quote': 'Hands‑on experience with CI/CD tools such as Jenkins, GitLab CI, or Travis CI.', 'issue': 'The example [9] mentions CI/CD tools but does not explicitly mention the skill “Bash” that the roadmap lists as a core skill. The citation should include a source that explicitly references Bash scripting to support its inclusion in the roadmap.'}
+- {'kind': 'citation', 'quote': 'Hands‑on experience with Docker.', 'issue': 'these words are not in source [9]'}
+- {'kind': 'citation', 'quote': 'Experience with IAM (Identity and Access Management) services.', 'issue': 'these words are not in source [11]'}
+
+=== Row 2: I want my first help desk job, I already know Windows and Active Directory | True ===
+- {'kind': 'citation', 'quote': 'Manage the ticket queue in ServiceNow and triage the tickets', 'issue': 'these words are not in source [4]'}
 

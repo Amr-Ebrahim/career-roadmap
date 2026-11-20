@@ -1,0 +1,161 @@
+request,intake_ok,intake,plan_coverage,missing_skills,numbers_ok,wrong_numbers,order_ok,quote_problems,invalid_citations,reviewer_notes,revised,seconds,roadmap,problems,plan_text,sources
+I know Python and Excel and I want a junior data analyst job. What should I learn?,True,data/entry/analyst,1.0,,1.0,,0.83,1,0,1,True,59,"**Roadmap based on 114 entry‑level data analyst posts with “analyst” in the title.**  
+Already have: Excel (in 42% of the posts), Python (in 23% of the posts).
+
+---
+
+### Foundations  
+1. **SQL** (in 44% of the posts) – rises with seniority (entry 44% → senior 78%). *Includes Relational Databases (5%)*.  
+   *Example:* “Proficiency in SQL programming; minimum 2 years of experience.” [4]  
+2. **Statistics** (in 30% of the posts).  
+   *Example:* “Bachelor’s degree in a quantitative discipline (e.g., Statistics, Economics, Mathematics, Marketing Analytics).” [4]  
+3. **Power BI** (in 24% of the posts; or Tableau (16%) – pick one).  
+   *Example:* “Proficiency in Power Query (M Language, DAX) for data transformation and cleansing within Microsoft Excel and Power BI environments.” [1]  
+
+### Core skills  
+4. **Machine Learning** (in 17% of the posts) – learn after Statistics.  
+   *Example:* “Experience with machine learning of engineering or service data and application to preventive maintenance.” [9]  
+5. **R** (in 10% of the posts).  
+   *Example:* “Proficiency in SQL, Python, R, or other programming languages for data manipulation and analysis.” [7]  
+6. **SAS** (in 7% of the posts).  
+   *Example:* “Access and extract data from a variety of sources of all sizes (including client marketing databases) via SAS Access, SQL, etc.” [4]  
+7. **Data Warehousing** (in 7% of the posts) – learn after SQL.  
+   *Example:* “Develop and maintain data models, dashboards and reports.” [6]  
+
+### Next level  
+- (none)
+
+---
+
+**Notes**  
+None.","[{""kind"": ""citation"", ""quote"": ""Experience with machine learning of engineering or service data and application to preventive maintenance."", ""issue"": ""these words are not in source [9]""}]","PLAN based on 114 entry-level data posts with 'analyst' in the title.
+Skills are numbered in learning order: what a skill needs comes first (the order comes from a prerequisite list, not from the job data).
+
+Foundations:
+1. SQL: in 44% of the posts; rises with seniority (entry 44% -> senior 78%); includes Relational Databases (5%)
+2. Statistics: in 30% of the posts
+3. Power BI: in 24% of the posts; or Tableau (16%) (pick one)
+
+Core skills:
+4. Machine Learning: in 17% of the posts; learn after Statistics
+5. R: in 10% of the posts
+6. SAS: in 7% of the posts
+7. Data Warehousing: in 7% of the posts; learn after SQL
+
+Next level:
+- (none)
+
+Already has: Excel (in 42% of the posts), Python (in 23% of the posts)","[""[1] Data Analyst at Cornerstone Building Brands\nProven experience (2 years) as a Data Analyst, Data Engineer, or similar role, with a focus on data cleansing and preparation. Competencies: Strong analytical and problem-solving skills with the ability to translate business requirements into technical solutions. Proficiency in Power Query (M Language, DAX) for data transformation and cleansing within Microsoft Excel and Power BI environments. Proficiency in SQL and data manipulation tools (e.g., Python and R). Experience with data visualization"", ""[2] Business Intelligence Analyst at Wis-Pak, Inc.\nWHAT YOU’LL BRING TO THE TABLE:Bachelor’s degree in information technology, computer science, data science or business administration1 to 3 years of experience as a BI Analyst, Data Analyst, or similar role in a data-driven environmentStrong proficiency with Power BI or Tableau (SQL a plus)Advanced Excel skills a MUSTExperience in data modeling, data analysis, and data visualizationAbility to communicate complex concepts to non-technical users WHAT WE OFFER:A dynamic role with room to grow and s"", ""[3] Data Analyst at Infocepts Inc\nQualifications:Bachelor's or Master's degree in Data Science, Statistics, Mathematics, Computer Science, or related fieldProficiency in SQL, Python, R, or other programming languages used for data analysisExperience with data visualization tools such as Tableau, Power BI, or matplotlibStrong analytical and problem-solving skills with a keen attention to detailExcellent communication and collaboration abilities to work effectively with cross-functional teamsFamiliarity with machine learning algor"", ""[4] Data Analyst at Epsilon\nCollaborate with internal/external stakeholders to manage data logistics – including data specifications, transfers, structures, and rulesAccess and extract data from a variety of sources of all sizes (including client marketing databases) via SAS Access, SQL, etc.Master and perform all steps required to create analysis-ready data sets; including data integration/merging, variable preparation, and quality control (QA/QC)Develop and execute SQL (or related) programs with detailed direction and su ... Data Analyst during the year Minimum Qualifications Bachelor’s degree in a quantitative discipline (e.g., Statistics, Economics, Mathematics, Marketing Analytics) or significant relevant coursework1-2 years of experience in the marketing analytics fieldDemonstrated proficiency in SQL programming; minimum 2 years of experienceStrong analytic thought process and ability to interpret findingsAcute attention to detail (QA/QC)Working knowledge of MS Office; including PowerPoint, Word, Excel and Outlo"", ""[5] Data Analyst at PrimePay\nAbility to select the most appropriate visualization method to effectively communicate insights and findings Proficiency in performing forecasting and predictive analytics using statistical methods and machine learning algorithms. Ability to build predictive models, analyze trends, and generate accurate forecasts to support decision-making Strong programming skills in scripting languages such as Python, R, and SQL. Ability to write efficient scripts and queries to manipulate, analyze, and extrac"", ""[6] Data Analyst at Everway\nMain Responsibilities In this role, you will: Collect, clean and analyse data from a variety of sources. Help maintain data quality, accuracy and consistency. Develop and maintain data models, dashboards and reports. Work with stakeholders to understand data requirements and business questions. Analyse trends and patterns to generate actionable insights. Present findings clearly to both technical and non-technical audiences. Support data-driven initiatives across the business. Contribute to the "", ""[7] Data Analyst at Straight Arrow News\nRequired QualificationsBachelor's degree in Computer Science, Statistics, Mathematics, Economics, or related field. At least five years of experience as a Data Analyst in a digital media or ecommerce setting.Proficiency in SQL, Python, R, or other programming languages for data manipulation and analysis.Experience with Google Data Studio or other data visualization tools.Experience creating custom data pipelines, automated reports, and data visualizations.Expertise in web and mobile analytics pl"", ""[8] Data Analyst at Emeritus\nPreferred experiencePrevious experience as a Learning & Development Analyst, Marketing Analyst, or Business AnalystA background in the professional learning/education space.A quantitative background or degree.Machine learning and artificial intelligence (ML/AI) technical skills will not be used in this position. Pay will be determined on several factors including but not limited to location, skills, experience and may vary from the range listed above."", ""[9] Data Analyst at Oshkosh Defense\nJOB SUMMARY: As a key member in the Advanced Data Analytics team, the Data Analyst will work with this and a cross-functional team to develop and execute the data analytics strategy and apply to Oshkosh Corporation products. Advanced Data Analytics wok encompasses the acquisition, processing and machine learning of engineering or service data and application to preventive maintenance and intelligent control of on or off-road vehicles. ESSENTIAL DUTIES AND RESPONSIBILITIES: These duties are not m""]"
+"I know Linux and Python, I want a junior DevOps job",True,devops_cloud/entry/None,1.0,,1.0,,1.0,2,0,3,True,138,"**Roadmap based on 70 entry‑level devops_cloud posts**
+
+*Plan derived from 70 real job posts; skills are ordered by prerequisite list.*
+
+**Already have**  
+Python (in 59% of the posts)  
+Linux (in 36% of the posts)
+
+---
+
+### Foundations
+1. **AWS** (in 59% of the posts) – *pick one*  
+   *Example:* “Proficiency in AWS services such as EC2, S3, RDS, iAM, Lambda, and VPC.” [11]  
+2. **Git** (in 39% of the posts) – *learn after AWS*  
+   *Example:* “Experience with version control systems like Git (BitBucket,GitHub).” [2]  
+3. **CI/CD** (in 40% of the posts; rises with seniority) – *includes Jenkins (17%); learn after Git*  
+   *Example:* “Hands‑on experience with CI/CD tools such as Jenkins, GitLab CI, or Travis CI.” [9]  
+
+### Core skills
+4. **Terraform** (in 39% of the posts; includes Infrastructure as Code (33%); learn after AWS)  
+   *Example:* “Familiarity with infrastructure as code (IaC) tools like Terraform or CloudFormation.” [11]  
+5. **Ansible** (in 31% of the posts)  
+   *Example:* “Experience with Ansible.” [4]  
+6. **Docker** (in 30% of the posts)  
+   *Example:* “Hands‑on experience with Docker.” [9]  
+7. **Bash** (in 21% of the posts)  
+   *Example:* “Proficiency in scripting languages such as Python, Shell, or PowerShell.” [9]  
+
+### Next level
+8. **Kubernetes** (in 36% of the posts; rises with seniority; learn after Docker)  
+   *Example:* “Strong understanding of containerization technologies (Docker, Kubernetes).” [9]  
+9. **Identity & Access Management** (in 9% of the posts; rises with seniority)  
+   *Example:* “Experience with IAM (Identity and Access Management) services.” [11]  
+
+---
+
+**Notes**  
+None.  
+
+---
+
+**General advice (not from the job data)**  
+Begin with the cloud platform you are most comfortable with, then master Git before moving into CI/CD pipelines. Pair Terraform and Ansible learning to reinforce infrastructure as code concepts. Once comfortable, containerize workloads with Docker, then orchestrate with Kubernetes. Finally, deepen security knowledge with IAM practices. Continuous practice through small projects or open‑source contributions will reinforce each skill.","[{""kind"": ""citation"", ""quote"": ""Hands‑on experience with CI/CD tools such as Jenkins, GitLab CI, or Travis CI."", ""issue"": ""The example [9] mentions CI/CD tools but does not explicitly mention the skill “Bash” that the roadmap lists as a core skill. The citation should include a source that explicitly references Bash scripting to support its inclusion in the roadmap.""}, {""kind"": ""citation"", ""quote"": ""Hands‑on experience with Docker."", ""issue"": ""these words are not in source [9]""}, {""kind"": ""citation"", ""quote"": ""Experience with IAM (Identity and Access Management) services."", ""issue"": ""these words are not in source [11]""}]","PLAN based on 70 entry-level devops_cloud posts.
+Skills are numbered in learning order: what a skill needs comes first (the order comes from a prerequisite list, not from the job data).
+
+Foundations:
+1. AWS: in 59% of the posts; or Azure (44%), GCP (19%) (pick one)
+2. Git: in 39% of the posts
+3. CI/CD: in 40% of the posts; rises with seniority (entry 40% -> senior 54%); includes Jenkins (17%); learn after Git
+
+Core skills:
+4. Terraform: in 39% of the posts; includes Infrastructure as Code (33%); learn after AWS
+5. Ansible: in 31% of the posts
+6. Docker: in 30% of the posts
+7. Bash: in 21% of the posts
+
+Next level:
+8. Kubernetes: in 36% of the posts; rises with seniority (entry 36% -> senior 56%); learn after Docker
+9. Identity & Access Management: in 9% of the posts; rises with seniority (entry 9% -> senior 21%)
+
+Already has: Python (in 59% of the posts), Linux (in 36% of the posts)","[""[1] DevOps/ Cloud Engineer at Hexagon Safety, Infrastructure & Geospatial\nYou should have a good understanding of the following topics: Feature flags, Blue/Green, Canary and Ring release strategies and tools  Cloud Native tools and their applicability across different Cloud providers  Monitoring, Observability and how it is used to manage MTTR. Cloud provider services and capabilities  CI/CD both the principles and the experience of setting up a pipeline (Azure DevOps, Gitlab, Argo CD or other similar tools )  Managing Hybrid and Multi-Cloud environments  Security bes"", ""[2] DevOps Network Engineer at Russell Tobin\nRequired Skills: Experience with version control systems like Git (BitBucket,GitHub).Knowledge of DevOps principles and practices, integrating automation into a continuous integration and continuous deployment (CI/CD) pipeline.Python scripting experience is required with additional languages (shell, PERL, etc) preferred."", ""[3] Cloud Engineer at Tech Consulting\nto drive and propel your technical profession forward for many years to come!What You Bring to the Roleleast 12 months of programming experienceinterview skills as you will be interviewing with many companies and leads in the tech industry.be able to code inC# or VB or Java or Python or Ruby or GO or any Object-oriented programming language etc.Terraform or ARM Templates or PULUMI or Bicep. have experience with CI/CD which is a fundamental concept in Azure DevOps.have DevOps Experience. Familiar"", ""[4] Cloud Site Reliability Engineer at Global Payments Inc.\nPreferred Qualifications: 4 years of strong devops / automation experience  Experience securing and managing PCI-compliant environments  Experience with Ansible  Experience with Terraform  Experience with Python  Experience with agile methodologies like Scrum or Kanban  Experience with application development is a plus  Familiarity with Java application servers like Tomcat or Wildfly  Experience with Docker and container orchestration  Experience with Subversion  Experience with Git and GitOps, "", ""[5] Site Reliability Engineer at ProviderTrust\nSuggested Skills and Experience Designing and maintaining secure Linux web serversExperience with managing networksDesigning secure Docker containers according to best practicesContainer orchestration technologies like Kubernetes, ECS, etc.Cloud based IaaS (AWS strongly encouraged)Designing and maintaining a monitoring environment like Splunk, Nagios, CloudWatch (Splunk strongly encouraged)Automated configuration management tools like Puppet, Ansible, Terraform, Cloudformation (Terraform strongl"", ""[6] Jr. Cloud Engineer at Avature\nAbout you: Be willing and eligible to be sponsored for US government security clearance.Enthusiastic about learning and growing in AWS cloud services proficiency.Experience in Linux system administration.Exposure to private or public cloud platform development using current DevOps practices such as Containerization, Configuration Management, and Infrastructure as Code (IaC). Experience with specific technologies such as Terraform, Docker, Puppet, or Kubernetes is a plus.Interest and curiosity in"", ""[7] Infrastructure Engineer at Flix\nAbout the Role Integrate new internal and external applications into our identity infrastructure (e.g., SSO ) following best practices Work on projects to improve internal role-based access control concepts Consult other teams and guide them to success, leveraging our services especially regarding identity and access management Drive innovation and improve our services together with the team Automate recurring tasks Design the future IT infrastructure of Flix About You At least 3 years of experi ... IaC solutions (preferably Terraform) Hands-on experience leveraging AI tools to streamline infrastructure automation, troubleshooting, and daily operations Basic experience using APIs Experience with containerization and orchestration platforms (e.g., Docker, Kubernetes) is a plus Experience working with IaaS solutions is a plus Basic knowledge of modern frontend frameworks (e.g., React) or web technologies is a plus Experience with M365 products (such as Exchange Online, SharePoint/OneDrive, an"", ""[8] Cleared Cloud Engineer On Site at SMX\nDevelop cloud formation templates to build immutable infrastructure on AWSAble to work in an agile, cross-functional teamDevelop AWS lambda functions in Python or other languages for operational or business functional purposes Evaluate, respond to, and resolve AWS service issues leveraging AWS support when neededDrive technical innovation and efficiency in infrastructure operations via automation and orchestration Conduct capacity planning analysis and cloud budget planningManage the monitoring,"", ""[9] Business Analyst with DevOps at Best High Technologies LLC (BHT)\nEngineering, or related field.• Proven experience in DevOps methodologies and practices.• Proficiency in scripting languages such as Python, Shell, or PowerShell.• Hands-on experience with CI/CD tools such as Jenkins, GitLab CI, or Travis CI.• Strong understanding of containerization technologies (Docker, Kubernetes).• Familiarity with configuration management tools like Ansible, Puppet, or Chef.• Excellent analytical and problem-solving skills.• Strong communication and collaboration abilities."", ""[10] Cloud DevOps Engineer at Oracle\nAs part of an application cloud engineering, team the successful candidate will be actively developing the environment for our web-based enterprise products. In this environment, the candidate will be called upon to analyze problems, suggest and assess multiple alternative solutions, and implement high-quality solutions and maintain.Responsibilities include: Should be having strong development experience in DevOps Developing framework and infrastructure using Devops tools(Visio,Docker,Kubernetos"", ""[11] Cloud Engineer I-Remote, USA at Ambry Genetics\nQualifications Bachelor’s degree in computer science, Information Technology, or a related field or equivalent work experienceProficiency in AWS services such as EC2, S3, RDS, iAM, Lambda, and VPC.Familiarity with infrastructure as code (IaC) tools like Terraform or CloudFormation.Familiarity with containerization and serverless architecture.Strong problem-solving skills and ability to work in a fast-paced environment.Excellent communication and interpersonal skills.Collaborate effectively with "", ""[12] Azure DevOps Engineer at Sogeti\nOur mission is to constantly exceed our employees' expectations in the same way that we strive to exceed our clients' expectations. We offer an environment that celebrates innovation and helps you to achieve a good balance between your professional and personal life. We strive to be an employer of choice! The ideal candidate will have:Hands-on experience with Azure DevOps Experience to deploy Infrastructure and Application build using YAML Pipeline as CodePowerShell scripting and Infrastructure ""]"
+"I want my first help desk job, I already know Windows and Active Directory",True,networking_it/entry/help desk,0.86,Microsoft 365,1.0,,0.8,1,0,1,True,130,"**Roadmap based on 76 entry‑level networking_it posts with “help desk” in the title**
+
+*Plan is derived from 76 real job posts.*
+
+**Already have**  
+- Active Directory (in 26 % of the posts)
+
+---
+
+### Foundations
+1. **Networking Fundamentals** (in 29 % of the posts)  
+   *“Strong knowledge of Windows Server operating systems … Familiarity with LAN/WAN technologies and network administration concepts”* [3]  
+2. **Microsoft 365** (in 18 % of the posts)  
+   *“Excellent working knowledge of Windows 10/11, Teams, and Outlook”* [2]  
+3. **CompTIA Certifications** (in 16 % of the posts)  
+   *“CompTIA A+ Certification … Basic networking skills are required”* [2]
+
+### Core skills
+4. **ServiceNow** (in 10 % of the posts; includes ITIL/ITSM (7 %)) – *learn after Networking Fundamentals*  
+   *“Manage the ticket queue in ServiceNow and triage the tickets”* [4]  
+5. **Excel** (in 9 % of the posts) – *learn after ServiceNow*  
+   *“Microsoft Suite competency”* [2]
+
+**Notes**  
+- Too few entry or senior posts to compare levels.  
+- Android and iOS are in the original plan, but the searched posts do not mention Kotlin/Java or Swift, so they are omitted from this roadmap.  
+
+---
+
+**General advice (not from the job data)**  
+Start with the foundational networking and Microsoft 365 skills, then move to ServiceNow, which is a common ticket‑management platform. Excel proficiency will help with reporting and documentation. Keep learning CompTIA A+ and Network+ to strengthen your résumé and broaden your technical base.","[{""kind"": ""citation"", ""quote"": ""Manage the ticket queue in ServiceNow and triage the tickets"", ""issue"": ""these words are not in source [4]""}]","PLAN based on 76 entry-level networking_it posts with 'help desk' in the title.
+Skills are numbered in learning order: what a skill needs comes first (the order comes from a prerequisite list, not from the job data).
+
+Foundations:
+1. Networking Fundamentals: in 29% of the posts
+2. Microsoft 365: in 18% of the posts
+3. CompTIA Certifications: in 16% of the posts
+
+Core skills:
+4. ServiceNow: in 10% of the posts; includes ITIL / ITSM (7%)
+5. Android: in 10% of the posts
+6. iOS: in 9% of the posts
+7. Excel: in 9% of the posts
+
+Next level:
+- (none)
+
+Already has: Active Directory (in 26% of the posts)
+Not in the skills dictionary (cannot be counted): Windows
+NOTE: Too few entry or senior posts to compare levels.
+NOTE: Android is in the plan, but these posts rarely ask for Kotlin or Java (under 5%), so it is not added as a step.
+NOTE: iOS is in the plan, but these posts rarely ask for Swift (under 5%), so it is not added as a step.","[""[1] Help Desk Specialist at TEKsystems\nPreferred But Not Required: CompTIA A+ Certification Previous Customer Service Experience Skills And Experience: Required Skills: HELP DESK Excellent Customer Service Skills SERVICE DESK MICROSOFT WINDOWS NETWORK CONNECTIVITY Additional Skills: IOS ANDROID NETWORKING COMPTIA ACTIVE DIRECTORY ITIL Languages: English Read Write Speak Certifications & Licenses: A+ A+ Certification ... Description: This is a help desk position that is supporting the Mass Mutual Ascend internal IT employee base (700 people). service desk and IT ops team. They are looking for a person for 830-530pm Monday-Friday. 3 person services desk. Dustin Mason- is the lead for the desk. The services desk runs from 7-530pm staffed between the 3 of them. This services desk is more than just a help desk. They have a high first call resolution; anything to do with personal work station O365, VPN connection iss"", ""[2] IT Help Desk Technician at MBK Real Estate Companies\nand emails every day.Other related activities that may be required and deemed necessary by the Supervisor.Education Requirements:High School degree required.Experience Requirements (in years):3 years IT Help Desk.Required Competencies/Licenses/Certifications:Microsoft Suite competency.Excellent working knowledge of Windows 10/11, Teams, and Outlook.CompTIA A+ Certification is strongly preferred.Basic networking skills are required.A CompTIA Network+ Certification is strongly preferred.Case manag"", ""[3] Help Desk Technician at Dice\nSkills: Strong knowledge of Windows Server operating systems Familiarity with LAN/WAN technologies and network administration concepts Experience with Active Directory user account management Proficiency in providing technical support and troubleshooting for hardware and software issues Knowledge of SCCM (System Center Configuration Manager) for software deployment and updates Understanding of TCP/IP networking protocols Proficient in Microsoft Office applications Excellent problem-solving skill ... Dice is the leading career destination for tech experts at every stage of their careers. Our client, CGT Staffing, is seeking the following. Apply via Dice today! Overview: We are seeking a Help Desk Analyst to join our team. As a Help Desk Analyst, you will be responsible for providing technical support and troubleshooting assistance to our internal users. This is a great opportunity for someone with strong technical skills and a passion for helping others. Responsibilities:"", ""[4] Tier 1 Help Desk at Apex Systems\nJob#: 2023137 Job Description: Help Desk *Email your resume to [email protected] to apply!* Location: Norfolk (On site) Employement Type: Contract to Hire Employment Length: 6 months to conversion (conversion based on performance) Schedule: 12 Hr. shifts Job Description: Manage the ticket que in ServiceNow and t riage the tickets and assigning them to the proper group within the organization. Implement help desk procedures. Provide 24/7 tier 2 and tier 3 customer support for all applications. Pr"", ""[5] Help Desk Analyst at Akkodis\nAkkodis is seeking a Help Desk Analyst for a Contract position with Cleveland or Brecksville OH, United States and ideally looking for applicants with a solid Candidate in Troubleshooting The rate may be negotiable based on experience, education, geographic location, and other factors. The ideal candidate will know in and familiar with the following operating systems, software applications, browsers, and technologies:Microsoft Windows 10Office 365 applications including Teams, OneDrive, Outlook,"", ""[6] Help Desk Analyst at Advantage Technical\nMaintains a proficient technical knowledge in various systems, hardware, software and database applications. Troubleshoots and assists users with various systems issues including PC/laptop, printer, software, hardware, problems. Closes Help Desk tickets and communicates resolution to the user. - Tracks all calls, voicemails and e-mails in a detailed and accurate fashion utilizing Help Desk software. - Adheres to the defined and communicated call flow / ticket resolution process. Recommends chang"", ""[7] Help Desk Technician at Concero\nThis position will support internal end users relating to Service Now needs.Responsibilities: The duties and responsibilities of the ServiceNow Certified System Administrator include, but are not limited to, the following: Responsible for troubleshooting and resolving issues within the ServiceNow platform.Perform configuration changes and handle level 1 Incidents such as User logon issues, Group maintenance etc.Provides comprehensive support encompassing support workflows, report administration,""]"

@@ -1,0 +1,19 @@
+{
+  "run": "filtered",
+  "mode": "hybrid+sentences",
+  "context_only": true,
+  "question_id": 4,
+  "question": "What skills do entry-level backend developer jobs ask for?",
+  "role_family": "backend",
+  "level": "entry",
+  "answer": "",
+  "sources": [
+    "[1] Software Developer I - Backend at Electrify America (entry, kaggle_linkedin, 2024-04-19)\nBachelor’s Degree in Computer Science, Mathematics, Engineering or related fieldOther degree/ certification with extensive proven backend stack developer experience\nComputer literacy – set up and use software development tools, office software, productivity toolsCritical thinking and problem solving – fluent in development using Java, troubleshooting software and writing unit test cases.\nattention to details2+ years of experience developing software solutions based on technical requirements2+ years of hands on experience as a backend software developerGrowth mindset;",
+    "[2] New Grad Back-End Software Engineer at Canoo (entry, kaggle_linkedin, 2024-04-18)\nAs a Backend Software Engineer, you will be responsible for developing and maintaining the server-side logic and APIs that enable seamless communication between internal systems, IoT devices (electric vehicles), external backend systems, and frontend user interfaces.",
+    "[3] .Net Developer at Dice (entry, kaggle_linkedin, 2024-04-18)\nProven experience as a .NET Developer with a strong background in C#, MVC, ASP.NET, and ASP.NET Core.",
+    "[4] .NET Back End or Full Stack Developer at Dice (entry, kaggle_linkedin, 2024-04-18)\nSkills Required:",
+    "[5] Remote Backend Devloper (Golang, Postgres, Python) at Beacon Hill Staffing Group (entry, kaggle_linkedin, 2024-04-15)\nSenior Developer18 month+ contract 100% Remote RolePay: $80/hour PST HOURS REQUIRED MUST INCLUDE CODE SAMPLES / GITHUB WITH SUBMISSION  SummaryJoin us as a Senior Backend Developer, a role where technical expertise and innovative thinking converge."
+  ],
+  "posts_override": "",
+  "recency_weight_override": ""
+}

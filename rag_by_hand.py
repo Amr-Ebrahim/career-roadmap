@@ -148,6 +148,7 @@ def normalize_citations(text):
 
 
 def check_citations(text, n_sources):
+    # Matches citations written like [1] or [2][4].
     cited = [
         int(number)
         for number in re.findall(r"\[(\d+)\]", text)

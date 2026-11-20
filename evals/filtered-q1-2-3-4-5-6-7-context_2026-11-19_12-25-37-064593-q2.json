@@ -1,0 +1,19 @@
+{
+  "run": "filtered",
+  "mode": "hybrid+sentences",
+  "context_only": true,
+  "question_id": 2,
+  "question": "What do entry-level help desk jobs require?",
+  "role_family": "networking_it",
+  "level": "entry",
+  "answer": "",
+  "sources": [
+    "[1] Helpdesk Tier 1.5 at TEKsystems (entry, kaggle_linkedin, 2024-04-06)\n1-2 years of helpdesk / call center experience\n1-2 years of experience working with “help desk ticketing tools” i.e.",
+    "[2] IT Help Desk Technician at MBK Real Estate Companies (entry, kaggle_linkedin, 2024-04-11)\nJob Summary: The IT Help Desk Technician provides IT Help Desk technical support to the user community.\nExperience Requirements (in years):3 years IT Help Desk.",
+    "[3] Help Desk Analyst at Advantage Technical (entry, kaggle_linkedin, 2024-04-18)\nHelpdesk Analyst or Help Desk Manager.",
+    "[4] •\tTier I Help Desk associate at Ritz Safety (entry, kaggle_linkedin, 2024-04-16)\nRole DescriptionTier I Help Desk associate.\nBuild rapport and elicit problem details from help desk customers.",
+    "[5] Help Desk Technician at Piper Companies (entry, kaggle_linkedin, 2024-04-19)\nPiper Companies is looking for a Help Desk Technician to join a business consulting company.\nEssential Duties of the Help Desk Technician:\nQualifications of the Help Desk Technician:"
+  ],
+  "posts_override": "",
+  "recency_weight_override": ""
+}

@@ -1,0 +1,19 @@
+{
+  "run": "filtered",
+  "mode": "hybrid+sentences",
+  "context_only": true,
+  "question_id": 7,
+  "question": "Do entry-level help desk jobs ask for CompTIA A+ or ITIL?",
+  "role_family": "networking_it",
+  "level": "entry",
+  "answer": "",
+  "sources": [
+    "[1] Help Desk Specialist at TEKsystems (entry, kaggle_linkedin, 2024-04-18)\nCompTIA A+ Certification\nCOMPTIA\nITIL\nA+\nA+ Certification",
+    "[2] Help Desk Engineer at Kaseya (entry, kaggle_linkedin, 2024-04-19)\nMay be substituted by 2 or more years of experience in a Help Desk/Call Center environment.2+ years of experience in a Service/Help Desk or Support Center environment preferredDriven by learning new things and the ability to thrive in an environment filled with technology opportunity.IT Certifications (CompTIA, Microsoft, HDI, Apple, ITIL) preferredExcellent written and spoken communication, motivated, and organized.",
+    "[3] Associate Service Desk Technician at Iron Bow Technologies (entry, kaggle_linkedin, 2024-04-16)\nApple Certified Tech (ACiT/ACMT), ITIL certification, Cisco Certification (CCENT/CCT or higher), Comp TIA Certification (A+, Security+ or Network+), Microsoft (MCP/Associate or higher) and Google IT Support Professional Certification will be considered in lieu of experience.",
+    "[4] Associate Service Desk Technician at Iron Bow Technologies (entry, kaggle_linkedin, 2024-04-16)\nApple Certified Tech (ACiT/ACMT), ITIL certification, Cisco Certification (CCENT/CCT or higher), Comp TIA Certification (A+, Security+ or Network+), Microsoft (MCP/Associate or higher) and Google IT Support Professional Certification will be considered in lieu of experience.",
+    "[5] Associate IT Support Technician at Veranex (entry, kaggle_linkedin, 2024-04-18)\nPreferred:\nCompTIA A+ Certification"
+  ],
+  "posts_override": "",
+  "recency_weight_override": ""
+}

@@ -1,0 +1,19 @@
+{
+  "run": "filtered",
+  "mode": "hybrid+sentences",
+  "context_only": true,
+  "question_id": 1,
+  "question": "What skills do I need to get an entry-level cloud engineer job?",
+  "role_family": "devops_cloud",
+  "level": "entry",
+  "answer": "",
+  "sources": [
+    "[1] Cloud Engineer at SAIC (entry, kaggle_linkedin, 2024-04-19)\nAs a Cloud Engineer, you will advise mission users on utilizing cloud-based IT systems, provide support for development in, or transition to the cloud, and be responsible for the implementation, troubleshooting, and maintenance of cloud environments.",
+    "[2] Business Analyst with DevOps at Best High Technologies LLC (BHT) (entry, kaggle_linkedin, 2024-04-18)\nExperience with cloud platforms such as AWS, Azure, or Google Cloud.\nCertification in DevOps or related field (e.g., AWS Certified DevOps Engineer, Docker Certified Associate).",
+    "[3] DevOps/ Cloud Engineer at Hexagon Safety, Infrastructure & Geospatial (entry, kaggle_linkedin, 2024-04-18)\nAs a DevOps/Cloud Engineer you will help harden software solutions supporting divisions going through a technological transformation.\nWorking in a small group, you’ll guide our development teams through creating and automating their cloud infrastructure , as well as build and maintain the central platform and solutions, which the R&D teams can benefit from.\nWe are a multi- cloud company (AWS, Azure & GCP), meaning that you will get to apply a diverse mix of tools and services.",
+    "[4] Cloud Engineer at LanceSoft, Inc. (entry, kaggle_linkedin, 2024-04-19)\nCloud engineer to develop cloud-based applications & services, design & implement unstructured cloud data (S3) I/O & processing and optimize engineering data pipelines and implement data security for Product Development and Test Engineering",
+    "[5] Cloud Engineer at Brickhouse Resources (entry, kaggle_linkedin, 2024-04-09)\nThe Cloud Data Engineer will be responsible for designing and implementing Analytics solutions as part of a team.\nQualificationsExperience with Microsoft database and BI technologiesExperience with:Azure Data Lake StorageAzure SQL DW / Azure SynapseAzure Data FactoryMPP architecturePolyBaseT-SQL development experienceExperienced with data modeling and database designExperience defining and implementing strategies for extracting, transforming, and loading data from multiple data sources into large enterprise data warehousesPerformance analysis and tuning experienceExperience with Data Warehouse or Big Data solutionsRapid prototyping experienceDatabricks experience a plusPython experience a plusBS/MS in Computer Science or relatedStrong verbal and written communication skillsWorks well as part of a teamExcellent problem-solving skills"
+  ],
+  "posts_override": "",
+  "recency_weight_override": ""
+}
