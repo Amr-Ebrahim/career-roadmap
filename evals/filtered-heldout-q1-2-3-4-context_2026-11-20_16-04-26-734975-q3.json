@@ -1,0 +1,19 @@
+{
+  "run": "filtered",
+  "mode": "hybrid+sentences",
+  "context_only": true,
+  "question_id": 3,
+  "question": "Do entry-level DevOps jobs ask for Docker or Ansible?",
+  "role_family": "devops_cloud",
+  "level": "entry",
+  "answer": "",
+  "sources": [
+    "[1] Cloud Site Reliability Engineer at Global Payments Inc. (entry, kaggle_linkedin, 2024-04-06)\nExperience with Ansible\nExperience with Docker and container orchestration",
+    "[2] Business Analyst with DevOps at Best High Technologies LLC (BHT) (entry, kaggle_linkedin, 2024-04-18)\nStrong understanding of containerization technologies (Docker, Kubernetes).\nFamiliarity with configuration management tools like Ansible, Puppet, or Chef.",
+    "[3] DevOps Engineer at Collabera (entry, kaggle_linkedin, 2024-04-19)\nStandard / universal Ansible playbook roles",
+    "[4] Cloud DevOps Engineer at Oracle (entry, kaggle_linkedin, 2024-04-18)\nDeveloping framework and infrastructure using Devops tools(Visio,Docker,Python,puppet, terraform, ansible etc) in cloud",
+    "[5] DevOps Engineer - Platform Services Team at Tinuiti (entry, kaggle_linkedin, 2024-04-19)\nShell scripting familiarity (Bash/Zsh) and ability to work with packaging systems (npm, webpack, etc) Knowledge of containerization and orchestration technologies (Docker, Kubernetes)."
+  ],
+  "posts_override": "",
+  "recency_weight_override": ""
+}

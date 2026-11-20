@@ -1,0 +1,19 @@
+{
+  "run": "filtered",
+  "mode": "hybrid+sentences",
+  "context_only": true,
+  "question_id": 1,
+  "question": "Which certifications do entry-level cybersecurity jobs mention?",
+  "role_family": "security",
+  "level": "entry",
+  "answer": "",
+  "sources": [
+    "[1] Associate Cybersecurity Engineer at GM Financial (entry, kaggle_linkedin, 2024-04-18)\nCybersecurity related Certifications strongly preferred",
+    "[2] DevSecOps Quality Assurance Engineer at FPT Software (entry, kaggle_linkedin, 2024-04-11)\nPrior cybersecurity experience and cybersecurity certifications such as Security+, AWS Certified Security – Specialty, Azure Security Engineer Associate is an advantage.",
+    "[3] Workflow Coordinator – Cyber at DMI (Digital Management, LLC) (entry, kaggle_linkedin, 2024-04-18)\nRequired And Desired Skills/Certifications\nIdeal Candidate: Project Management Professional, Certified Scrum Master, or PMI-ACP certified professional with significant cybersecurity program management expertise.\nSkills: Must be a certified Agile project management professional with commensurate experience in a technical enterprise setting, experience tracking tasks across various platforms is required.\nCertifications: Certified Information Security Manager (CISM), Certified Information Systems Security Professional (CISSP, PMP, Certified Scrum Master (CSM),) PMI-ACP, SAFe Agile",
+    "[4] Information Security Analyst at Infojini Inc (entry, kaggle_linkedin, 2024-04-15)\nCompletion of one of the following recognized professional certifications: QSA (Qualified Security Assessor), CISM (Certified Information Security Manager), CISSP (Certified Information Systems Security Professional), SSCP (Systems Security Certified Practitioner), Certified Ethical Hacker (CEH)Education:Degree: B.A./B.S.",
+    "[5] FedRAMP Cloud Cybersecurity Analyst at ASRC Federal (entry, kaggle_linkedin, 2024-04-19)\nCertificaiton(s)\nDoDM 8140/DoDM 8570.01-M IAM Level I requirements prior to onboarding e.g., CAP, CND, Cloud+, GSLC, Security+ CE, HCISPP or higher-level certification\nMultiple cloud certifications preferred."
+  ],
+  "posts_override": "",
+  "recency_weight_override": ""
+}

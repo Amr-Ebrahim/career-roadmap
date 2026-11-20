@@ -1,0 +1,17 @@
+{
+  "run": "filtered",
+  "mode": "hybrid+sentences",
+  "context_only": true,
+  "question_id": 2,
+  "question": "Which programming languages do junior data analyst jobs ask for?",
+  "role_family": "data",
+  "level": "entry",
+  "answer": "",
+  "sources": [
+    "[1] Data Engineer at Chmura Economics & Analytics (entry, kaggle_linkedin, 2024-04-15)\nRequirementsExperience in at least one of these relevant programming languages: C#, Python, Java, etc.\nExperience with Elasticsearch, MongoDB, or other NoSQL experienceExperience with containerization platforms (Docker, Kubernetes, etc)Experience with schema design and writing queries for SQL Server, Postgres or similarAzure experienceKanban/Agile experienceFamiliarity with machine learning and NLP is nice to have but not requiredAt least 2 years.",
+    "[2] Data Analyst - Remote at ICF (entry, kaggle_linkedin, 2024-04-20)\nWe are seeking an analyst who is eager to use their advanced analytical and data transformation techniques, their visualization knowledge, and skills in Looker (or other related BI tools), SQL, and programming to rapidly turn data into insights and to develop practical tools and analyses that can help solve complex business problems, transforming volumes of data into actionable information.",
+    "[3] Data Analyst - Programmer (Department of Translational Medicine and Human Genetics) at University of Pennsylvania (entry, kaggle_linkedin, 2024-04-18)\nProvide informatics support on research projects, including:Design and implementation of large-scale data studiesAnalysis of complex datasets from various sources (Electronic Health Records, surveys)Develop custom tools using programming languages (Python, R, Java) for:Data cleaning and conversionAdvanced data analysisAssist in developing complex EHR-based phenotype definitions using clinical ontologies (ICD-9/10, CPT, LOINC, OMOP, RxNorm)Prepare datasets for analysis by other investigatorsImplement data quality assurance procedures to ensure data validity and reliability."
+  ],
+  "posts_override": "",
+  "recency_weight_override": ""
+}
