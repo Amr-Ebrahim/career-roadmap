@@ -49,7 +49,7 @@ is checked against the data before you see it.
 | Examples that may be invented | Every quote is checked **word for word** against the cited post |
 | One big prompt | Five agents; only three of them use an LLM, and only for language |
 | "Learn Docker, Kubernetes, AWS, Azure…" | A **learning order**: prerequisites first, alternatives grouped as "pick one" |
-| Trust me | Evaluated with DeepEval and a custom metric (0.96–0.98 citation faithfulness), and the judge itself was validated |
+| Trust me | Evaluated with DeepEval and a custom metric (0.93–0.98 citation faithfulness), on held-out questions too, and the judge itself was validated |
 
 ## How it works
 
@@ -169,8 +169,8 @@ flowchart LR
     CL --> X[extract_skills<br/>136 skills,<br/>290 aliases]
     X --> J[(jobs_skills.parquet<br/>10,138 posts)]
     J --> ST[stats_tool<br/>exact counts]
-    J --> B[build_index<br/>300-token chunks,<br/>bge-small embeddings]
-    B --> CH[(ChromaDB<br/>20,770 chunks)]
+    J --> B[build_index<br/>boilerplate removed,<br/>180-token chunks,<br/>bge-small embeddings]
+    B --> CH[(ChromaDB<br/>28,219 chunks)]
     J --> HF[(Hugging Face<br/>private dataset)]
     CH --> HF
     HF --> APP[Streamlit app]
@@ -188,7 +188,7 @@ flowchart LR
 | Tech roles only (Arbeitnow: also English only) | 9,663 (7.8%) | 1,280 | 10,943 |
 | Exact duplicates removed | | | 10,175 (−768) |
 | Descriptions under 200 characters removed | 8,881 | 1,257 | **10,138** (−37) |
-| At least one known skill, so indexed | | | 9,683 posts, **20,770 chunks** |
+| At least one known skill, so indexed | | | 9,683 posts, **28,219 chunks** |
 
 ### 1. Collecting
 
@@ -258,9 +258,10 @@ Finally, posts whose description is **under 200 characters** are dropped (37 pos
 - **Glued words:** many LinkedIn descriptions lost their line breaks ("experience using PostgresKnowledge of…"), so a skill may end where a new capitalized word begins.
 - **Result:** 9,683 posts (95.5%) mention at least one skill, 7.1 on average.
 
-### 7. The search index: `chunking.py`, `build_index.py`, `sync_index.py`
+### 7. The search index: `boilerplate.py`, `chunking.py`, `build_index.py`, `sync_index.py`
 
-- Each description is split into **300-token chunks with 50 tokens of overlap**, counted with the embedding model's own tokenizer.
+- **HR boilerplate is removed first** (`boilerplate.py`, no LLM): "About us" sections, equal-opportunity statements, pay and benefits text and application instructions. A sentence is always kept if it names a skill or a job fact (clearance, on-site, hybrid, remote). On all posts this cut 13.9% of the words and **no skill mention**.
+- Each description is then split into **chunks of up to 180 tokens**, counted with the embedding model's own tokenizer. Chunks are built from whole lines and sentences, and the overlap (up to 40 tokens) repeats whole lines only, so a requirement is never cut in half.
 - Each chunk starts with a header (*title | family | level*), so a search for "junior data analyst" can match the job even when the text doesn't repeat it.
 - **Chunks that mention no skill are left out:** benefits, company history and legal text don't help a skills search.
 - Chunks are embedded with `BAAI/bge-small-en-v1.5` (384 dimensions, normalized) and stored in ChromaDB with the post's metadata: ID, title, company, family, level, source, remote, date, URL and skills.
@@ -273,7 +274,7 @@ Finally, posts whose description is **under 200 characters** are dropped (37 pos
 | **Posts** | 10,138 tech posts: 8,881 from Kaggle (US, April 2024) and 1,257 from Arbeitnow (mostly Europe, since October 2026) |
 | **Role families** | software 3,421 · data 1,622 · networking/IT 1,351 · security 688 · DevOps/cloud 669 · AI/ML 653 · backend 610 · architecture 451 · frontend 301 · mobile 191 · QA 181 |
 | **Skills** | 136 skills in 17 categories, 290 aliases; 7.1 per post on average |
-| **Search index** | 20,770 chunks of 300 tokens |
+| **Search index** | 28,219 chunks of up to 180 tokens, HR boilerplate removed |
 
 ### Hybrid search
 
@@ -282,7 +283,7 @@ Vector search finds posts with the same meaning; keyword search finds exact name
 
 - **Vector:** ChromaDB with cosine similarity, plus a small freshness bonus for newer posts.
 - **Keyword:** a BM25 implementation written from scratch (k1 = 1.5, b = 0.75) on a scikit-learn sparse matrix, with a tokenizer that keeps `c#`, `c++`, `node.js` and `network+` whole.
-- **Merge:** Reciprocal Rank Fusion (k = 60).
+- **Merge:** Reciprocal Rank Fusion (k = 60) over **chunks**, then one chunk per post. Fusing by post first let one post's weaker chunk hide its better one.
 
 ### What the data taught me
 
@@ -303,7 +304,8 @@ roadmap agent.
 
 | What | Score |
 |---|---|
-| RAG citation faithfulness (7 questions) | **0.98** |
+| RAG citation faithfulness (7 questions) | **0.93–0.98** |
+| RAG contextual relevancy, after the retrieval work | **0.63 → 0.74** (held-out questions: **0.40 → 0.67**) |
 | Agent citation faithfulness (8 roadmaps) | **0.96** |
 | Agent: right role and level understood | **8 / 8** |
 | Agent: numbers that are not in the plan | **0** |
@@ -315,11 +317,72 @@ The plain RAG (retrieve 5 posts, answer with citations) is evaluated with
 [DeepEval](https://github.com/confident-ai/deepeval) on 7 fixed questions, with Groq's
 `gpt-oss-120b` as the judge.
 
-| Run | Search | Citation faithfulness | Answer relevancy | Contextual relevancy |
-|---|---|---|---|---|
-| Baseline (RAG by hand) | vector | **0.98** | 1.00 | 0.63 |
-| LangChain version | vector | *pending* | *pending* | *pending* |
-| Hybrid | BM25 + vector | *pending* | *pending* | *pending* |
+| Run | Index | Search | Citation faithfulness | Answer relevancy | Contextual relevancy |
+|---|---|---|---|---|---|
+| Baseline (RAG by hand) | old | vector | **0.98** | 1.00 | 0.63 |
+| Hybrid | old | BM25 + vector | 0.97 | 1.00 | 0.65 |
+| Hybrid | new | BM25 + vector | | | 0.66 |
+| **Filtered** | new | BM25 + vector + sentence filter | 0.93 | 0.99 | **0.74** |
+| LangChain version | | vector | *not run* | | |
+
+*Old index:* 300-token chunks. *New index:* boilerplate removed, 180-token chunks. The LangChain
+run was skipped to save the judge's daily token budget; it uses the same retrieval as the baseline.
+
+### Raising contextual relevancy
+
+Contextual relevancy asks: how much of what was retrieved actually answers the question? At 0.63
+it was the weak score, and the pattern was clear. Broad questions ("What skills do I need…")
+scored 0.85–0.98, while narrow ones ("Which certifications…") scored 0.30–0.53: the right post was
+found, but the certification line sat in a chunk full of duties, degrees and benefits. So the
+problem was what a chunk contains, not how chunks are ranked, and hybrid search alone barely
+moved it (0.63 → 0.65).
+
+Three changes, each measured on its own:
+
+1. **A new index** (boilerplate removed, smaller chunks): 0.65 → 0.66 on average. It helped when
+   the question names a skill (Terraform or Kubernetes: 0.53 → 0.82) and hurt when it names a
+   category (certifications: 0.30 → 0.18), because a smaller chunk holds even less of the answer.
+2. **A sentence filter** (`sentence_filter.py`, no LLM) on top of the search, only for focused
+   questions: certification questions keep certification sentences, "which languages / databases"
+   questions keep sentences naming one, and questions that name skills keep the sentences that
+   mention them. Broad questions get the full chunks.
+3. **What didn't work, and was removed:** filtering broad questions too. "What do help desk jobs
+   require?" dropped from 1.00 to 0.43, because the answer *is* the whole requirements list. A
+   "tools" rule also failed: the skill dictionary groups skills by field, not by kind, so it kept
+   "incident response" as readily as "QRadar".
+
+| Question | Kind | Hybrid, new index | Filtered |
+|---|---|---|---|
+| Which certifications do entry-level IT support jobs mention? | certification | 0.18 | **0.71** |
+| Do entry-level help desk jobs ask for CompTIA A+ or ITIL? | named skills | 0.54 | **0.90** |
+| Which entry-level cloud jobs ask for Terraform or Kubernetes? | named skills | 0.82 | 0.78 |
+| Which tools do entry-level security analyst jobs ask for? | tools (not filtered) | 0.25 | 0.26 |
+| 3 broad questions | not filtered (same context in both runs) | 0.87–1.00 | 0.68–0.92 |
+
+**Held-out questions.** The filter was designed by reading failures on the same 7 questions, so
+its score there is optimistic. After the rules were frozen, I wrote 4 new questions of the same
+kinds on different roles and skills, and changed nothing after seeing them:
+
+| Held-out question | Kind | Hybrid | Filtered |
+|---|---|---|---|
+| Which certifications do entry-level cybersecurity jobs mention? | certification | 0.33 | **0.86** |
+| Which programming languages do junior data analyst jobs ask for? | languages | 0.12 | 0.27 |
+| Do entry-level DevOps jobs ask for Docker or Ansible? | named skills | 0.47 | **0.89** |
+| What do entry-level backend developer jobs require? | broad (not filtered) | 0.67 | 0.67 |
+| **Average** | | **0.40** | **0.67** |
+
+The certification and named-skill rules carried over to new questions; the languages rule is
+weak, because few data-analyst posts name languages at all.
+
+**Two honest caveats.** First, the judge is noisy: unfiltered questions got *identical* context
+in two runs and their scores still moved, once by 0.39 (0.25 → 0.64), so single scores on 7
+questions are only rough. Second, filtering has a small cost: with only the certification lines
+in context, one answer called CompTIA A+ "required" where the post said "preferred", and citation
+faithfulness dropped from 0.97 to 0.93, almost all from that question.
+
+**In the live app:** the roadmap agent uses the new index and the improved hybrid search. The
+sentence filter belongs to the question-answering RAG (`rag_by_hand.py`); the agent searches by
+skills, not by question kind, so it doesn't use it.
 
 **Citation faithfulness is a custom metric.** DeepEval's built-in faithfulness first condenses the
 sources into a list of "truths", losing the source numbers, so it flagged correct lines and gave
@@ -365,10 +428,21 @@ left out. `rescore_agent.py` judged the 8 saved roadmaps again without rebuildin
 **0.54 → 0.96**, with no line left unsupported.
 
 What the judge still flags is real: a few examples cite a post that doesn't mention the skill
-(for example an AWS example from a post without the word AWS). The evaluation also found two
-bugs that are being fixed: the LLM critic's structured reply was cut off in 6 of 8 runs (its
-reasoning used up the token budget, so only the code checks ran), and the planner added Kotlin
-and Swift to help desk roadmaps because help desk posts ask for Android and iOS *support*.
+(for example an AWS example from a post without the word AWS).
+
+**The evaluation also found three bugs, now fixed:**
+
+- **The LLM critic's structured reply was cut off in 6 of 8 runs.** Its reasoning used up the
+  token budget, so only the code checks ran. The critic now has its own model settings (low
+  reasoning effort, a bigger budget) and one retry.
+- **The critic raised false alarms.** It treated the plan's own numbers as unsupported and
+  flagged trends on skills mentioned after "learn after". It now gets the plan as evidence, and
+  the trend check reads only the part of a line before words like "learn after" or "or".
+  Reviewer notes went from 29 in 8 roadmaps to 5 in 3, and the 5 left are real: an example that
+  doesn't show its skill, and quotes the writer reworded slightly.
+- **The planner added Kotlin and Swift to help desk roadmaps,** because help desk posts ask for
+  Android and iOS *support*. A prerequisite is now skipped when fewer than 5% of the posts ask
+  for it, and the plan says so in a note.
 
 ## Design decisions
 
@@ -449,7 +523,9 @@ streamlit run app.py
 **Evaluate**
 
 ```bash
-python eval_rag.py baseline                               # or: langchain, hybrid
+python eval_rag.py baseline                               # or: langchain, hybrid, filtered
+python eval_rag.py filtered --metrics context             # contextual relevancy only (no answers generated)
+python eval_rag.py filtered --set heldout                 # the 4 held-out questions
 python rescore_citation.py evals/baseline_<date>.csv      # re-judge saved answers
 python check_skills.py evals/baseline_<date>.csv          # independent dictionary check, no LLM
 python eval_agent.py                                      # the full agent, 8 requests (--no-judge: code checks only)
@@ -483,13 +559,15 @@ roles.py                role families and re-labeling rules
 fetch_arbeitnow.py      weekly job board snapshots
 run_pipeline.py         filter_tech -> process_arbeitnow -> merge_sources -> clean_jobs -> extract_skills
 cleaning.py             title cleaning, level rules, years of experience
-chunking.py             300-token chunks with a header; chunks without skills are skipped
+boilerplate.py          removes HR boilerplate before chunking (keeps skill sentences)
+chunking.py             chunks of up to 180 tokens from whole lines; chunks without skills are skipped
+sentence_filter.py      keeps only the matching sentences for focused RAG questions
 build_index.py          chunking and embeddings into ChromaDB
 sync_index.py           keeps the index in step with the data
 hf_data.py              uploads / downloads the data (Hugging Face dataset)
 pipeline_stats.py       how many posts survive each step
 .github/workflows/      weekly-refresh.yml: the Monday data refresh
-eval_rag.py             DeepEval runs: baseline, LangChain, hybrid
+eval_rag.py             DeepEval runs: baseline, LangChain, hybrid, filtered; main and held-out sets
 eval_agent.py           the full agent on 8 requests: code checks + the judge
 rescore_agent.py        re-judges saved roadmaps
 citation_faithfulness.py  the custom metric (checks against the plan too, for roadmaps)
@@ -505,8 +583,11 @@ make_requirements.py    requirements.txt (app) and requirements-pipeline.txt (we
 - **A dictionary finds only what it knows.** A skill that isn't in `skills_dict.py` can't be counted; the planner tells you when one of your skills isn't in it.
 - **Free tiers:** about 200,000 Groq tokens per model per day (around ten roadmaps), and the online app sleeps after 12 hours without visitors, so the first visit after that takes a minute or two.
 - **Growth:** the weekly refresh adds a few hundred posts a week. The first limit to reach is the app's memory on the free tier (2.7 GB), so older Arbeitnow posts will move to a rolling window of the last 6–12 months.
-- **Retrieval brings back some HR text.** Contextual relevancy is 0.63: chunks still contain pay ranges, benefits and equal-opportunity statements. A boilerplate filter is tested (it cuts about 14% of the words and no skill) and comes with the next re-index.
-- **Next:** the LangChain vs hybrid comparison above, the fixed critic and planner, then the boilerplate filter with a before/after score.
+- **Small test sets and a noisy judge.** 7 + 4 RAG questions and 8 roadmaps; the judge can move a score by 0.1 or more on identical input. Treat single scores as rough.
+- **Category questions are still weak.** "Which tools…" isn't filtered (the dictionary can't tell a tool from an activity) and "which languages…" scored 0.27 on a held-out question.
+- **The index only holds chunks that name a skill,** so questions about degrees, years of experience or soft skills are covered poorly.
+- **Some raw text is glued together** ("requirements.Develop"), which hides sentence boundaries from the chunker and the filter. A general fix belongs in the cleaning step.
+- **Next:** that cleaning fix, "Windows" in the skill dictionary, and more held-out questions.
 
 ## Credits
 
