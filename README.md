@@ -591,7 +591,7 @@ make_requirements.py    requirements.txt (app) and requirements-pipeline.txt (we
 
 ## Credits
 
-- Job posts: the [LinkedIn Job Postings dataset](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings) by arshkon on Kaggle, and the free [Arbeitnow job board API](https://www.arbeitnow.com/blog/job-board-api).
+- Job posts: the [LinkedIn Job Postings dataset](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings) by arshkon on Kaggle ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)), and the free [Arbeitnow job board API](https://www.arbeitnow.com/blog/job-board-api). The processed data is not redistributed in this repository.
 - Models: `gpt-oss` served by [Groq](https://groq.com), embeddings from [BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5).
 
 ---
